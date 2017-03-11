@@ -1,6 +1,8 @@
 	Feedback Recording
-please enter a TH name to give it feedback:
-coolTH
+ID	Name		
+001	coolTH		
+please enter a TH ID to give it feedback:
+001
 
 	Feedback Recording
 please enter a date:

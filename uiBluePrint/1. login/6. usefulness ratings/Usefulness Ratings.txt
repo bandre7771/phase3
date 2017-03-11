@@ -1,6 +1,7 @@
 	Usefulness Recording
-1. It was ok.
-please choose a feedback to declare its usefulness level.
+TH name		date		rating	short text		Average usefulness score
+1. Joe 		1/10/2017	8	It was ok		0
+please enter a feedback to declare its usefulness level or just press enter to exit.
 1
 	
 	Usefulness Recording
