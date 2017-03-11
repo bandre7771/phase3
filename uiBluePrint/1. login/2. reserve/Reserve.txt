@@ -1,0 +1,10 @@
+	Reserve
+please enter a TH name to reserve it:
+th name
+
+	Reserve
+Available Dates		price per night
+1. 1/10/2017 		$10
+2. 1/30/2018		$10
+3. 10/29/2000		$10
+

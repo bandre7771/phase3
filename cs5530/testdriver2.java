@@ -44,7 +44,6 @@ public class testdriver2 {
 	            		 c = Integer.parseInt(choice);
 	            	 }catch (Exception e)
 	            	 {
-	            		 
 	            		 continue;
 	            	 }
 	            	 if (c<1 | c>3)

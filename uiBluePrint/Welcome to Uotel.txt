@@ -1,0 +1,4 @@
+	Welcome to Uotel
+1. login:
+2. sign up:
+please enter your choice:
