@@ -1,0 +1,13 @@
+	Browse TH
+search by
+1. price
+2. address
+3. name
+4. keyword
+5. category
+
+other options
+6. sort by price
+7. sort by average feedback score
+8. sort by average trusted feedbacks
+9. clear current search

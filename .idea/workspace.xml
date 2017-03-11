@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea5d267d-6e87-4947-96de-4ec67305a4ba" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uiBluePrint/1. login/2. reserve/Reserve.txt" afterPath="$PROJECT_DIR$/uiBluePrint/1. login/2. reserve/Reserve.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uiBluePrint/2. register/Registration.txt" afterPath="$PROJECT_DIR$/uiBluePrint/2. register/Registration.txt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uiBluePrint/1. login/2. reserve/Reserve.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uiBluePrint/1. login/3. TH/1. add TH/Add TH.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uiBluePrint/1. login/3. TH/2. update TH/Update TH.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uiBluePrint/1. login/3. TH/TH.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/uiBluePrint/1. login/4. stays/Stays.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uiBluePrint/1. login/5. feedback recordings/Feedback Recordings.txt" afterPath="$PROJECT_DIR$/uiBluePrint/1. login/5. feedback recordings/Feedback Recordings.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,7 +29,7 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1489206377000" expanded="true" signature="192:214" ph="..." />
+                <marker date="1489206655000" expanded="true" signature="192:214" ph="..." />
               </folding>
             </state>
           </provider>
@@ -76,8 +80,8 @@
       <file leaf-file-name="Order.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cs5530/Order.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="70" lean-forward="false" selection-start-line="16" selection-start-column="70" selection-end-line="16" selection-end-column="70" />
+            <state relative-caret-position="225">
+              <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
               <folding>
                 <marker date="1489171768000" expanded="true" signature="273:328" ph="Select * fro... orders" />
               </folding>
@@ -610,16 +614,16 @@
       <option name="presentableId" value="Default" />
       <updated>1489172428468</updated>
       <workItem from="1489172430791" duration="1154000" />
-      <workItem from="1489200968614" duration="1319000" />
+      <workItem from="1489200968614" duration="1716000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2473000" />
+    <option name="totallyTimeSpent" value="2870000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="19" y="42" width="1400" height="834" extended-state="0" />
-    <editor active="false" />
+    <frame x="19" y="42" width="1400" height="834" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -631,7 +635,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -672,7 +676,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1489206377000" expanded="true" signature="192:214" ph="..." />
+            <marker date="1489206655000" expanded="true" signature="192:214" ph="..." />
           </folding>
         </state>
       </provider>
@@ -742,7 +746,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1489206377000" expanded="true" signature="192:214" ph="..." />
+            <marker date="1489206655000" expanded="true" signature="192:214" ph="..." />
           </folding>
         </state>
       </provider>
@@ -826,8 +830,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cs5530/Order.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="70" lean-forward="false" selection-start-line="16" selection-start-column="70" selection-end-line="16" selection-end-column="70" />
+        <state relative-caret-position="225">
+          <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
           <folding>
             <marker date="1489171768000" expanded="true" signature="273:328" ph="Select * fro... orders" />
           </folding>

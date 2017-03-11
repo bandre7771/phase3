@@ -26,6 +26,4 @@ please enter a short text review:
 It was ok.
 
 	Feedback Recording
-1. confirm and exit:
-2. cancel and exit:
-please enter your choice:
+success! press enter to continue:

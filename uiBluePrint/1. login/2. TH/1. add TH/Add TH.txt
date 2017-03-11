@@ -27,4 +27,4 @@ please enter url (press enter to skip):
 
 
 	Add TH
-TH ID 001 added!
+success! press enter to continue:

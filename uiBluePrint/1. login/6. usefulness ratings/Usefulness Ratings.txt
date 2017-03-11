@@ -1,0 +1,14 @@
+	Usefulness Recording
+1. It was ok.
+please choose a feedback to declare its usefulness level.
+1
+	
+	Usefulness Recording
+0. useless
+1. useful
+2. very useful
+please enter your choice:
+0
+
+	Usefulness Recording
+success! press enter to continue.

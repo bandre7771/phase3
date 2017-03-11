@@ -1,0 +1,6 @@
+	Favorite Recordings
+enter the name of the TH you would like to favorite:
+coolTH
+
+	Favorite Recordings
+success! press enter to continue:

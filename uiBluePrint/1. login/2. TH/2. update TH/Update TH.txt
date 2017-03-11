@@ -29,4 +29,4 @@ please add new picture (press enter to skip):
 please enter new url (press enter to skip):
 
 	Update TH
-TH ID 001 updated!
+success! press enter to continue:
