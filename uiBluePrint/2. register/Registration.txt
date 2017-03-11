@@ -5,3 +5,6 @@ John
 	Registration
 please enter your password:
 ********
+
+
+//Go to main menu after registration.

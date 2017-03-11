@@ -1,10 +1,21 @@
 	Reserve
 please enter a TH name to reserve it:
-th name
+coolTH
 
 	Reserve
-Available Dates		price per night
-1. 1/10/2017 		$10
-2. 1/30/2018		$10
-3. 10/29/2000		$10
+available dates		price per night
+1. 1/10/2017 		$10:
+2. 1/30/2018		$10:
+3. 10/29/2000		$10:
+
+	Reserve
+1. make another reservation:
+2. exit:
+
+	Reserve
+you have made reservations for the following TH’s:
+coolTH
+1. confirm and exit:
+2. cancel and exit:
+please enter your choice:
 

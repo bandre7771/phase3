@@ -1,0 +1,17 @@
+	Stays
+reserved periods		
+1. 1/10/2017:
+2. 1/30/2018:
+please choose which reservation you would like to add a stay for.
+
+	Stays
+1. record another stay:
+2. exit:
+
+	Stays
+you have recorded stays for the following periods:
+coolTH
+1. confirm and exit:
+2. cancel and exit:
+please enter your choice:
+

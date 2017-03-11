@@ -1,0 +1,31 @@
+	Feedback Recording
+please enter a TH name to give it feedback:
+coolTH
+
+	Feedback Recording
+please enter a date:
+1/10/2017
+
+	Feedback Recording
+0.
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
+please enter a rating (0=terrible, 10=excellent):
+8
+
+	Feedback Recording
+please enter a short text review:
+It was ok.
+
+	Feedback Recording
+1. confirm and exit:
+2. cancel and exit:
+please enter your choice:

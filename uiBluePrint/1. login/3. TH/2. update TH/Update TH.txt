@@ -1,0 +1,32 @@
+	Update TH
+please enter TH name:
+coolTH
+
+please enter new TH name:
+newcoolTH
+ 
+	Update TH
+please enter new category name (press enter to skip):
+luxurious
+
+	Update TH
+please enter new address (press enter to skip):
+SLC
+
+	Update TH
+please enter new phone number (press enter to skip):
+801 123 4567
+
+	Update TH
+please enter new year built (press enter to skip):
+2000
+
+	Update TH
+please add new picture (press enter to skip):
+
+
+	Update TH
+please enter new url (press enter to skip):
+
+	Update TH
+TH ID 001 updated!

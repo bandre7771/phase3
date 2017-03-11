@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea5d267d-6e87-4947-96de-4ec67305a4ba" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dictionaries/bandre7771.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cs5530/Connector.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cs5530/Course.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cs5530/Order.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cs5530/testdriver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cs5530/testdriver2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/phase2/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/phase2/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/phase2/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/phase2/.idea/dictionaries/bandre7771.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/phase2/.idea/encodings.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/phase2/cs5530/testdriver2.class" afterPath="$PROJECT_DIR$/out/production/phase2/cs5530/testdriver2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mysql.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mysql.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs5530/testdriver2.java" afterPath="$PROJECT_DIR$/cs5530/testdriver2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/phase2/.idea/libraries/mysql.xml" afterPath="$PROJECT_DIR$/out/production/phase2/.idea/libraries/mysql.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/phase2/.idea/misc.xml" afterPath="$PROJECT_DIR$/out/production/phase2/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/phase2/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/phase2/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uiBluePrint/1. login/2. reserve/Reserve.txt" afterPath="$PROJECT_DIR$/uiBluePrint/1. login/2. reserve/Reserve.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uiBluePrint/2. register/Registration.txt" afterPath="$PROJECT_DIR$/uiBluePrint/2. register/Registration.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,7 +24,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1489206377000" expanded="true" signature="192:214" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -629,16 +610,16 @@
       <option name="presentableId" value="Default" />
       <updated>1489172428468</updated>
       <workItem from="1489172430791" duration="1154000" />
-      <workItem from="1489200968614" duration="1200000" />
+      <workItem from="1489200968614" duration="1319000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2354000" />
+    <option name="totallyTimeSpent" value="2473000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="19" y="42" width="1400" height="834" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -650,7 +631,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -690,7 +671,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1489206377000" expanded="true" signature="192:214" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -758,7 +741,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1489206377000" expanded="true" signature="192:214" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
