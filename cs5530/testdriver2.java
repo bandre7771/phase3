@@ -13,7 +13,9 @@ public class testdriver2 {
     	 System.out.println("1. Login:");
     	 System.out.println("2. Register:");
     	 System.out.println("3. exit:");
-    	 System.out.println("pleasse enter your choice:");
+    	 System.out.println("4. Add Visit:");
+		 System.out.println("5. Get Visit:");
+    	 System.out.println("please enter your choice:");
 	}
 	
 	public static void main(String[] args) {

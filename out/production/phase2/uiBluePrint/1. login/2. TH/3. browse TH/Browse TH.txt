@@ -1,0 +1,6 @@
+	Browse TH
+ID	Name		category	address		keyword		price	average fb score	average trusted fb
+001	coolTH		luxurious	SLC		fabulous	$10	8			0
+1. search by:
+2. sort by:
+please enter a choice or just press enter to exit:
