@@ -12,9 +12,9 @@ public class testdriver2 {
 	 */
 	public static void displayMenu()
 	{
-		 System.out.println("        Welcome to the UTrack System     ");
-    	 System.out.println("1. search a course by cname and dname:");
-    	 System.out.println("2. enter your own query:");
+		 System.out.println("       Welcome to Uotel     ");
+    	 System.out.println("1. Login:");
+    	 System.out.println("2. Register:");
     	 System.out.println("3. exit:");
     	 System.out.println("pleasse enter your choice:");
 	}
@@ -24,8 +24,8 @@ public class testdriver2 {
 		System.out.println("Example for cs5530");
 		Connector con=null;
 		String choice;
-        String cname;
-        String dname;
+        String username;
+        String password;
         String sql=null;
         int c=0;
          try
@@ -48,20 +48,20 @@ public class testdriver2 {
 	            	 }
 	            	 if (c<1 | c>3)
 	            		 continue;
-	            	 // Search course by name and dname
+	            	 // Enter userm
 					 if (c==1)
 	            	 {
-	            		 System.out.println("please enter a cname:");
-	            		 while ((cname = in.readLine()) == null && cname.length() == 0);
-	            		 System.out.println("please enter a dname:");
-	            		 while ((dname = in.readLine()) == null && dname.length() == 0);
+	            		 System.out.println("please enter login name");
+	            		 while ((username = in.readLine()) == null && username.length() == 0);
+	            		 System.out.println("please enter a password:");
+	            		 while ((password = in.readLine()) == null && password.length() == 0);
 	            		 Course course=new Course();
-	            		 System.out.println(course.getCourse(cname, dname, con.stmt));
+	            		 System.out.println(course.getCourse(username, password, con.stmt));
 	            	 }
 					 // Enter your own query
 	            	 else if (c==2)
 	            	 {	 
-	            		 System.out.println("please enter your query below:");
+	            		 System.out.println("Register");
 	            		 while ((sql = in.readLine()) == null && sql.length() == 0)
 	            			 System.out.println(sql);
 	            		 ResultSet rs=con.stmt.executeQuery(sql);
