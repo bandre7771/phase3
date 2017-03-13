@@ -2,3 +2,10 @@
 1. login:
 2. register:
 please enter your choice:
+1
+
+please enter login name:
+Joe
+
+please enter password:
+******

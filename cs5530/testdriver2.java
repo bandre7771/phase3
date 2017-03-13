@@ -80,7 +80,7 @@ public class testdriver2 {
 					 // Exit
 	            	 else
 	            	 {   
-	            		 System.out.println("EoM_______");
+	            		 System.out.println("EoM");
 	            		 con.stmt.close(); 
 	        
 	            		 break;

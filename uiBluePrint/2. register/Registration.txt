@@ -1,8 +1,7 @@
 	Registration
 please enter your login name:
 John
-`
-	Registration
+
 please enter your password:
 ********
 
