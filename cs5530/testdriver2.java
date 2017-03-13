@@ -7,9 +7,6 @@ import java.io.*;
 
 public class testdriver2 {
 
-	/**
-	 * @param args
-	 */
 	public static void displayMenu()
 	{
 		 System.out.println("       Welcome to Uotel     ");
