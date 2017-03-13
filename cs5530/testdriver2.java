@@ -48,7 +48,8 @@ public class testdriver2 {
 	            	 }
 	            	 if (c<1 | c>3)
 	            		 continue;
-	            	 if (c==1)
+	            	 // Search course by name and dname
+					 if (c==1)
 	            	 {
 	            		 System.out.println("please enter a cname:");
 	            		 while ((cname = in.readLine()) == null && cname.length() == 0);
@@ -57,6 +58,7 @@ public class testdriver2 {
 	            		 Course course=new Course();
 	            		 System.out.println(course.getCourse(cname, dname, con.stmt));
 	            	 }
+					 // Enter your own query
 	            	 else if (c==2)
 	            	 {	 
 	            		 System.out.println("please enter your query below:");
@@ -75,6 +77,7 @@ public class testdriver2 {
 	            		 System.out.println(" ");
 	            		 rs.close();
 	            	 }
+					 // Exit
 	            	 else
 	            	 {   
 	            		 System.out.println("EoM");
