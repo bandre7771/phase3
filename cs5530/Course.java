@@ -13,7 +13,7 @@ public class Course {
 			ResultSet rs=null;
    		 	System.out.println("executing "+sql);
    		 	try{
-	   		 	rs=stmt.executeQuery(sql);
+	   		 	rs = stmt.executeQuery(sql);
 	   		 	while (rs.next())
 				 {
 					//System.out.print("cname:");
