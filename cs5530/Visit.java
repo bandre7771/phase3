@@ -56,4 +56,38 @@ public class Visit {
    		 	}
 		    return output;
 		}
+
+	public String getVisit(String login, int hid, Statement stmt)
+	{
+		String sql="select * from Visit where login = '"+login+"' and hid = "+hid;
+		String output="";
+		ResultSet rs=null;
+		System.out.println("executing "+sql);
+		try{
+			rs=stmt.executeQuery(sql);
+			while (rs.next())
+			{
+				System.out.println("login: "+login+" hid: "+hid);
+				output+=rs.getString("login")+"   "+rs.getString("hid")+"   "+rs.getString("pid")+"\n";
+			}
+
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot close resultset");
+			}
+		}
+		return output;
+	}
 }

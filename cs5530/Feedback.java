@@ -42,7 +42,7 @@ public class Feedback {
 		    return output;
 		}
 
-	public void addFeedback(String fid, String hid, String text, int score, Date fbdate, Statement stmt)
+	public void addFeedback(String hid, String text, int score, Date fbdate, Statement stmt)
 	{
 		String sql="INSERT INTO Favorites (fid, hid, text, score, fbdate) VALUES ("+fid+", "+hid+", " + text +", "+score+", "+", "+fbdate+", "+")";
 		System.out.println("executing "+sql);
