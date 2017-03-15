@@ -537,7 +537,7 @@ public class application {
 						System.out.println("please enter the amount of users you’d like to display:");
 						while ((m = in.readLine()) == null && m.length() == 0);
 						System.out.println("Top most useful users:");
-						System.out.println(mostUsefulUsers());
+						System.out.println(mostUsefulUsers(m, con.stmt));
 						break;
 					case 3:
 						exit = true;
@@ -553,8 +553,42 @@ public class application {
 		}
 	}
 
-	public static String mostUsefulUsers()
+	public static String mostUsefulUsers(String m, Statement stmt)
 	{
-		return "";
+		String sql="SELECT  f.login, avg(r.rating) as usefulness_score\n" +
+				"FROM Feedback f, Rates r\n" +
+				"WHERE f.fid = r.fid\n" +
+				"GROUP BY f.login\n" +
+				"ORDER BY usefulness_score DESC LIMIT "+m;
+		String output="";
+		ResultSet rs=null;
+		System.out.println("executing "+sql);
+		try{
+			rs=stmt.executeQuery(sql);
+			System.out.println("login\t\tusefulness score");
+			while (rs.next())
+			{
+				output+=rs.getString("login")+"\t\t"
+						+ rs.getString("usefulness_score")+"\n";
+			}
+
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot close resultset");
+			}
+		}
+		return output;
 	}
 }
