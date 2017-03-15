@@ -15,9 +15,9 @@ public class Period {
    		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
-	   		 	while (rs.next())
+				//System.out.print("cname:");
+				while (rs.next())
 				 {
-					//System.out.print("cname:");
 				        output+=rs.getString("pid") + "   " + rs.getString("from_date") + "   " + rs.getString("to_date")+ "\n";
 				 }
 			     

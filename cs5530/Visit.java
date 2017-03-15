@@ -8,7 +8,7 @@ public class Visit {
 		public Visit()
 		{}
 
-		public boolean addVisit(String login, int hid, int pid, float cost, Statement stmt)  {
+		public boolean addVisit(String login, String hid, String pid, String cost, Statement stmt)  {
 			String sql="INSERT INTO Visit (login, hid, pid, cost) VALUES  ('"+login+"',"+hid+","+pid+","+cost+")";
 			System.out.println("executing " + sql);
 			try{
@@ -23,7 +23,7 @@ public class Visit {
 			return true;
 		}
 
-		public String getVisit(String login, int hid, int pid, Statement stmt)
+		public String getVisit(String login, String hid, String pid, Statement stmt)
 		{
 			String sql="select * from Visit where login = '"+login+"' and hid = "+hid+" and pid = "+pid;
 			String output="";
@@ -34,7 +34,9 @@ public class Visit {
 	   		 	while (rs.next())
 				 {
 					System.out.println("login: "+login+" hid: "+hid+" pid: "+pid);
-				        output+=rs.getString("login")+"   "+rs.getString("hid")+"   "+rs.getString("pid")+"\n";
+				        output+=rs.getString("login")+"   "
+								+rs.getString("hid")+"   "
+								+rs.getString("pid")+"\n";
 				 }
 			     
 			     rs.close();
