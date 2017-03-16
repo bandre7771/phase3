@@ -2,23 +2,31 @@ package cs5530;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Available {
 		public Available()
 		{}
-		
-		public String getAvailable(String hid, String pid, Statement stmt)
+
+		public List<List<String>> getAvailable(String hid, String pid, Statement stmt)
 		{
-			String sql="select * from Available where hid = "+hid+" and pid "+pid;
-			String output="";
+			String sql="select * from Available where hid = '"+hid+"' and pid '"+pid+"'";
+			List<List<String>> output = new ArrayList<List<String>>();
+
 			ResultSet rs=null;
    		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
+				int count = 0;
 	   		 	while (rs.next())
 				 {
+					 List<String> row = new ArrayList<String>();
 					//System.out.print("cname:");
-				        output+=rs.getString("hid")+"   "+rs.getString("pid")+"\n";
+					 row.add(rs.getString("hid"));
+					 row.add(rs.getString("pid"));
+					 row.add(rs.getString("price_per_night"));
+					 output.add(row);
 				 }
 			     
 			     rs.close();
@@ -41,9 +49,9 @@ public class Available {
 		    return output;
 		}
 
-	public void addFavorites(String hid, String pid, Statement stmt)
+	public void addAvailable(String hid, String pid, String cost_per_night, Statement stmt)
 	{
-		String sql="INSERT INTO Favorites (hid, login) VALUES ("+hid+", "+pid+")";
+		String sql="INSERT INTO Available (hid, pid, price_per_night) VALUES ("+hid+", "+pid+", 80)";
 		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
@@ -51,6 +59,18 @@ public class Available {
 		catch(Exception e)
 		{
 			System.out.println("cannot insert");
+		}
+	}
+
+	public void deleteAvailable(String thid, String pid, Statement stmt) {
+		String sql="delete from Available where pid = '" +pid + "' and hid = '" + thid +"'";
+		System.out.println("executing "+sql);
+		try{
+			stmt.executeUpdate(sql);
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot remove available period");
 		}
 	}
 }

@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea5d267d-6e87-4947-96de-4ec67305a4ba" name="Default" comment="" />
+    <list default="true" id="ea5d267d-6e87-4947-96de-4ec67305a4ba" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/phase2/cs5530/Available.class" afterPath="$PROJECT_DIR$/out/production/phase2/cs5530/Available.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/phase2/cs5530/Feedback.class" afterPath="$PROJECT_DIR$/out/production/phase2/cs5530/Feedback.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/phase2/cs5530/Period.class" afterPath="$PROJECT_DIR$/out/production/phase2/cs5530/Period.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/phase2/cs5530/Reserve.class" afterPath="$PROJECT_DIR$/out/production/phase2/cs5530/Reserve.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/phase2/cs5530/Visit.class" afterPath="$PROJECT_DIR$/out/production/phase2/cs5530/Visit.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/phase2/cs5530/testdriver.class" afterPath="$PROJECT_DIR$/out/production/phase2/cs5530/testdriver.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs5530/Available.java" afterPath="$PROJECT_DIR$/cs5530/Available.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs5530/Feedback.java" afterPath="$PROJECT_DIR$/cs5530/Feedback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs5530/Period.java" afterPath="$PROJECT_DIR$/cs5530/Period.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs5530/Reserve.java" afterPath="$PROJECT_DIR$/cs5530/Reserve.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs5530/testdriver.java" afterPath="$PROJECT_DIR$/cs5530/testdriver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/phase2/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/phase2/.idea/workspace.xml" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,15 +34,68 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Users.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cs5530/Users.java">
+      <file leaf-file-name="testdriver.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cs5530/testdriver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4352031">
-              <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.021551725">
+              <caret line="272" column="5" selection-start-line="272" selection-start-column="5" selection-end-line="272" selection-end-column="5" />
               <folding>
-                <marker date="1489436527000" expanded="true" signature="333:515" placeholder="INSERT INTO Users... " />
-                <marker date="1489436527000" expanded="true" signature="932:977" placeholder="select * fro... Users" />
+                <element signature="imports" expanded="true" />
+                <marker date="1489594688000" expanded="true" signature="8901:9067" placeholder="select * fro... Available" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Period.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cs5530/Period.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+              <folding>
+                <marker date="1489594688000" expanded="true" signature="254:287" placeholder="select * fro... Keywords" />
+                <marker date="1489594688000" expanded="true" signature="1398:1493" placeholder="INSERT INTO Favorites... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Available.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cs5530/Available.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="33" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="33" />
+              <folding>
+                <marker date="1489594688000" expanded="true" signature="275:329" placeholder="select * fro... Available" />
+                <marker date="1489594688000" expanded="true" signature="275:330" placeholder="select * fro... Available" />
+                <marker date="1489594688000" expanded="true" signature="275:334" placeholder="select * fro... Available" />
+                <marker date="1489594688000" expanded="true" signature="275:338" placeholder="select * fro... Available" />
+                <marker date="1489594688000" expanded="true" signature="1273:1333" placeholder="INSERT INTO Favorites... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Rates.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cs5530/Rates.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="45" column="37" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+              <folding>
+                <marker date="1489435072000" expanded="true" signature="200:226" placeholder="select * fro... Rates" />
+                <marker date="1489435072000" expanded="true" signature="200:263" placeholder="select * fro... Rates" />
+                <marker date="1489435072000" expanded="true" signature="1064:1148" placeholder="INSERT INTO Favorites... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Connector.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cs5530/Connector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -49,17 +115,20 @@
       <list>
         <option value="$PROJECT_DIR$/cs5530/Course.java" />
         <option value="$PROJECT_DIR$/cs5530/Connector.java" />
-        <option value="$PROJECT_DIR$/cs5530/Available.java" />
         <option value="$PROJECT_DIR$/cs5530/Favorites.java" />
-        <option value="$PROJECT_DIR$/cs5530/Feedback.java" />
-        <option value="$PROJECT_DIR$/cs5530/Reserve.java" />
         <option value="$PROJECT_DIR$/cs5530/Rates.java" />
         <option value="$PROJECT_DIR$/cs5530/HasKeywords.java" />
         <option value="$PROJECT_DIR$/cs5530/Keywords.java" />
-        <option value="$PROJECT_DIR$/cs5530/Period.java" />
         <option value="$PROJECT_DIR$/cs5530/TH.java" />
         <option value="$PROJECT_DIR$/cs5530/Trust.java" />
         <option value="$PROJECT_DIR$/cs5530/testdriver2.java" />
+        <option value="$PROJECT_DIR$/cs5530/Users.java" />
+        <option value="$PROJECT_DIR$/cs5530/Visit.java" />
+        <option value="$PROJECT_DIR$/cs5530/Feedback.java" />
+        <option value="$PROJECT_DIR$/cs5530/Reserve.java" />
+        <option value="$PROJECT_DIR$/cs5530/Available.java" />
+        <option value="$PROJECT_DIR$/cs5530/Period.java" />
+        <option value="$PROJECT_DIR$/cs5530/testdriver.java" />
       </list>
     </option>
   </component>
@@ -71,7 +140,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
     <option name="width" value="1440" />
-    <option name="height" value="816" />
+    <option name="height" value="814" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -98,8 +167,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -162,7 +231,7 @@
       <recent name="cs5530" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.testdriver2">
+  <component name="RunManager" selected="Application.testdriver">
     <configuration default="false" name="testdriver2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -171,6 +240,26 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="cs5530.testdriver2" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="phase2" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="testdriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="cs5530.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="cs5530.testdriver" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -609,12 +698,14 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.testdriver2" />
+      <item index="1" class="java.lang.String" itemvalue="Application.testdriver" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.testdriver2" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Application.testdriver" />
+        <item index="1" class="java.lang.String" itemvalue="Application.testdriver2" />
       </list>
     </recent_temporary>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
@@ -659,16 +750,19 @@
       <workItem from="1489172430791" duration="1154000" />
       <workItem from="1489200968614" duration="1716000" />
       <workItem from="1489299096108" duration="274000" />
-      <workItem from="1489424855939" duration="13807000" />
+      <workItem from="1489424855939" duration="36794000" />
+      <workItem from="1489594971760" duration="223000" />
+      <workItem from="1489595250509" duration="354000" />
+      <workItem from="1489595897611" duration="17000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16951000" />
+    <option name="totallyTimeSpent" value="40532000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="816" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="22" width="1440" height="814" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -676,16 +770,16 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25138122" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872927" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24723756" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29834256" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24723756" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16237482" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16237482" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39917126" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -693,7 +787,7 @@
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872927" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -720,11 +814,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/cs5530/Users.java</url>
-          <line>33</line>
+          <line>71</line>
           <properties />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/cs5530/testdriver.java</url>
+          <line>294</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -733,11 +833,111 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/cs5530/Period.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+          <folding>
+            <marker date="1489594688000" expanded="true" signature="254:287" placeholder="select * fro... Keywords" />
+            <marker date="1489594688000" expanded="true" signature="1398:1493" placeholder="INSERT INTO Favorites... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Available.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="33" />
+          <folding>
+            <marker date="1489594688000" expanded="true" signature="275:329" placeholder="select * fro... Available" />
+            <marker date="1489594688000" expanded="true" signature="275:330" placeholder="select * fro... Available" />
+            <marker date="1489594688000" expanded="true" signature="275:334" placeholder="select * fro... Available" />
+            <marker date="1489594688000" expanded="true" signature="275:338" placeholder="select * fro... Available" />
+            <marker date="1489594688000" expanded="true" signature="1273:1333" placeholder="INSERT INTO Favorites... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Rates.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="37" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+          <folding>
+            <marker date="1489435072000" expanded="true" signature="200:226" placeholder="select * fro... Rates" />
+            <marker date="1489435072000" expanded="true" signature="200:263" placeholder="select * fro... Rates" />
+            <marker date="1489435072000" expanded="true" signature="1064:1148" placeholder="INSERT INTO Favorites... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Connector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/testdriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1489594688000" expanded="true" signature="8901:9067" placeholder="select * fro... Available" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Period.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+          <folding>
+            <marker date="1489594688000" expanded="true" signature="254:287" placeholder="select * fro... Keywords" />
+            <marker date="1489594688000" expanded="true" signature="1398:1493" placeholder="INSERT INTO Favorites... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Available.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="33" />
+          <folding>
+            <marker date="1489594688000" expanded="true" signature="275:329" placeholder="select * fro... Available" />
+            <marker date="1489594688000" expanded="true" signature="275:330" placeholder="select * fro... Available" />
+            <marker date="1489594688000" expanded="true" signature="275:334" placeholder="select * fro... Available" />
+            <marker date="1489594688000" expanded="true" signature="275:338" placeholder="select * fro... Available" />
+            <marker date="1489594688000" expanded="true" signature="1273:1333" placeholder="INSERT INTO Favorites... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Rates.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="37" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+          <folding>
+            <marker date="1489435072000" expanded="true" signature="200:226" placeholder="select * fro... Rates" />
+            <marker date="1489435072000" expanded="true" signature="200:263" placeholder="select * fro... Rates" />
+            <marker date="1489435072000" expanded="true" signature="1064:1148" placeholder="INSERT INTO Favorites... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Connector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -745,7 +945,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -753,7 +952,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -789,7 +987,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1489594688000" expanded="true" signature="8901:9067" placeholder="select * fro... Available" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -797,7 +998,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -805,7 +1005,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -813,7 +1012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -829,7 +1027,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -837,7 +1034,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -845,7 +1041,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -881,7 +1076,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1489594688000" expanded="true" signature="8901:9067" placeholder="select * fro... Available" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -889,7 +1087,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -897,7 +1094,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -905,7 +1101,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -924,18 +1119,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cs5530/Available.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.2222223">
-          <caret line="45" column="82" selection-start-line="45" selection-start-column="82" selection-end-line="45" selection-end-column="82" />
-          <folding>
-            <marker date="1489430620000" expanded="true" signature="214:266" placeholder="select * fro... Available" />
-            <marker date="1489430620000" expanded="true" signature="214:270" placeholder="select * fro... Available" />
-            <marker date="1489430620000" expanded="true" signature="1023:1083" placeholder="INSERT INTO Favorites... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cs5530/Course.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -946,55 +1129,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cs5530/Favorites.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.259259">
-          <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
-          <folding>
-            <marker date="1489432462000" expanded="true" signature="214:270" placeholder="select * fro... Favorites" />
-            <marker date="1489432462000" expanded="true" signature="214:271" placeholder="select * fro... Favorites" />
-            <marker date="1489432462000" expanded="true" signature="214:278" placeholder="select * fro... Favorites" />
-            <marker date="1489432462000" expanded="true" signature="214:281" placeholder="select * fro... Favorites" />
-            <marker date="1489432462000" expanded="true" signature="214:282" placeholder="select * fro... Favorites" />
-            <marker date="1489432462000" expanded="true" signature="214:283" placeholder="select * fro... Favorites" />
-            <marker date="1489432462000" expanded="true" signature="1034:1093" placeholder="INSERT INTO Favorites... " />
-            <marker date="1489432462000" expanded="true" signature="1034:1096" placeholder="INSERT INTO Favorites... " />
-            <marker date="1489432462000" expanded="true" signature="1040:1093" placeholder="select * fro... Favorites" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cs5530/Order.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
           <folding>
             <marker date="1489169044000" expanded="true" signature="273:328" placeholder="Select * fro... orders" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cs5530/testdriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cs5530/Feedback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.333334">
-          <caret line="44" column="53" selection-start-line="44" selection-start-column="53" selection-end-line="44" selection-end-column="53" />
-          <folding>
-            <marker date="1489432753000" expanded="true" signature="225:261" placeholder="select * fro... Favorites" />
-            <marker date="1489432753000" expanded="true" signature="225:288" placeholder="select * fro... Favorites" />
-            <marker date="1489432753000" expanded="true" signature="1101:1180" placeholder="INSERT INTO Favorites... " />
-            <marker date="1489432753000" expanded="true" signature="1101:1181" placeholder="INSERT INTO Favorites... " />
-            <marker date="1489432753000" expanded="true" signature="1101:1204" placeholder="INSERT INTO Favorites... " />
-            <marker date="1489432753000" expanded="true" signature="1101:1210" placeholder="INSERT INTO Favorites... " />
-            <marker date="1489432753000" expanded="true" signature="1101:1221" placeholder="INSERT INTO Favorites... " />
-            <marker date="1489432753000" expanded="true" signature="1101:1226" placeholder="INSERT INTO Favorites... " />
           </folding>
         </state>
       </provider>
@@ -1026,55 +1166,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cs5530/Period.java">
+    <entry file="file://$PROJECT_DIR$/cs5530/Trust.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
+        <state vertical-scroll-proportion="1.5">
+          <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
           <folding>
-            <marker date="1489435072000" expanded="true" signature="188:221" placeholder="select * fro... Keywords" />
-            <marker date="1489435072000" expanded="true" signature="1039:1134" placeholder="INSERT INTO Favorites... " />
+            <marker date="1489436214000" expanded="true" signature="208:265" placeholder="select * fro... Trust" />
+            <marker date="1489436214000" expanded="true" signature="1101:1179" placeholder="INSERT INTO Trust... " />
+            <marker date="1489436214000" expanded="true" signature="1101:1180" placeholder="INSERT INTO Trust... " />
+            <marker date="1489436214000" expanded="true" signature="1101:1195" placeholder="INSERT INTO Favorites... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cs5530/Rates.java">
+    <entry file="file://$PROJECT_DIR$/cs5530/application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="37" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
-          <folding>
-            <marker date="1489435072000" expanded="true" signature="200:226" placeholder="select * fro... Rates" />
-            <marker date="1489435072000" expanded="true" signature="200:263" placeholder="select * fro... Rates" />
-            <marker date="1489435072000" expanded="true" signature="1064:1148" placeholder="INSERT INTO Favorites... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cs5530/Reserve.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="117" selection-start-line="45" selection-start-column="117" selection-end-line="45" selection-end-column="117" />
-          <folding>
-            <marker date="1489435072000" expanded="true" signature="214:272" placeholder="select * fro... Reserve" />
-            <marker date="1489435072000" expanded="true" signature="214:279" placeholder="select * fro... Rates" />
-            <marker date="1489435072000" expanded="true" signature="214:290" placeholder="select * fro... Reserve" />
-            <marker date="1489435072000" expanded="true" signature="214:297" placeholder="select * fro... Reserve" />
-            <marker date="1489435072000" expanded="true" signature="1131:1217" placeholder="INSERT INTO Reserve... " />
-            <marker date="1489435072000" expanded="true" signature="1131:1230" placeholder="INSERT INTO Reserve... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cs5530/Connector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-          <folding />
+        <state vertical-scroll-proportion="-0.14506769">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cs5530/TH.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3265306">
+        <state vertical-scroll-proportion="0.0">
           <caret line="52" column="54" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
           <folding>
             <marker date="1489436036000" expanded="true" signature="176:205" placeholder="select * fro... TH" />
@@ -1098,34 +1212,154 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cs5530/Trust.java">
+    <entry file="file://$PROJECT_DIR$/cs5530/testdriver2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5">
-          <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
-          <folding>
-            <marker date="1489436214000" expanded="true" signature="208:265" placeholder="select * fro... Trust" />
-            <marker date="1489436214000" expanded="true" signature="1101:1179" placeholder="INSERT INTO Trust... " />
-            <marker date="1489436214000" expanded="true" signature="1101:1180" placeholder="INSERT INTO Trust... " />
-            <marker date="1489436214000" expanded="true" signature="1101:1195" placeholder="INSERT INTO Favorites... " />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="34" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cs5530/application.java">
+    <entry file="file://$PROJECT_DIR$/cs5530/Visit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.14506769">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
+        <state vertical-scroll-proportion="-10.666667">
+          <caret line="69" column="63" selection-start-line="69" selection-start-column="63" selection-end-line="69" selection-end-column="63" />
+          <folding>
+            <marker date="1489513285000" expanded="true" signature="255:343" placeholder="INSERT INTO Visit... " />
+            <marker date="1489513285000" expanded="true" signature="713:787" placeholder="select * fro... Visit" />
+            <marker date="1489513285000" expanded="true" signature="1602:1658" placeholder="select * fro... Visit" />
+            <marker date="1489513285000" expanded="true" signature="1602:1663" placeholder="select * fro... Visit" />
+            <marker date="1489513285000" expanded="true" signature="1602:1664" placeholder="select * fro... Visit" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cs5530/Users.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4352031">
-          <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
           <folding>
-            <marker date="1489436527000" expanded="true" signature="333:515" placeholder="INSERT INTO Users... " />
-            <marker date="1489436527000" expanded="true" signature="932:977" placeholder="select * fro... Users" />
+            <marker date="1489453594000" expanded="true" signature="741:910" placeholder="INSERT INTO Users... " />
+            <marker date="1489453594000" expanded="true" signature="1307:1505" placeholder="INSERT INTO Users... " />
+            <marker date="1489453594000" expanded="true" signature="1307:1506" placeholder="INSERT INTO Users... " />
+            <marker date="1489453594000" expanded="true" signature="1923:1968" placeholder="select * fro... Users" />
+            <marker date="1489453594000" expanded="true" signature="2782:2827" placeholder="select * fro... Users" />
+            <marker date="1489453594000" expanded="true" signature="2782:2842" placeholder="select * fro... Users" />
+            <marker date="1489453594000" expanded="true" signature="2782:2843" placeholder="select * fro... Users" />
+            <marker date="1489453594000" expanded="true" signature="2782:2844" placeholder="select * fro... Users" />
+            <marker date="1489453594000" expanded="true" signature="2782:2845" placeholder="select * fro... Users" />
+            <marker date="1489453594000" expanded="true" signature="2782:2858" placeholder="select * fro... Users" />
+            <marker date="1489453594000" expanded="true" signature="2782:2860" placeholder="select * fro... Users" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Feedback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-29.25926">
+          <caret line="60" column="9" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
+          <folding>
+            <marker date="1489515814000" expanded="true" signature="257:293" placeholder="select * fro... Favorites" />
+            <marker date="1489515814000" expanded="true" signature="257:324" placeholder="select * fro... Favorites" />
+            <marker date="1489515814000" expanded="true" signature="1321:1385" placeholder="INSERT INTO Favorites... " />
+            <marker date="1489515814000" expanded="true" signature="1321:1393" placeholder="INSERT INTO Favorites... " />
+            <marker date="1489515814000" expanded="true" signature="1321:1394" placeholder="INSERT INTO Favorites... " />
+            <marker date="1489515814000" expanded="true" signature="1321:1432" placeholder="INSERT INTO Favorites... " />
+            <marker date="1489515814000" expanded="true" signature="1321:1433" placeholder="INSERT INTO Favorites... " />
+            <marker date="1489515814000" expanded="true" signature="1321:1438" placeholder="INSERT INTO Favorites... " />
+            <marker date="1489515814000" expanded="true" signature="1321:1460" placeholder="INSERT INTO Favorites... " />
+            <marker date="1489515814000" expanded="true" signature="1321:1465" placeholder="INSERT INTO Favorites... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Favorites.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
+          <folding>
+            <marker date="1489432462000" expanded="true" signature="214:270" placeholder="select * fro... Favorites" />
+            <marker date="1489432462000" expanded="true" signature="214:271" placeholder="select * fro... Favorites" />
+            <marker date="1489432462000" expanded="true" signature="214:278" placeholder="select * fro... Favorites" />
+            <marker date="1489432462000" expanded="true" signature="214:281" placeholder="select * fro... Favorites" />
+            <marker date="1489432462000" expanded="true" signature="214:282" placeholder="select * fro... Favorites" />
+            <marker date="1489432462000" expanded="true" signature="214:283" placeholder="select * fro... Favorites" />
+            <marker date="1489432462000" expanded="true" signature="1034:1093" placeholder="INSERT INTO Favorites... " />
+            <marker date="1489432462000" expanded="true" signature="1034:1096" placeholder="INSERT INTO Favorites... " />
+            <marker date="1489432462000" expanded="true" signature="1040:1093" placeholder="select * fro... Favorites" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Reserve.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-29.25926">
+          <caret line="80" column="97" selection-start-line="80" selection-start-column="97" selection-end-line="80" selection-end-column="97" />
+          <folding>
+            <marker date="1489524637000" expanded="true" signature="214:272" placeholder="select * fro... Reserve" />
+            <marker date="1489524637000" expanded="true" signature="214:279" placeholder="select * fro... Rates" />
+            <marker date="1489524637000" expanded="true" signature="214:290" placeholder="select * fro... Reserve" />
+            <marker date="1489524637000" expanded="true" signature="214:297" placeholder="select * fro... Reserve" />
+            <marker date="1489524637000" expanded="true" signature="1103:1155" placeholder="select * fro... Reserve" />
+            <marker date="1489524637000" expanded="true" signature="1103:1160" placeholder="select * fro... Reserve" />
+            <marker date="1489524637000" expanded="true" signature="1849:1917" placeholder="INSERT INTO Reserve... " />
+            <marker date="1489524637000" expanded="true" signature="1849:1925" placeholder="INSERT INTO Reserve... " />
+            <marker date="1489524637000" expanded="true" signature="1849:1929" placeholder="INSERT INTO Reserve... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Connector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Rates.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="37" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+          <folding>
+            <marker date="1489435072000" expanded="true" signature="200:226" placeholder="select * fro... Rates" />
+            <marker date="1489435072000" expanded="true" signature="200:263" placeholder="select * fro... Rates" />
+            <marker date="1489435072000" expanded="true" signature="1064:1148" placeholder="INSERT INTO Favorites... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Available.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="33" />
+          <folding>
+            <marker date="1489594688000" expanded="true" signature="275:329" placeholder="select * fro... Available" />
+            <marker date="1489594688000" expanded="true" signature="275:330" placeholder="select * fro... Available" />
+            <marker date="1489594688000" expanded="true" signature="275:334" placeholder="select * fro... Available" />
+            <marker date="1489594688000" expanded="true" signature="275:338" placeholder="select * fro... Available" />
+            <marker date="1489594688000" expanded="true" signature="1273:1333" placeholder="INSERT INTO Favorites... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/Period.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+          <folding>
+            <marker date="1489594688000" expanded="true" signature="254:287" placeholder="select * fro... Keywords" />
+            <marker date="1489594688000" expanded="true" signature="1398:1493" placeholder="INSERT INTO Favorites... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5530/testdriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.021551725">
+          <caret line="272" column="5" selection-start-line="272" selection-start-column="5" selection-end-line="272" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1489594688000" expanded="true" signature="8901:9067" placeholder="select * fro... Available" />
           </folding>
         </state>
       </provider>

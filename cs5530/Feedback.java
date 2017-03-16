@@ -3,15 +3,19 @@ package cs5530;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class Feedback {
 		public Feedback()
 		{}
 
-		public String getFeedback(int fid, int hid, Statement stmt)
+		public List<List<String>> getFeedback(String hid, String login, Statement stmt)
 		{
-			String sql="select * from Favorites where fid = "+fid+" and hid = '"+hid+"'";
-			String output="";
+			String sql="select * from Feedback where hid = "+hid+" and login = '"+login+"'";
+//			String output="";
+			List<List<String>> output = new ArrayList<List<String>>();
 			ResultSet rs=null;
    		 	System.out.println("executing "+sql);
    		 	try{
@@ -19,7 +23,12 @@ public class Feedback {
 	   		 	while (rs.next())
 				 {
 					//System.out.print("cname:");
-				        output+=rs.getString("fid")+"   "+rs.getString("hid")+ rs.getString("text") + "\n";
+					 List<String> row = new ArrayList<String>();
+					 row.add(rs.getString("fid"));
+					 row.add(rs.getString("hid"));
+					 row.add(rs.getString("login"));
+					 row.add(rs.getString("text"));
+					 output.add(row);
 				 }
 			     
 			     rs.close();
@@ -42,9 +51,11 @@ public class Feedback {
 		    return output;
 		}
 
-	public void addFeedback(String hid, String text, int score, Date fbdate, Statement stmt)
+	public void addFeedback(String hid, String login, String text, int score, Statement stmt)
 	{
-		String sql="INSERT INTO Favorites (fid, hid, text, score, fbdate) VALUES ("+fid+", "+hid+", " + text +", "+score+", "+", "+fbdate+", "+")";
+		Calendar calendar = Calendar.getInstance();
+		java.sql.Date ourJavaDateObject = new java.sql.Date(calendar.getTime().getTime());
+		String sql="INSERT INTO Feedback (hid, login, text, score, fbdate) VALUES ("+hid+", '" + login + "', '" + text +"', "+score+", '"+ourJavaDateObject+"')";
 		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
@@ -52,6 +63,18 @@ public class Feedback {
 		catch(Exception e)
 		{
 			System.out.println("cannot insert");
+		}
+	}
+
+	public void deleteFeedback(String fid, Statement stmt) {
+		String sql="delete from Feedback where fid = '" +fid + "'";
+		System.out.println("executing "+sql);
+		try{
+			stmt.executeUpdate(sql);
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot remove available period");
 		}
 	}
 }
