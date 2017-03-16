@@ -49,7 +49,6 @@ public class testdriver {
 
 		try{
 			Connector con= new Connector();
-			Order order= new Order();
 			String choice;
 			int c = 0;
 			_currentUser = "";
@@ -271,7 +270,7 @@ public class testdriver {
 			if (stay.getVisit(_currentUser, thid, con.stmt) != "") {
 				//System.out.println("That username has already been used");
 				feedback.addFeedback(th,_currentUser, shortText,  Integer.parseInt(score), con.stmt);
-				if(alreadyHaveFeedback != null){
+				if(alreadyHaveFeedback.size() > 0){
 					feedback.deleteFeedback(alreadyHaveFeedback.get(0).get(0), con.stmt);
 				}
 			} else {
@@ -638,20 +637,6 @@ public class testdriver {
 		}
 	}
 
-	private static void reservePeriod(List<String> period, BufferedReader in, Connector con) {
 
-	}
-
-	private static void listAllTHAndPeriods(BufferedReader in, Connector con) {
-
-	}
-
-	private static void listPeriodsOfTH(BufferedReader in, Connector con) {
-
-	}
-
-	private static void THReviews(BufferedReader in, Connector con) {
-
-	}
 
 }

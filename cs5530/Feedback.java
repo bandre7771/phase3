@@ -77,4 +77,76 @@ public class Feedback {
 			System.out.println("cannot remove available period");
 		}
 	}
+
+	public String getAllOtherUserFeedback(String login, Statement stmt)
+	{
+		String sql="select * from Feedback where login != '"+login+"'";
+		String output="";
+		ResultSet rs=null;
+		System.out.println("executing "+sql);
+		try{
+			rs=stmt.executeQuery(sql);
+			while (rs.next())
+			{
+				output+="fid: "+rs.getString("fid")+"   "
+						+"hid: "+rs.getString("hid")+"   "
+						+"login: "+rs.getString("login")+"   "
+						+"text: "+rs.getString("text") + "   "
+						+"score: "+rs.getString("score")+"   "
+						+"fbdate: "+rs.getString("fbdate")+"\n";
+			}
+
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot close resultset");
+			}
+		}
+		return output;
+	}
+
+	public String getLoginFeedback(String fid, Statement stmt)
+	{
+		String sql="select DISTINCT login from Feedback where fid = "+fid;
+
+		String output="";
+		ResultSet rs=null;
+		System.out.println("executing "+sql);
+		try{
+			rs=stmt.executeQuery(sql);
+			while (rs.next())
+			{
+				output+=rs.getString("login");
+			}
+
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot close resultset");
+			}
+		}
+		return output;
+	}
 }
