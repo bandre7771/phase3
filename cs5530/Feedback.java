@@ -8,44 +8,43 @@ public class Feedback {
 		public Feedback()
 		{}
 
-		public String getAllOtherUserFeedback(String login, Statement stmt)
-		{
-			String sql="select * from Feedback where login != '"+login+"'";
-			String output="";
-			ResultSet rs=null;
-			System.out.println("executing "+sql);
-			try{
-				rs=stmt.executeQuery(sql);
-				System.out.println("fid\t\thid\t\tlogin\t\ttext\t\tscore\t\tfbdate");
-				while (rs.next())
-				{
-					output+=rs.getString("fid")+"\t\t"
-							+rs.getString("hid")+"\t\t"
-							+rs.getString("login")+"\t\t"
-							+rs.getString("text") + "\t\t"
-							+rs.getString("score")+"\t\t"
-							+rs.getString("fbdate")+"\n";
-				}
+	public String getAllOtherUserFeedback(String login, Statement stmt)
+	{
+		String sql="select * from Feedback where login != '"+login+"'";
+		String output="";
+		ResultSet rs=null;
+		System.out.println("executing "+sql);
+		try{
+			rs=stmt.executeQuery(sql);
+			while (rs.next())
+			{
+				output+="fid: "+rs.getString("fid")+"   "
+						+"hid: "+rs.getString("hid")+"   "
+						+"login: "+rs.getString("login")+"   "
+						+"text: "+rs.getString("text") + "   "
+						+"score: "+rs.getString("score")+"   "
+						+"fbdate: "+rs.getString("fbdate")+"\n";
+			}
 
-				rs.close();
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
 			}
 			catch(Exception e)
 			{
-				System.out.println("cannot execute the query");
+				System.out.println("cannot close resultset");
 			}
-			finally
-			{
-				try{
-					if (rs!=null && !rs.isClosed())
-						rs.close();
-				}
-				catch(Exception e)
-				{
-					System.out.println("cannot close resultset");
-				}
-			}
-			return output;
 		}
+		return output;
+	}
 
 	public String getFeedback(String fid, String hid, Statement stmt)
 	{
@@ -58,7 +57,9 @@ public class Feedback {
 	   		 	while (rs.next())
 				 {
 					//System.out.print("cname:");
-				        output+=rs.getString("fid")+"   "+rs.getString("hid")+ rs.getString("text") + "\n";
+				        output+="fid: "+rs.getString("fid")+"   "
+								+"hid: "+rs.getString("hid")+ "   "
+								+"text: "+rs.getString("text") + "\n";
 				 }
 			     
 			     rs.close();
@@ -114,6 +115,7 @@ public class Feedback {
 		}
 		return output;
 	}
+
 	public void addFeedback(String fid, String hid, String text, String score, Date fbdate, Statement stmt)
 	{
 

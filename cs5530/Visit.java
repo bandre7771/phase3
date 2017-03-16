@@ -8,7 +8,8 @@ public class Visit {
 		public Visit()
 		{}
 
-		public boolean addVisit(String login, String hid, String pid, String cost, Statement stmt)  {
+		public boolean addVisit(String login, String hid, String pid, String cost, Statement stmt)
+		{
 			String sql="INSERT INTO Visit (login, hid, pid, cost) VALUES  ('"+login+"',"+hid+","+pid+","+cost+")";
 			System.out.println("executing " + sql);
 			try{
@@ -31,12 +32,11 @@ public class Visit {
    		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
-	   		 	while (rs.next())
+				while (rs.next())
 				 {
-					System.out.println("login: "+login+" hid: "+hid+" pid: "+pid);
-				        output+=rs.getString("login")+"   "
-								+rs.getString("hid")+"   "
-								+rs.getString("pid")+"\n";
+				        output+="login: "+rs.getString("login")+"   "
+								+"hid: "+rs.getString("hid")+"   "
+								+"pid: "+rs.getString("pid")+"\n";
 				 }
 			     
 			     rs.close();

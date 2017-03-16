@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Rates {
-		public Rates()
-		{}
+	public Rates()
+	{}
 
 	public String getRating(String fid, String login, Statement stmt)
 	{
@@ -17,8 +17,7 @@ public class Rates {
 	   		 	rs=stmt.executeQuery(sql);
 	   		 	while (rs.next())
 				 {
-					//System.out.print("cname:");
-				        output+=rs.getString("fid") + "   " + rs.getString("login") + "   " + rs.getString("rating")+ "\n";
+			        output+=rs.getString("fid") + "   " + rs.getString("login") + "   " + rs.getString("rating")+ "\n";
 				 }
 			     
 			     rs.close();
@@ -64,6 +63,4 @@ public class Rates {
 			System.out.println("you cannot rate your own feedback");
 		}
 	}
-
-
 }

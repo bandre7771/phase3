@@ -15,14 +15,12 @@ public class Trust {
    		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
-				//System.out.println("login1\t\tlogin2\t\tis trusted");
 				while (rs.next())
 				 {
-				        output+=rs.getString("login1")+"\t\t"
-					 			+rs.getString("login2")+"\t\t"
-								+rs.getString("is_trusted")+"\n";
+				        output+="login1: "+rs.getString("login1")+"   "
+					 			+"login2: "+rs.getString("login2")+"   "
+								+"is_trusted: "+rs.getString("is_trusted")+"\n";
 				 }
-			     
 			     rs.close();
    		 	}
    		 	catch(Exception e)
@@ -98,18 +96,17 @@ public class Trust {
 		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
-			System.out.println("login\t\tis trusted");
 			while (rs.next())
 			{
-					try
-					{
-							output+=rs.getString("login")+"\t\t"
-									+rs.getString("trust_score")+"\n";
-					}
-					catch (Exception e)
-					{
-						rs.afterLast();
-					}
+				try
+				{
+					output+="login: "+rs.getString("login")+"   "
+							+"trust score: "+rs.getString("trust_score")+"\n";
+				}
+				catch (Exception e)
+				{
+					rs.afterLast();
+				}
 			}
 			rs.close();
 		}

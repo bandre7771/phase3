@@ -4,28 +4,27 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class TH {
-		public TH()
-		{}
+	public TH()
+	{}
 
 	public String getAllTH(Statement stmt)
-		{
+	{
 			String sql="select * from TH";
 			String output="";
 			ResultSet rs=null;
 			System.out.println("executing "+sql);
 			try{
 				rs=stmt.executeQuery(sql);
-				System.out.println("hid\t\thname\t\tcategory\t\taddress\t\tlogin\t\tphone number\t\tyear built\t\turl\t\tpicture");
 				while (rs.next())
 				{
-					output+= "hid: "+rs.getString("hid") + "\t\t"
-							+ "hname: "+rs.getString("hname") + "\t\t"
-							+ "category: "+rs.getString("category") + "\t\t"
-							+ "address: "+rs.getString("address") + "\t\t"
-							+ "login: "+rs.getString("login") + "\t\t"
-							+ "phone number: "+rs.getString("phone_number") + "\t\t"
-							+ "year_built: "+rs.getString("year_built") + "\t\t"
-							+ "url: "+rs.getString("url") + "\t\t"
+					output+= "hid: "+rs.getString("hid") + "   "
+							+ "hname: "+rs.getString("hname") + "   "
+							+ "category: "+rs.getString("category") + "   "
+							+ "address: "+rs.getString("address") + "   "
+							+ "login: "+rs.getString("login") + "   "
+							+ "phone number: "+rs.getString("phone_number") + "   "
+							+ "year_built: "+rs.getString("year_built") + "   "
+							+ "url: "+rs.getString("url") + "   "
 							+ "picture: "+rs.getString("picture") +"\n";
 				}
 
@@ -57,18 +56,17 @@ public class TH {
    		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
-				System.out.println("hid\t\thname\t\tcategory\t\taddress\t\tlogin\t\tphone number\t\tyear built\t\turl\t\tpicture");
 				while (rs.next())
 				{
-					output+=rs.getString("hid") + "\t\t"
-							+ rs.getString("hname") + "\t\t"
-							+ rs.getString("category") + "\t\t"
-							+ rs.getString("address") + "\t\t"
-							+ rs.getString("login") + "\t\t"
-							+ rs.getString("phone_number") + "\t\t"
-							+ rs.getString("year_built") + "\t\t"
-							+ rs.getString("url") + "\t\t"
-							+ rs.getString("picture") +"\n";
+					output+= "hid: "+rs.getString("hid") + "   "
+							+ "hname: "+rs.getString("hname") + "   "
+							+ "category: "+rs.getString("category") + "   "
+							+ "address: "+rs.getString("address") + "   "
+							+ "login: "+rs.getString("login") + "   "
+							+ "phone number: "+rs.getString("phone_number") + "   "
+							+ "year_built: "+rs.getString("year_built") + "   "
+							+ "url: "+rs.getString("url") + "   "
+							+ "picture: "+rs.getString("picture") +"\n";
 				}
 
 			     rs.close();
@@ -99,18 +97,17 @@ public class TH {
 		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
-			System.out.println("hid\t\thname\t\tcategory\t\taddress\t\tlogin\t\tphone number\t\tyear built\t\turl\t\tpicture");
 			while (rs.next())
 			{
-				output+=rs.getString("hid") + "\t\t"
-						+ rs.getString("hname") + "\t\t"
-						+ rs.getString("category") + "\t\t"
-						+ rs.getString("address") + "\t\t"
-						+ rs.getString("login") + "\t\t"
-						+ rs.getString("phone_number") + "\t\t"
-						+ rs.getString("year_built") + "\t\t"
-						+ rs.getString("url") + "\t\t"
-						+ rs.getString("picture") +"\n";
+				output+= "hid: "+rs.getString("hid") + "   "
+						+ "hname: "+rs.getString("hname") + "   "
+						+ "category: "+rs.getString("category") + "   "
+						+ "address: "+rs.getString("address") + "   "
+						+ "login: "+rs.getString("login") + "   "
+						+ "phone number: "+rs.getString("phone_number") + "   "
+						+ "year_built: "+rs.getString("year_built") + "   "
+						+ "url: "+rs.getString("url") + "   "
+						+ "picture: "+rs.getString("picture") +"\n";
 			}
 
 			rs.close();
@@ -141,18 +138,17 @@ public class TH {
 		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
-			System.out.println("hid\t\thname\t\tcategory\t\taddress\t\tlogin\t\tphone number\t\tyear built\t\turl\t\tpicture");
 			while (rs.next())
 			{
-				output+=rs.getString("hid") + "\t\t"
-						+ rs.getString("hname") + "\t\t"
-						+ rs.getString("category") + "\t\t"
-						+ rs.getString("address") + "\t\t"
-						+ rs.getString("login") + "\t\t"
-						+ rs.getString("phone_number") + "\t\t"
-						+ rs.getString("year_built") + "\t\t"
-						+ rs.getString("url") + "\t\t"
-						+ rs.getString("picture") +"\n";
+				output+= "hid: "+rs.getString("hid") + "   "
+						+ "hname: "+rs.getString("hname") + "   "
+						+ "category: "+rs.getString("category") + "   "
+						+ "address: "+rs.getString("address") + "   "
+						+ "login: "+rs.getString("login") + "   "
+						+ "phone number: "+rs.getString("phone_number") + "   "
+						+ "year_built: "+rs.getString("year_built") + "   "
+						+ "url: "+rs.getString("url") + "   "
+						+ "picture: "+rs.getString("picture") +"\n";
 			}
 			rs.close();
 		}

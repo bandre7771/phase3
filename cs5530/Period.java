@@ -4,42 +4,42 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Period {
-		public Period()
-		{}
+	public Period()
+	{}
 
-		public String getPeriod(int pid, Statement stmt)
-		{
-			String sql="select * from Period where pid = "+pid;
-			String output="";
-			ResultSet rs=null;
-   		 	System.out.println("executing "+sql);
-   		 	try{
-	   		 	rs=stmt.executeQuery(sql);
-				//System.out.print("cname:");
-				while (rs.next())
-				 {
-				        output+=rs.getString("pid") + "   " + rs.getString("from_date") + "   " + rs.getString("to_date")+ "\n";
-				 }
-			     
-			     rs.close();
-   		 	}
-   		 	catch(Exception e)
-   		 	{
-   		 		System.out.println("cannot execute the query");
-   		 	}
-   		 	finally
-   		 	{
-   		 		try{
-	   		 		if (rs!=null && !rs.isClosed())
-	   		 			rs.close();
-   		 		}
-   		 		catch(Exception e)
-   		 		{
-   		 			System.out.println("cannot close resultset");
-   		 		}
-   		 	}
-		    return output;
+	public String getPeriod(int pid, Statement stmt)
+	{
+		String sql="select * from Period where pid = "+pid;
+		String output="";
+		ResultSet rs=null;
+		System.out.println("executing "+sql);
+		try{
+			rs=stmt.executeQuery(sql);
+			//System.out.print("cname:");
+			while (rs.next())
+			 {
+					output+=rs.getString("pid") + "   " + rs.getString("from_date") + "   " + rs.getString("to_date")+ "\n";
+			 }
+
+			 rs.close();
 		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot close resultset");
+			}
+		}
+		return output;
+	}
 
 	public void addPeriod(int pid, String from_date, String to_date, Statement stmt)
 	{

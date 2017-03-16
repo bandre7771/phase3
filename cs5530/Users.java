@@ -10,7 +10,38 @@ public class Users {
 	{
 	}
 
-	public boolean addUsers(String login, String name, String password, String address, String phone_number, String user_type, Statement stmt) {
+	public String getAllUsers(Statement stmt)
+	{
+		String sql = "select * from Users";
+		String output = "";
+		ResultSet rs = null;
+		System.out.println("executing " + sql);
+		try {
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				output += "login: "+rs.getString("login") + "   "
+						+ "name: "+rs.getString("name") + "   "
+						+ "password: "+rs.getString("password") + "   "
+						+ "address: "+rs.getString("address") + "   "
+						+ "phone number: "+rs.getString("phone_number") + "   "
+						+ "user type: "+rs.getString("user_type") + "\n";
+			}
+			rs.close();
+		} catch (Exception e) {
+			System.out.println("cannot execute the query");
+		} finally {
+			try {
+				if (rs != null && !rs.isClosed())
+					rs.close();
+			} catch (Exception e) {
+				System.out.println("cannot close resultset");
+			}
+		}
+		return output;
+	}
+
+	public boolean addUsers(String login, String name, String password, String address, String phone_number, String user_type, Statement stmt)
+	{
 		String sql = "INSERT INTO Users (login, name, password, address, phone_number, user_type) VALUES" +
 				"('" + login + "', '" + name + "', '" + password + "', '" + address + "', '" + phone_number + "', " + user_type + ")";
 		System.out.println("executing " + sql);
@@ -32,14 +63,13 @@ public class Users {
 		System.out.println("executing " + sql);
 		try {
 			rs = stmt.executeQuery(sql);
-			System.out.println("login\t\t\tname\t\t\tpassword\t\t\taddress\t\t\tphone number\t\t\tuser type");
 			while (rs.next()) {
-				output += rs.getString("login") + "\t\t\t"
-						+ rs.getString("name") + "\t\t\t"
-						+ rs.getString("password") + "\t\t\t"
-						+ rs.getString("address") + "\t\t\t"
-						+ rs.getString("phone_number") + "\t\t\t"
-						+ rs.getString("user_type") + "\n";
+				output += "login: "+rs.getString("login") + "   t"
+						+ "name: "+rs.getString("name") + "   "
+						+ "password: "+rs.getString("password") + "   "
+						+ "address: "+rs.getString("address") + "   "
+						+ "phone number: "+rs.getString("phone_number") + "   "
+						+ "user type: "+rs.getString("user_type") + "\n";
 			}
 			rs.close();
 		} catch (Exception e) {
@@ -63,14 +93,13 @@ public class Users {
 		System.out.println("executing " + sql);
 		try {
 			rs = stmt.executeQuery(sql);
-			System.out.println("login\t\t\tname\t\t\tpassword\t\t\taddress\t\t\tphone number\t\t\tuser type");
 			while (rs.next()) {
-				output += rs.getString("login") + "\t\t\t"
-						+ rs.getString("name") + "\t\t\t"
-						+ rs.getString("password") + "\t\t\t"
-						+ rs.getString("address") + "\t\t\t"
-						+ rs.getString("phone_number") + "\t\t\t"
-						+ rs.getString("user_type") + "\n";
+				output += "login: "+rs.getString("login") + "   "
+						+ "name: "+rs.getString("name") + "   "
+						+ "password: "+rs.getString("password") + "   "
+						+ "address: "+rs.getString("address") + "   "
+						+ "phone number: "+rs.getString("phone_number") + "   "
+						+ "user type: "+rs.getString("user_type") + "\n";
 			}
 			rs.close();
 		} catch (Exception e) {
