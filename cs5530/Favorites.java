@@ -42,7 +42,7 @@ public class Favorites {
 
 	public void addFavorite(int hid, String login, Statement stmt)
 	{
-		String sql="INSERT INTO Favorites (hid, login) VALUES ("+hid+", "+login+")";
+		String sql="INSERT INTO Favorites (hid, login) VALUES ("+hid+", '"+login+"')";
 		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);

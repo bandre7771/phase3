@@ -79,9 +79,44 @@ public class Reserve {
 		return output;
 	}
 
-	public void addReservation(String login, int hid, int pid, float cost, Statement stmt)
+	public String getReserve(int hid, int pid, Statement stmt)
 	{
-		String sql="INSERT INTO Reserve (login, hid, pid, cost) VALUES ("+login+", "+ hid +", " + pid + ", "+ cost + ")";
+		String sql="select * from Reserve where hid = "+hid+" and pid = "+pid;
+		String output="";
+		ResultSet rs=null;
+		System.out.println("executing "+sql);
+		try{
+			rs=stmt.executeQuery(sql);
+			while (rs.next())
+			{
+				//System.out.print("cname:");
+				output+=rs.getString("login") + "   " + rs.getString("hid") + "   " + rs.getString("pid")+ rs.getString("cost") +"\n";
+			}
+
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot close resultset");
+			}
+		}
+		return output;
+	}
+
+
+	public void addReservation(String login, String hid, String pid, Statement stmt)
+	{
+		String sql="INSERT INTO Reserve (login, hid, pid, cost) VALUES ('"+login+"', "+ hid +", " + pid + ", 500)";
 		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
