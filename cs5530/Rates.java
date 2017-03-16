@@ -4,11 +4,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Rates {
-		public Rates()
-		{}
+	public Rates()
+	{}
 
-		public String getRating(int fid, String login, Statement stmt)
-		{
+	public String getRating(String fid, String login, Statement stmt)
+	{
 			String sql="select * from Rates where fid = "+fid+" and login = '"+login+"'";
 			String output="";
 			ResultSet rs=null;
@@ -17,8 +17,7 @@ public class Rates {
 	   		 	rs=stmt.executeQuery(sql);
 	   		 	while (rs.next())
 				 {
-					//System.out.print("cname:");
-				        output+=rs.getString("fid") + "   " + rs.getString("login") + "   " + rs.getString("rating")+ "\n";
+			        output+=rs.getString("fid") + "   " + rs.getString("login") + "   " + rs.getString("rating")+ "\n";
 				 }
 			     
 			     rs.close();
@@ -41,16 +40,27 @@ public class Rates {
 		    return output;
 		}
 
-	public void addRating(int fid, String login, int rating, Statement stmt)
+	public void addRating(String fid, String login, String rating, Statement stmt)
 	{
-		String sql="INSERT INTO Rates (fid, login, rating) VALUES ("+fid+", "+ login +", " + rating + ")";
-		System.out.println("executing "+sql);
-		try{
-			stmt.executeUpdate(sql);
-		}
-		catch(Exception e)
+
+		Feedback feedback = new Feedback();
+		String fblogin = feedback.getLoginFeedback(fid,stmt);
+		if(!fblogin.equals(login))
 		{
-			System.out.println("cannot insert");
+			String sql="INSERT INTO Rates (fid, login, rating) VALUES ("+fid+", '"+ login +"', " + rating + ")";
+			System.out.println("executing "+sql);
+			try{
+				stmt.executeUpdate(sql);
+				System.out.println("success!");
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot insert");
+			}
+		}
+		else
+		{
+			System.out.println("you cannot rate your own feedback");
 		}
 	}
 }

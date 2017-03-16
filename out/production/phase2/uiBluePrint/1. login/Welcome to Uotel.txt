@@ -1,0 +1,12 @@
+	Welcome to Uotel
+1. reserve:
+2. TH:
+3. stays:
+4. favorite recordings
+5. feedback recordings
+6. usefulness ratings
+7. trust recordings
+8. useful feedbacks
+9. two degrees of separation
+10. statistics
+11. user awards (admin only)

@@ -54,8 +54,8 @@ public class testdriver2 {
 	            		 while ((username = in.readLine()) == null && username.length() == 0);
 	            		 System.out.println("please enter a password:");
 	            		 while ((password = in.readLine()) == null && password.length() == 0);
-	            		 Course course=new Course();
-	            		 System.out.println(course.getCourse(username, password, con.stmt));
+//	            		 Course course=new Course();
+//	            		 System.out.println(course.getCourse(username, password, con.stmt));
 	            	 }
 					 // Enter your own query
 	            	 else if (c==2)
