@@ -135,4 +135,17 @@ public class Visit {
 		}
 		return output;
 	}
+
+	public void addVisit(String login, String hid, String pid, Statement stmt)
+	{
+		String sql="INSERT INTO Visit(login, hid, pid, cost) VALUES ('"+login+"', "+ hid +", " + pid + ", 500)";
+		System.out.println("executing "+sql);
+		try{
+			stmt.executeUpdate(sql);
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot insert");
+		}
+	}
 }
