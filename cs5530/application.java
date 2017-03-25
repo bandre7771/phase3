@@ -56,7 +56,9 @@ public class application {
 		System.out.println("1. add TH:");
 		System.out.println("2. update TH:");
 		System.out.println("3. browse TH:");
-		System.out.println("4. exit:");
+		System.out.println("4. keywords TH:");
+		System.out.println("5. availability TH:");
+		System.out.println("6. exit:");
 		System.out.println( "please enter your choice:");
 	}
 
@@ -78,6 +80,17 @@ public class application {
 		System.out.println("4. name:");
 		System.out.println("5. category:");
 		System.out.println( "please enter your choice:");
+	}
+
+	public static void displayKeywordsTHMenu() {
+		System.out.println("       TH Keywords     ");
+		System.out.println("1. add keyword:");
+		System.out.println("2. update keyword:");
+		System.out.println("3. show TH keywords:");
+		System.out.println("4. assign TH keyword:");
+		System.out.println("5. unassign TH keyword:");
+		System.out.println("6. exit:");
+		System.out.println("please enter your choice:");
 	}
 
 	public static void displayusefulFeedbacksMenu(Statement stmt)
@@ -332,7 +345,6 @@ public class application {
 
                         System.out.println("please enter url:");
                         while ((url =  in.readLine()) == null && url.length() == 0);
-
                         th.addTH(category,login,hname,address,url,phone_number,year,picture,con.stmt);
                         break;
                     case 2:
@@ -371,7 +383,12 @@ public class application {
 					case 3: //browse TH
 						tHBrowsingMenu(login, con);
 						break;
-					case 4:
+					case 4: //keywords TH
+						keywordsTHMenu(login, con);
+						break;
+					case 5: //availability TH
+						break;
+					case 6:
 						exit = true;
 						break;
                     default:
@@ -1196,6 +1213,133 @@ public class application {
 		return output;
 	}
 
+	public static void keywordsTHMenu(String login, Connector con) {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		String choice = "";
+		String word = "";
+		String hid = "";
+		String language = "";
+		String wid = "";
+		TH th;
+		Keywords keywords;
+		HasKeywords hasKeywords;
+		int c=0;
+		try
+		{
+			boolean exit = false;
+			while(!exit)
+			{
+				displayKeywordsTHMenu();
+				while ((choice = in.readLine()) == null && choice.length() == 0);
+				try
+				{
+					c = Integer.parseInt(choice);
+				}
+				catch (Exception e)
+				{
+					continue;
+				}
+				switch (c)
+				{
+					case 1: //add keyword
+						System.out.println("       Adding keyword     ");
+						keywords = new Keywords();
+						System.out.println("please enter a language:");
+						while ((language = in.readLine()) == null && language.length() == 0);
+						System.out.println("please enter a keyword:");
+						while ((word = in.readLine()) == null && word.length() == 0);
+						keywords.addKeyword(word, language, con.stmt);
+						break;
+					case 2: //update keyword
+						System.out.println("       Update keyword     ");
+						keywords = new Keywords();
+						System.out.println(keywords.getAllKeyWords(con.stmt));
+						System.out.println("please enter a Keyword id (wid):");
+						while ((wid = in.readLine()) == null && wid.length() == 0);
+						System.out.println("please enter a language:");
+						while ((language = in.readLine()) == null && language.length() == 0);
+						System.out.println("please enter a word:");
+						while ((word = in.readLine()) == null && word.length() == 0);
+						keywords.updateKeyword(wid, word, language, con.stmt);
+						break;
+					case 3:
+						System.out.println("       All TH keywords     ");
+						System.out.println(hasKeyWordDescription(con.stmt));
+						System.out.println("press enter to continue:");
+						in.readLine();
+						break;
+					case 4: //assign TH keyword
+						System.out.println("       Assign TH keyword     ");
+						th = new TH();
+						System.out.println(th.getAllTH(con.stmt));
+						System.out.println("please enter a TH id (hid):");
+						keywords = new Keywords();
+						while ((hid = in.readLine()) == null && hid.length() == 0);
+						System.out.println(keywords.getAllKeyWords(con.stmt));
+						System.out.println("please enter a Keyword id (wid):");
+						while ((wid = in.readLine()) == null && wid.length() == 0);
+						hasKeywords = new HasKeywords();
+						hasKeywords.addHasKeyword(hid,wid,con.stmt);
+						break;
+					case 5: //unassign TH keyword
+						System.out.println("       Unassign TH keyword     ");
+						hasKeywords = new HasKeywords();
+						System.out.println(hasKeyWordDescription(con.stmt));
+						System.out.println("please enter a TH id (hid):");
+						while ((hid = in.readLine()) == null && hid.length() == 0);
+						System.out.println("please enter a Keyword id (wid):");
+						while ((wid = in.readLine()) == null && wid.length() == 0);
+						hasKeywords.removeHasKeyword(hid, wid, con.stmt);
+						break;
+					case 6:
+						exit = true;
+						break;
+					default:
+						continue;
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			System.err.println ("Query Error");
+		}
+	}
+
+	public static String hasKeyWordDescription(Statement stmt)
+	{
+		String sql="SELECT hk.hid, th.hname, hk.wid, k.word FROM Keywords k NATURAL JOIN HasKeywords hk NATURAL JOIN TH th ORDER BY hk.hid;";
+		String output="";
+		ResultSet rs=null;
+		System.out.println("executing "+sql);
+		try{
+			rs=stmt.executeQuery(sql);
+			while (rs.next())
+			{
+				output+= "hid: "+rs.getString("hid")+"   "
+						+ "hname: "+rs.getString("hname")+"   "
+						+ "wid: "+rs.getString("wid")+"   "
+						+ "word: "+rs.getString("word")+"\n";
+			}
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot close resultset");
+			}
+		}
+		return output;
+	}
+
 	public static void twoDegreesOfSeparationMenu(String login, Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -1280,9 +1424,6 @@ public class application {
 			}
 		}
 	}
-
-
-
 
 	public static boolean loginUser(BufferedReader in, Connector con){
 		String username;
@@ -1643,9 +1784,6 @@ public class application {
 		}
 		return givenDate;
 	}
-
-
-
 
 	public static void printTHAvailableTimes(BufferedReader in, Connector con){
 		String sql="select a.hid, p.pid, p.from_date, p.to_date\n" +
