@@ -148,4 +148,55 @@ public class Visit {
 			System.out.println("cannot insert");
 		}
 	}
+
+	public List<List<String>> getSuggestedTHs(String hid, Statement stmt){
+
+		String sql="select t.hid, t.hname, t.category, t.address, t.year_built, t.phone_number, t.url, COUNT(*) as numVisits\n" +
+				"from TH t, (select v.hid\n" +
+				"        from Visit v\n" +
+				"        where v.login = ANY (\n" +
+				"            select DISTINCT r.login\n" +
+				"            from Reserve r\n" +
+				"            where r.hid =" + hid + ")) v\n" +
+				"where v.hid = t.hid\n" +
+				"GROUP BY t.hid, t.hname, t.category, t.address, t.year_built, t.phone_number, t.url\n" +
+				"order by numVisits DESC";
+		List<List<String>> output= new ArrayList<List<String>>();
+		ResultSet rs=null;
+		// System.out.println("executing "+sql);
+		try{
+			rs=stmt.executeQuery(sql);
+			while (rs.next())
+			{
+				List<String> row = new ArrayList<String>();
+				row.add(rs.getString("hid"));
+				row.add(rs.getString("hname"));
+				row.add(rs.getString("category"));
+				row.add(rs.getString("address"));
+				row.add(rs.getString("year_built"));
+				row.add(rs.getString("phone_number"));
+				row.add(rs.getString("url"));
+				row.add(rs.getString("numVisits"));
+				output.add(row);
+			}
+
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot close resultset");
+			}
+		}
+		return output;
+	}
 }

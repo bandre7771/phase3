@@ -15,7 +15,7 @@ public class Available {
 			List<List<String>> output = new ArrayList<List<String>>();
 
 			ResultSet rs=null;
-   		 	System.out.println("executing "+sql);
+   		 	//System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
 				int count = 0;
@@ -52,7 +52,7 @@ public class Available {
 	public void addAvailable(String hid, String pid, String cost_per_night, Statement stmt)
 	{
 		String sql="INSERT INTO Available (hid, pid, price_per_night) VALUES ("+hid+", "+pid+", 80)";
-		System.out.println("executing "+sql);
+		//System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 		}
@@ -64,7 +64,7 @@ public class Available {
 
 	public void deleteAvailable(String thid, String pid, Statement stmt) {
 		String sql="delete from Available where pid = '" +pid + "' and hid = '" + thid +"'";
-		System.out.println("executing "+sql);
+		//System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 		}

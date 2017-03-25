@@ -2,6 +2,8 @@ package cs5530;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Reserve {
 		public Reserve()
@@ -12,7 +14,7 @@ public class Reserve {
 		String sql="select * from Reserve where login = '"+login+"'";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+		//System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -117,7 +119,7 @@ public class Reserve {
 	public void addReservation(String login, String hid, String pid, Statement stmt)
 	{
 		String sql="INSERT INTO Reserve (login, hid, pid, cost) VALUES ('"+login+"', "+ hid +", " + pid + ", 500)";
-		System.out.println("executing "+sql);
+		//System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 		}
@@ -126,4 +128,6 @@ public class Reserve {
 			System.out.println("cannot insert");
 		}
 	}
+
+
 }

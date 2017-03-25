@@ -109,7 +109,8 @@ public class testdriver {
 					continue;
 				// User makes a reservation
 				if (c == 1) {
-					makeReservation(in, con);
+					List<List<String>> reservations = makeReservation(in, con);
+					suggestTH(reservations, in, con);
 					//reservationMenu(in, con);
 				}
 				// Leave feedback on stay
@@ -126,7 +127,7 @@ public class testdriver {
 						System.out.println("Th: " + thid + " has successfully been favorited");
 					}
 				}
-				// History of stays
+				// Record visits
 				else if (c == 4) {
 					recordVisit(in, con);
 					//staysHistory(in, con);
@@ -146,6 +147,8 @@ public class testdriver {
 
 		}
 	}
+
+
 
 	private static void recordVisit(BufferedReader in, Connector con) {
 
@@ -190,7 +193,7 @@ public class testdriver {
 				while(true) {
 					String choice;
 					int c;
-					System.out.println("\nWould you like to Checkout? \n 1: no \n 2: yes");
+					System.out.println("\nWould you like record another visit? \n 1: Yes \n 2: No");
 					while ((choice = in.readLine()) == null && choice.length() == 0) ;
 					try {
 						c = Integer.parseInt(choice);
@@ -260,6 +263,46 @@ public class testdriver {
 		catch (Exception e){
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 *
+	 * Will print out all the THs that customers have visited who have visited what the user just reserved
+	 * @param in
+	 * @param con
+     */
+	private static void suggestTH(List<List<String>> reservations, BufferedReader in, Connector con) {
+		Visit visit = new Visit();
+		Set<String> ths = new HashSet<String>();
+		for(int j = 0; j < reservations.size(); j+=2) {
+			ths.add(reservations.get(j).get(0));
+		}
+
+
+
+		for(String th: ths){
+			System.out.println("\nBased on your reservation for "+ th + ",here are some other THs we would suggest");
+			System.out.println("|\tHid\t\t|\tHname\t|\tCategor\t|\tAddress\t|\tYrBlt\t|\tPhone #\t|\tUrl\t\t|\t#of Vts");
+			List<List<String>> suggestedTHs = visit.getSuggestedTHs(th, con.stmt);
+			for(List<String> suggestedTH : suggestedTHs) {
+				if(suggestedTH.get(0).equals(th)){
+					continue;
+				}
+				for(int i = 0; i < suggestedTH.size(); i++) {
+					String attribute = suggestedTH.get(i);
+					if(attribute.length() < 4){
+						attribute += "\t";
+					}
+					if(suggestedTH.get(i).length() > 7)
+						System.out.print("|\t" + attribute.substring(0, 7) + "\t");
+					else {
+						System.out.print("|\t" + attribute + "\t");
+					}
+				}
+				System.out.println();
+			}
+		}
+//		List<List<String>> suggestedTH = visit.getSuggestedTHs();
 	}
 
 	private static void addStay(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
@@ -517,7 +560,7 @@ public class testdriver {
 		return true;
 	}
 
-	public static void makeReservation(BufferedReader in, Connector con){
+	public static List<List<String>> makeReservation(BufferedReader in, Connector con){
 		String thid = "";
 		String pid = "";
 		String fromDate = "";
@@ -559,7 +602,7 @@ public class testdriver {
 				while(true) {
 					String choice;
 					int c;
-					System.out.println("\nWould you like to Checkout? \n 1: no \n 2: yes");
+					System.out.println("\nWould you like to make another reservation? \n 1: yes \n 2: no");
 					while ((choice = in.readLine()) == null && choice.length() == 0) ;
 					try {
 						c = Integer.parseInt(choice);
@@ -610,7 +653,7 @@ public class testdriver {
 				}
 				// Leave feedback on stay
 				else if (c == 2) {
-					return;
+					return new ArrayList<List<String>>();
 				}
 			}
 
@@ -624,7 +667,7 @@ public class testdriver {
 					addReservation(thid, chosenPeriod, fromDate, toDate, con.stmt);
 				//}
 			}
-
+			return reservations;
 //			Reserve reservation = new Reserve();
 //			if (reservation.getReserve(Integer.parseInt(thid), Integer.parseInt(pid), con.stmt) != "") {
 //				System.out.println("This TH has already been reserved for that time period");
@@ -634,6 +677,7 @@ public class testdriver {
 		}
 		catch (Exception e){
 			e.printStackTrace();
+			return new ArrayList<List<String>>();
 		}
 	}
 
