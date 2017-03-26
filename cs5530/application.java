@@ -27,18 +27,19 @@ public class application {
 	///Display Menus
 	public static void displayLoginMenu()
 	{
-		 System.out.println("       Welcome to Uotel     ");
-    	 System.out.println("1. Login:");
-    	 System.out.println("2. Register:");
-         System.out.println( "please enter your choice:");
+		System.out.println("       Welcome to Uotel     ");
+		System.out.println("1. Login:");
+		System.out.println("2. Register:");
+		System.out.println("3. exit: ");
+		System.out.println( "please enter your choice:");
     }
 
-	public static void displayWelcomeToUotelMenu()
+	public static void displayUserMenu()
 	{
-		System.out.println("       Welcome to Uotel     ");
+		System.out.println("       Welcome: "+ _currentUser+"     ");
 		System.out.println("1. reserve:");
 		System.out.println("2. th:");
-		System.out.println("3. stays:");
+		System.out.println("3. stay recordings:");
 		System.out.println("4. favorite recordings:");
 		System.out.println("5. feedback recordings:");
 		System.out.println("6. usefulness ratings:");
@@ -119,13 +120,13 @@ public class application {
 		System.out.println(users.getAllUsers(stmt));
 	}
 
-	public static  void displayStaysMenu(Statement stmt)
-	{
-		System.out.println("       Stays     ");
-		Reserve reserve = new Reserve();
-		System.out.println(reserve.getReserve(_currentUser, stmt));
-		System.out.println("please enter the TH id (hid)");
-	}
+//	public static void displayStaysMenu(Statement stmt)
+//	{
+//		System.out.println("       Stays     ");
+//		Reserve reserve = new Reserve();
+//		System.out.println(reserve.getReserve(_currentUser, stmt));
+//		System.out.println("please enter the TH id (hid)");
+//	}
 
 	public static void displayUsefulnessRatingsMenu(Statement stmt)
 	{
@@ -218,11 +219,15 @@ public class application {
 				switch (c)
 				{
 					case 1: //login
-                        welcomeToUotelMenu(con);
+						if(loginUser(in, con)) {
+							userMenu(con);
+						}
 						break;
 					case 2: //Register
-//						welcomeToUotelMenu(con);
+						registerUser(in, con);
 						break;
+					case 3:
+						exit = true;
 					default:
 						continue;
 				}
@@ -233,8 +238,8 @@ public class application {
 			System.err.println ("Query Error");
 		}
 	}
-
-	public static void welcomeToUotelMenu(Connector con)
+	
+	public static void userMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice;
@@ -244,7 +249,7 @@ public class application {
 			boolean exit = false;
 			while(!exit)
 			{
-				displayWelcomeToUotelMenu();
+				displayUserMenu();
 				while ((choice = in.readLine()) == null && choice.length() == 0);
 				try
 				{
@@ -257,13 +262,26 @@ public class application {
 				switch (c)
 				{
 					case 1:
-
+						makeReservation(in, con);
 						break;
                     case 2:
                         tHMenu(con);
                         break;
 					case 3:
-						staysMenu(con);
+						recordVisit(in, con);
+						break;
+					case 4:
+						String thid;
+						printOutVisitedTHS(con.stmt);
+						System.out.println("Please enter the TH id you would like to favorite (hid)");
+						while ((thid = in.readLine()) == null && thid.length() == 0) ;
+						if(declareTHAsFavorite(thid, in, con))
+						{
+							System.out.println("Th: " + thid + " has successfully been favorited");
+						}
+						break;
+					case 5:
+						leaveFeedback(in, con);
 						break;
 					case 6:
 						usefulnessRatingsMenu(con);
@@ -283,8 +301,8 @@ public class application {
 					case 11:
 						if(isAdmin(_currentUser, con.stmt))
 						{
-							userAwardsMenu(con);
 							System.out.println("Access Granted.");
+							userAwardsMenu(con);
 						}
 						else
 						{
@@ -418,101 +436,101 @@ public class application {
         }
     }
 
-	public static void staysMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String choice;
-		String hid;
-		String pid;
-		String cost;
-		ArrayList<String> pids = new ArrayList<String>();
-		ArrayList<String> hids = new ArrayList<String>();
-		ArrayList<String> costs = new ArrayList<String>();
-		Visit visit;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayStaysMenu(con.stmt);
-				while ((hid = in.readLine()) == null && hid.length() == 0);
-				System.out.println("please enter the period id (pid)");
-				while ((pid = in.readLine()) == null && pid.length() == 0);
-				System.out.println("please enter the cost of the stay");
-				while ((cost = in.readLine()) == null && cost.length() == 0);
-				hids.add(hid);
-				pids.add(pid);
-				costs.add(cost);
-				System.out.println("1. record another stay");
-				System.out.println("2. exit:");
-				while ((choice = in.readLine()) == null && choice.length() == 0);
-				try
-				{
-					c = Integer.parseInt(choice);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				switch (c)
-				{
-					case 1:
-						break;
-					case 2:
-						exit = false;
-						while(!exit) {
-							System.out.println("You have recorded stays for the following:");
-							System.out.println("hid\t\tpid\t\tcost");
-							for (int i = 0; i < hids.size(); i++)
-							{ //print out all the stays recorded
-								System.out.print(hids.get(i)+"\t\t");
-								System.out.print(pids.get(i)+"\t\t");
-								System.out.println("$"+costs.get(i));
-							}
-							System.out.println("1. confirm and exit:");
-							System.out.println("2. cancel and exit:");
-							System.out.println("please enter your choice:");
-							String subChoice;
-							while ((subChoice = in.readLine()) == null && subChoice.length() == 0);
-							try
-							{
-								c = Integer.parseInt(subChoice);
-							}
-							catch (Exception e)
-							{
-								continue;
-							}
-							switch (c) {
-								case 1: //save and exit
-									for (int i = 0; i < hids.size(); i++)
-									{ //all the stays recorded
-										visit = new Visit();
-										hid = hids.get(i);
-										pid = pids.get(i);
-										cost = costs.get(i);
-										visit.addVisit(_currentUser, hid, pid, cost, con.stmt);
-									}
-									exit = true;
-									break;
-								case 2: //cancel and exit
-									exit = true;
-									break;
-								default:
-									continue;
-							}
-						}
-						break;
-					default:
-						continue;
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
+//	public static void staysMenu(Connector con)
+//	{
+//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+//		String choice;
+//		String hid;
+//		String pid;
+//		String cost;
+//		ArrayList<String> pids = new ArrayList<String>();
+//		ArrayList<String> hids = new ArrayList<String>();
+//		ArrayList<String> costs = new ArrayList<String>();
+//		Visit visit;
+//		int c=0;
+//		try
+//		{
+//			boolean exit = false;
+//			while(!exit)
+//			{
+//				displayStaysMenu(con.stmt);
+//				while ((hid = in.readLine()) == null && hid.length() == 0);
+//				System.out.println("please enter the period id (pid)");
+//				while ((pid = in.readLine()) == null && pid.length() == 0);
+//				System.out.println("please enter the cost of the stay");
+//				while ((cost = in.readLine()) == null && cost.length() == 0);
+//				hids.add(hid);
+//				pids.add(pid);
+//				costs.add(cost);
+//				System.out.println("1. record another stay");
+//				System.out.println("2. exit:");
+//				while ((choice = in.readLine()) == null && choice.length() == 0);
+//				try
+//				{
+//					c = Integer.parseInt(choice);
+//				}
+//				catch (Exception e)
+//				{
+//					continue;
+//				}
+//				switch (c)
+//				{
+//					case 1:
+//						break;
+//					case 2:
+//						exit = false;
+//						while(!exit) {
+//							System.out.println("You have recorded stays for the following:");
+//							System.out.println("hid\t\tpid\t\tcost");
+//							for (int i = 0; i < hids.size(); i++)
+//							{ //print out all the stays recorded
+//								System.out.print(hids.get(i)+"\t\t");
+//								System.out.print(pids.get(i)+"\t\t");
+//								System.out.println("$"+costs.get(i));
+//							}
+//							System.out.println("1. confirm and exit:");
+//							System.out.println("2. cancel and exit:");
+//							System.out.println("please enter your choice:");
+//							String subChoice;
+//							while ((subChoice = in.readLine()) == null && subChoice.length() == 0);
+//							try
+//							{
+//								c = Integer.parseInt(subChoice);
+//							}
+//							catch (Exception e)
+//							{
+//								continue;
+//							}
+//							switch (c) {
+//								case 1: //save and exit
+//									for (int i = 0; i < hids.size(); i++)
+//									{ //all the stays recorded
+//										visit = new Visit();
+//										hid = hids.get(i);
+//										pid = pids.get(i);
+//										cost = costs.get(i);
+//										visit.addVisit(_currentUser, hid, pid, cost, con.stmt);
+//									}
+//									exit = true;
+//									break;
+//								case 2: //cancel and exit
+//									exit = true;
+//									break;
+//								default:
+//									continue;
+//							}
+//						}
+//						break;
+//					default:
+//						continue;
+//				}
+//			}
+//		}
+//		catch (Exception e)
+//		{
+//			System.err.println ("Query Error");
+//		}
+//	}
 
 	public static void usefulnessRatingsMenu(Connector con)
 	{
@@ -668,7 +686,7 @@ public class application {
 				"ORDER BY usefulness_score DESC LIMIT "+m;
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+		//System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())

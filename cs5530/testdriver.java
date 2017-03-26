@@ -23,7 +23,7 @@ public class testdriver {
 
 	public static void displayUserMenu(){
 		System.out.println("\n       Welcome: " + _currentUser);
-		System.out.println("1. Make a reservation:");
+		System.out.println("1. Make a reservation:"); //X
 		System.out.println("2. Leave feedback on your stay:");
 		System.out.println("3. Declare TH as your favorite TH:");
 		System.out.println("4. Record your stay:");
@@ -44,7 +44,8 @@ public class testdriver {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) //X
+	{
 		// TODO Auto-generated method stub
 
 		try{
@@ -78,7 +79,6 @@ public class testdriver {
 				else {
 					System.out.println("EoM");
 					con.stmt.close();
-
 					break;
 				}
 			}
@@ -109,12 +109,12 @@ public class testdriver {
 					continue;
 				// User makes a reservation
 				if (c == 1) {
-					makeReservation(in, con);
+					makeReservation(in, con); //X
 					//reservationMenu(in, con);
 				}
 				// Leave feedback on stay
 				else if (c == 2) {
-					leaveFeedback(in, con);
+					leaveFeedback(in, con); //X
 				}
 				// Declare TH as your favorite
 				else if (c == 3) {
@@ -128,7 +128,7 @@ public class testdriver {
 				}
 				// History of stays
 				else if (c == 4) {
-					recordVisit(in, con);
+					recordVisit(in, con); //X
 					//staysHistory(in, con);
 				}
 				else {
@@ -147,7 +147,8 @@ public class testdriver {
 		}
 	}
 
-	private static void recordVisit(BufferedReader in, Connector con) {
+	private static void recordVisit(BufferedReader in, Connector con)
+	{
 		String thid = "";
 		String pid = "";
 		String fromDate = "";

@@ -93,7 +93,7 @@ public class Trust {
 				"ORDER BY trust_score DESC LIMIT "+m;
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+		//System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
