@@ -151,8 +151,6 @@ public class testdriver {
 
 
 	private static void recordVisit(BufferedReader in, Connector con) {
-
-
 		String thid = "";
 		String pid = "";
 		String fromDate = "";
@@ -213,7 +211,6 @@ public class testdriver {
 						break;
 					}
 				}
-
 			}
 
 			// Display all visits and ask if they are done recording visits
@@ -229,7 +226,7 @@ public class testdriver {
 				String choice;
 				int c;
 				System.out.println("\nPlease double check your recorded stays \n 1: Finish \n 2: Quit");
-				while ((choice = in.readLine()) == null && choice.length() == 0) ;
+				while ((choice = in.readLine()) == null && choice.length() == 0);
 				try {
 					c = Integer.parseInt(choice);
 				} catch (Exception e) {
@@ -311,7 +308,6 @@ public class testdriver {
 		Available available = new Available();
 		Visit visit = new Visit();
 		try {
-
 			String newPid = "";
 			Date givenFromDate = convertToDate(fromDate, formatter);//new Date(formatter.parse(fromDate).getTime());
 			Date givenToDate = convertToDate(toDate, formatter);//new Date(formatter.parse( toDate).getTime());
@@ -421,7 +417,6 @@ public class testdriver {
 		}
 	}
 
-
 	private static void printOutVisitedTHS(Statement stmt) {
 		String sql="select DISTINCT(th.hid), category, hname\n" +
 				"from Visit v, TH th\n" +
@@ -460,9 +455,6 @@ public class testdriver {
 			}
 		}
 	}
-
-
-
 
 	public static boolean loginUser(BufferedReader in, Connector con){
 		String username;
@@ -780,7 +772,8 @@ public class testdriver {
 			period.addPeriod(periodFromDate.toString(), dateBeforeReservation.toString(), stmt);
 			newPid = period.getLastPeriod(stmt);
 			available.addAvailable(thid, newPid, chosenPeriod.get(2), stmt);
-		} else {
+		}
+		else {
 			newPid = secondPeriod.get(0).get(0);
 			available.addAvailable(thid, newPid, chosenPeriod.get(2),stmt);
 		}
@@ -808,7 +801,6 @@ public class testdriver {
 		}
 	}
 
-
 	public static Date convertToDate(String date, SimpleDateFormat formatter){
 		Date givenDate = null;
 		try
@@ -820,9 +812,6 @@ public class testdriver {
 		}
 		return givenDate;
 	}
-
-
-
 
 	public static void printTHAvailableTimes(BufferedReader in, Connector con){
 		String sql="select a.hid, p.pid, p.from_date, p.to_date\n" +

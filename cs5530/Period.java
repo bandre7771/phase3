@@ -16,7 +16,7 @@ public class Period {
 			//String output="";
 			List<List<String>> output = new ArrayList<List<String>>();
 			ResultSet rs=null;
-   		 	//System.out.println("executing "+sql);
+   		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
 	   		 	while (rs.next())
@@ -57,7 +57,7 @@ public class Period {
 		//String output="";
 		List<List<String>> output = new ArrayList<List<String>>();
 		ResultSet rs=null;
-		//System.out.println("executing "+sql);
+		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -98,7 +98,7 @@ public class Period {
 		//String output="";
 		String output = "";
 		ResultSet rs=null;
-		//System.out.println("executing "+sql);
+		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -132,13 +132,28 @@ public class Period {
 	public void addPeriod(String from_date, String to_date, Statement stmt)
 	{
 		String sql="INSERT INTO Period (from_date, to_date) VALUES ('"+from_date +"', '" + to_date + "')";
-		//System.out.println("executing "+sql);
+		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
+			System.out.println("success!");
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot insert");
+		}
+	}
+
+	public void updatePeriod(String pid, String from_date, String to_date, Statement stmt)
+	{
+		String sql="UPDATE Period SET from_date = '"+from_date+"' to_date = '"+to_date+"' WHERE pid = "+pid;
+		System.out.println("executing "+sql);
+		try{
+			stmt.executeUpdate(sql);
+			System.out.println("Success!");
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot update");
 		}
 	}
 }

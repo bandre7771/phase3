@@ -15,7 +15,7 @@ public class Available {
 			List<List<String>> output = new ArrayList<List<String>>();
 
 			ResultSet rs=null;
-   		 	//System.out.println("executing "+sql);
+   		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
 				int count = 0;
@@ -51,14 +51,29 @@ public class Available {
 
 	public void addAvailable(String hid, String pid, String cost_per_night, Statement stmt)
 	{
-		String sql="INSERT INTO Available (hid, pid, price_per_night) VALUES ("+hid+", "+pid+", 80)";
-		//System.out.println("executing "+sql);
+		String sql="INSERT INTO Available (hid, pid, price_per_night) VALUES ("+hid+", "+pid+", "+cost_per_night+")";
+		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
+			System.out.println("success!");
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot insert");
+		}
+	}
+
+	public void updateAvailable(String hid, String pid, String cost_per_night, Statement stmt)
+	{
+		String sql="UPDATE Available SET cost_per_night = '"+cost_per_night+"' WHERE hid = "+hid+" AND pid = " + pid;
+		System.out.println("executing "+sql);
+		try{
+			stmt.executeUpdate(sql);
+			System.out.println("success!");
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot update");
 		}
 	}
 
@@ -67,6 +82,7 @@ public class Available {
 		//System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
+			System.out.println("success!");
 		}
 		catch(Exception e)
 		{
