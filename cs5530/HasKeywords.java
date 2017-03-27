@@ -12,7 +12,7 @@ public class HasKeywords {
 		String sql="select * from HasKeywords";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -48,7 +48,7 @@ public class HasKeywords {
 		String sql="select * from HasKeywords where hid = "+hid+" and wid = '"+wid+"'";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -79,7 +79,7 @@ public class HasKeywords {
 	public void addHasKeyword(String hid, String wid, Statement stmt)
 	{
 		String sql="INSERT INTO HasKeywords (hid, wid) VALUES ("+hid+", "+wid+")";
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("success!");
@@ -93,7 +93,7 @@ public class HasKeywords {
 	public void removeHasKeyword(String hid, String wid, Statement stmt)
 	{
 		String sql="DELETE FROM HasKeywords WHERE hid ="+hid+" AND wid ="+wid;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("successfuly removed!");

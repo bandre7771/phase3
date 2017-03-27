@@ -15,7 +15,7 @@ public class Users {
 		String sql = "select * from Users";
 		String output = "";
 		ResultSet rs = null;
-		System.out.println("executing " + sql);
+//		System.out.println("executing " + sql);
 		try {
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -46,7 +46,7 @@ public class Users {
 		System.out.println("executing " + sql);
 		try{
 			stmt.executeUpdate(sql);
-			System.out.println("login: "+login+" name: "+name+" address: "+address+" phone_number: "+phone_number+" user_type: 0");
+			System.out.println("success!");
 		}
 		catch(Exception e)
 		{
@@ -62,7 +62,7 @@ public class Users {
 		String sql = "select * from Users where login = '" + login + "'";
 		String output = "";
 		ResultSet rs = null;
-		System.out.println("executing " + sql);
+//		System.out.println("executing " + sql);
 		try {
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -92,7 +92,7 @@ public class Users {
 		String sql="select * from Users where login = '"+login+"' and password = '"+ password+"'";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -132,7 +132,7 @@ public class Users {
 		String sql="select * from Users where login = '"+login+"'";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -172,7 +172,7 @@ public class Users {
 		String sql = "select * from Users where login != '" + login + "'";
 		String output = "";
 		ResultSet rs = null;
-		System.out.println("executing " + sql);
+//		System.out.println("executing " + sql);
 		try {
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {

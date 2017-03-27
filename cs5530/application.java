@@ -16,15 +16,13 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 public class application {
 
 	private static String _currentUser;
 
-	///Display Menus
+	///Display Menu
 	public static void displayLoginMenu()
 	{
 		System.out.println("       Welcome to Uotel     ");
@@ -262,7 +260,8 @@ public class application {
 				switch (c)
 				{
 					case 1:
-						makeReservation(in, con);
+						List<List<String>> reservations = makeReservation(in, con);
+						suggestTH(reservations, in, con);
 						break;
                     case 2:
                         tHMenu(con);
@@ -364,7 +363,7 @@ public class application {
                         System.out.println("please enter category name:");
                         while ((category = in.readLine()) == null && category.length() == 0);
 
-						System.out.println("please enter city:");
+						System.out.println("please enter address:");
 						while ((address = in.readLine()) == null && address.length() == 0) ;
 
 						System.out.println("please enter phone number:");
@@ -625,7 +624,6 @@ public class application {
 		}
 	}
 
-	//TODO: implement administrator only privilege's
 	public static void userAwardsMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -1689,7 +1687,270 @@ public class application {
 
 	/*****This is where Ben's code starts*****/
 	private static void recordVisit(BufferedReader in, Connector con) {
-		printUsersReservations(in, con);
+		String thid = "";
+		String pid = "";
+		String fromDate = "";
+		String toDate = "";
+		List<List<String>> visits = new ArrayList<List<String>>();
+		List<String> chosenPeriod = new ArrayList<String>();
+		boolean readyForCheckout = false;
+		try {
+			while(!(readyForCheckout)) {
+				List<String> visit = new ArrayList<String>();
+				printUsersReservations(in, con);
+				System.out.println("please choose the TH you want to record as a stay (hid):");
+				while ((thid = in.readLine()) == null && thid.length() == 0) ;
+				visit.add(thid);
+
+				System.out.println("please choose the time period of your stay (pid):");
+				while ((pid = in.readLine()) == null && pid.length() == 0) ;
+				//visit.add(pid);
+				Period period = new Period();
+				chosenPeriod = period.getPeriod(pid, con.stmt).get(0);
+				System.out.println("Your Chosen Period for TH: " + thid);
+				System.out.println("\t\t" + chosenPeriod.get(0) + "\t\t" + chosenPeriod.get(1) + "\t\t" + chosenPeriod.get(2));
+				//getTHAndPeriod(thid, pid, in, con);
+
+				System.out.println("please choose a start date for your stay (date format: mm/dd/yyyy ex: 01/23/1994):");
+				while ((fromDate = in.readLine()) == null && fromDate.length() == 0) ;
+				visit.add(fromDate);
+
+				System.out.println("please choose an end date for your stay (date format: mm/dd/yyyy ex: 01/23/1994):");
+				while ((toDate = in.readLine()) == null && toDate.length() == 0) ;
+				visit.add(toDate);
+
+				visits.add(visit);
+				visits.add(chosenPeriod);
+
+				String makeAnother;
+				System.out.println("Would you like to make another visit? (Please answer yes or no)");
+				while(true) {
+					String choice;
+					int c;
+					System.out.println("\nWould you like record another visit? \n 1: Yes \n 2: No");
+					while ((choice = in.readLine()) == null && choice.length() == 0) ;
+					try {
+						c = Integer.parseInt(choice);
+					} catch (Exception e) {
+						continue;
+					}
+					if (c < 1 | c > 5) {
+						continue;
+					}
+					// user chooses to make another visit
+					if (c == 1) {
+						break;
+					}
+					// user does not want to make another visit
+					else if (c == 2) {
+						readyForCheckout = true;
+						break;
+					}
+				}
+			}
+
+			// Display all visits and ask if they are done recording visits
+			System.out.println("\nList of made visits:\nthid\t\tpid\t\tfrom_date\t\tto_date");
+			for(int i = 0; i < visits.size(); i+=2){
+				String reservation = "";
+				reservation += visits.get(i).get(0) + "\t\t";
+				reservation += visits.get(i).get(1) + "\t\t";
+				reservation += visits.get(i).get(2);
+				System.out.println(reservation);
+			}
+			while(true) {
+				String choice;
+				int c;
+				System.out.println("\nPlease double check your recorded stays \n 1: Finish \n 2: Quit");
+				while ((choice = in.readLine()) == null && choice.length() == 0);
+				try {
+					c = Integer.parseInt(choice);
+				} catch (Exception e) {
+					continue;
+				}
+				if (c < 1 | c > 5) {
+					continue;
+				}
+				// User makes a reservation
+				if (c == 1) {
+					break;
+				}
+				// Leave feedback on stay
+				else if (c == 2) {
+					return;
+				}
+			}
+
+
+			for(int i = 0; i < visits.size(); i+=2){
+//				for(int j = 0; j < visits.get(i).size(); j++){
+				thid = visits.get(i).get(0);
+				chosenPeriod = visits.get(i+1);
+				fromDate = visits.get(i).get(1);
+				toDate = visits.get(i).get(2);
+				addStay(thid, chosenPeriod, fromDate, toDate, con.stmt);
+				//}
+			}
+
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 *
+	 * Will print out all the THs that customers have visited who have visited what the user just reserved
+	 * @param in
+	 * @param con
+	 */
+	private static void suggestTH(List<List<String>> reservations, BufferedReader in, Connector con) {
+		Visit visit = new Visit();
+		Set<String> ths = new HashSet<String>();
+		for(int j = 0; j < reservations.size(); j+=2) {
+			ths.add(reservations.get(j).get(0));
+		}
+
+
+
+		for(String th: ths){
+			System.out.println("\nBased on your reservation for "+ th + ",here are some other THs we would suggest");
+			System.out.println("|\tHid\t\t|\tHname\t|\tCategor\t|\tAddress\t|\tYrBlt\t|\tPhone #\t|\tUrl\t\t|\t#of Vts");
+			List<List<String>> suggestedTHs = visit.getSuggestedTHs(th, con.stmt);
+			for(List<String> suggestedTH : suggestedTHs) {
+				if(suggestedTH.get(0).equals(th)){
+					continue;
+				}
+				for(int i = 0; i < suggestedTH.size(); i++) {
+					String attribute = suggestedTH.get(i);
+					if(attribute.length() < 4){
+						attribute += "\t";
+					}
+					if(suggestedTH.get(i).length() > 7)
+						System.out.print("|\t" + attribute.substring(0, 7) + "\t");
+					else {
+						System.out.print("|\t" + attribute + "\t");
+					}
+				}
+				System.out.println();
+			}
+		}
+//		List<List<String>> suggestedTH = visit.getSuggestedTHs();
+	}
+
+	private static void addStay(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sqlDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+		Available available = new Available();
+		Visit visit = new Visit();
+		try {
+			String newPid = "";
+			Date givenFromDate = convertToDate(fromDate, formatter);//new Date(formatter.parse(fromDate).getTime());
+			Date givenToDate = convertToDate(toDate, formatter);//new Date(formatter.parse( toDate).getTime());
+
+			Date periodFromDate = convertToDate(chosenPeriod.get(1), sqlDateFormatter);//new Date(sqlDateFormatter.parse(chosenPeriod.get(1)).getTime());
+			Date periodToDate = convertToDate(chosenPeriod.get(2), sqlDateFormatter);//new Date(sqlDateFormatter.parse(chosenPeriod.get(2)).getTime());
+			if((periodFromDate.before(givenFromDate) || periodFromDate.equals(givenFromDate))
+					&& (periodToDate.after(givenFromDate) || periodToDate.equals(periodToDate))) {
+
+				// If the visit period is the same as the available period
+				if (periodFromDate.equals(givenFromDate) && periodToDate.equals(givenToDate)) {
+					available.deleteAvailable(thid, chosenPeriod.get(0), stmt);
+					visit.addVisit(_currentUser, thid, chosenPeriod.get(0), stmt);
+
+				}
+
+				// If the visit's to date is the same as the available periods to date but has a different from date.
+				else if (periodFromDate.before(givenFromDate) && periodToDate.equals(givenToDate)) {
+					addVisit(thid, givenFromDate, givenToDate, chosenPeriod, stmt);
+
+					// Get the period that is leftover before the visit and make it available
+					addLeftoverPeriodBeforeStay(givenFromDate, periodFromDate,thid, chosenPeriod, stmt);
+
+
+				} else if (periodFromDate.equals(givenFromDate) && periodToDate.after(givenToDate)) {
+					addVisit(thid, givenFromDate, givenToDate, chosenPeriod, stmt);
+
+					// Get the period that is leftover after the visit and make it available
+					addLeftoverPeriodAfterStay(givenToDate,periodToDate, thid, chosenPeriod, stmt);
+
+				} else {
+					addVisit(thid, givenFromDate, givenToDate, chosenPeriod, stmt);
+
+					addLeftoverPeriodBeforeStay(givenFromDate, periodFromDate,thid, chosenPeriod, stmt);
+					addLeftoverPeriodAfterStay(givenToDate,periodToDate, thid, chosenPeriod, stmt);
+				}
+			}
+			else{
+				System.out.println("Please enter valid start date");
+			}
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	public static void addVisit(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt){
+		Period period = new Period();
+		Visit visit = new Visit();
+		Available available = new Available();
+		List<List<String>> firstPeriod = period.getPeriod(givenFromDate.toString(), givenToDate.toString(), stmt);
+		String newPid;
+
+		// Checks if a period already exists that meets the needs of the visit period
+		// If not then we will make one.
+		if(firstPeriod.isEmpty()){
+			period.addPeriod(givenFromDate.toString(), givenToDate.toString(), stmt);
+			newPid = period.getLastPeriod(stmt);
+			visit.addVisit(_currentUser, thid, newPid, stmt);
+		}
+		else {
+			newPid = firstPeriod.get(0).get(0);
+			visit.addVisit(_currentUser, thid, newPid, stmt);
+		}
+	}
+
+	public static void addLeftoverPeriodBeforeStay(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt){
+		Period period = new Period();
+		Available available = new Available();
+		String newPid;
+
+		// Get the period that is leftover before the reservation and make it available
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(givenFromDate);
+		cal.add(Calendar.DATE, -1);
+		Date dateBeforeReservation = new Date(cal.getTime().getTime());
+		List<List<String>> secondPeriod = period.getPeriod(periodFromDate.toString(), dateBeforeReservation.toString(), stmt);
+		if (secondPeriod.isEmpty()) {
+			period.addPeriod(periodFromDate.toString(), dateBeforeReservation.toString(), stmt);
+			newPid = period.getLastPeriod(stmt);
+			available.addAvailable(thid, newPid, chosenPeriod.get(2), stmt);
+		} else {
+			newPid = secondPeriod.get(0).get(0);
+			available.addAvailable(thid, newPid, chosenPeriod.get(2),stmt);
+		}
+	}
+
+	public static void addLeftoverPeriodAfterStay(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt) {
+		Period period = new Period();
+		Available available = new Available();
+		String newPid;
+
+		// Get the period that is leftover after the reservation and make it available
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(givenToDate);
+		cal.add(Calendar.DATE, 1);
+		Date dateAfterReservation = new Date(cal.getTime().getTime());
+		List<List<String>> secondPeriod = period.getPeriod(dateAfterReservation.toString(), periodToDate.toString(), stmt);
+		if (secondPeriod.isEmpty()) {
+			period.addPeriod(dateAfterReservation.toString(), periodToDate.toString(), stmt);
+			newPid = period.getLastPeriod(stmt);
+			available.addAvailable(thid, newPid, chosenPeriod.get(2), stmt);
+		}
+		else {
+			newPid = secondPeriod.get(0).get(0);
+			available.addAvailable(thid, newPid, chosenPeriod.get(2), stmt);
+		}
 	}
 
 	private static void printOutVisitedTHS(Statement stmt) {
@@ -1827,7 +2088,7 @@ public class application {
 		return true;
 	}
 
-	public static void makeReservation(BufferedReader in, Connector con){
+	public static List<List<String>> makeReservation(BufferedReader in, Connector con){
 		String thid = "";
 		String pid = "";
 		String fromDate = "";
@@ -1841,7 +2102,7 @@ public class application {
 				List<String> reservation = new ArrayList<String>();
 				printTHAvailableTimes(in, con);
 				System.out.println("please choose the TH you want to Reserve (hid):");
-				while ((thid = in.readLine()) == null && thid.length() == 0);
+				while ((thid = in.readLine()) == null && thid.length() == 0) ;
 				reservation.add(thid);
 
 				System.out.println("please choose a period of time you would like to reserve (pid):");
@@ -1869,7 +2130,7 @@ public class application {
 				while(true) {
 					String choice;
 					int c;
-					System.out.println("\nWould you like to Checkout? \n 1: no \n 2: yes");
+					System.out.println("\nWould you like to make another reservation? \n 1: yes \n 2: no");
 					while ((choice = in.readLine()) == null && choice.length() == 0) ;
 					try {
 						c = Integer.parseInt(choice);
@@ -1920,7 +2181,7 @@ public class application {
 				}
 				// Leave feedback on stay
 				else if (c == 2) {
-					return;
+					return new ArrayList<List<String>>();
 				}
 			}
 
@@ -1934,7 +2195,7 @@ public class application {
 				addReservation(thid, chosenPeriod, fromDate, toDate, con.stmt);
 				//}
 			}
-
+			return reservations;
 //			Reserve reservation = new Reserve();
 //			if (reservation.getReserve(Integer.parseInt(thid), Integer.parseInt(pid), con.stmt) != "") {
 //				System.out.println("This TH has already been reserved for that time period");
@@ -1944,17 +2205,14 @@ public class application {
 		}
 		catch (Exception e){
 			e.printStackTrace();
+			return new ArrayList<List<String>>();
 		}
 	}
 
 	private static void addReservation(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sqlDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-		Period period = new Period();
 		Available available = new Available();
-		List<List<String>> firstPeriod = new ArrayList<List<String>>();
-		List<List<String>> secondPeriod = new ArrayList<List<String>>();
-		List<List<String>> thirdPeriod = new ArrayList<List<String>>();
 		Reserve reservation = new Reserve();
 		try {
 
@@ -2050,7 +2308,8 @@ public class application {
 			period.addPeriod(periodFromDate.toString(), dateBeforeReservation.toString(), stmt);
 			newPid = period.getLastPeriod(stmt);
 			available.addAvailable(thid, newPid, chosenPeriod.get(2), stmt);
-		} else {
+		}
+		else {
 			newPid = secondPeriod.get(0).get(0);
 			available.addAvailable(thid, newPid, chosenPeriod.get(2),stmt);
 		}
@@ -2091,7 +2350,7 @@ public class application {
 	}
 
 	public static void printTHAvailableTimes(BufferedReader in, Connector con){
-		String sql="select a.hid, p.pid, p.from_date, p.to_date, a.price_per_night\n" +
+		String sql="select a.hid, p.pid, p.from_date, p.to_date\n" +
 				"from Available a, Period p\n" +
 				"where a.pid = p.pid\n" +
 				"GROUP BY a.hid, p.pid, p.from_date, p.to_date";
@@ -2101,7 +2360,7 @@ public class application {
 		try{
 			rs=con.stmt.executeQuery(sql);
 			int count = 0;
-			String table_header = "hid" + "\t\t" + "pid" + "\t\t" + "from_date" + "\t\t" + "to_date" + "\t\t" + "price_per_night";
+			String table_header = "hid" + "\t\t" + "pid" + "\t\t" + "from_date" + "\t\t" + "to_date" + "\t\t";
 			System.out.println(table_header);
 			while (rs.next())
 			{
@@ -2110,7 +2369,6 @@ public class application {
 				instance += "\t\t" + rs.getString("pid");
 				instance += "\t\t" + rs.getString("from_date");
 				instance += "\t\t" + rs.getString("to_date");
-				instance += "\t\t" + rs.getString("price_per_night");
 				System.out.println(instance);
 
 			}
@@ -2134,8 +2392,8 @@ public class application {
 	public static void printUsersReservations(BufferedReader in, Connector con){
 		String sql="select r.login, r.hid, p.pid, p.from_date, p.to_date\n" +
 				"from Reserve r, Period p\n" +
-				"where r.pid = p.pid.login\n" +
-				"GROUP BY u.login, r.hid, p.pid, p.from_date, p.to_date";
+				"where r.pid = p.pid\n" +
+				"and r.login = '" + _currentUser + "'";
 		String instance;
 		ResultSet rs=null;
 		System.out.println("executing "+sql);
@@ -2171,4 +2429,9 @@ public class application {
 			}
 		}
 	}
+
+
+
+
+
 }

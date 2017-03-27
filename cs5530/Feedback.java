@@ -17,7 +17,7 @@ public class Feedback {
 //			String output="";
 			List<List<String>> output = new ArrayList<List<String>>();
 			ResultSet rs=null;
-   		 	System.out.println("executing "+sql);
+//   		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
 	   		 	while (rs.next())
@@ -56,9 +56,10 @@ public class Feedback {
 		Calendar calendar = Calendar.getInstance();
 		java.sql.Date ourJavaDateObject = new java.sql.Date(calendar.getTime().getTime());
 		String sql="INSERT INTO Feedback (hid, login, text, score, fbdate) VALUES ("+hid+", '" + login + "', '" + text +"', "+score+", '"+ourJavaDateObject+"')";
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
+			System.out.println("success!");
 		}
 		catch(Exception e)
 		{
@@ -68,9 +69,10 @@ public class Feedback {
 
 	public void deleteFeedback(String fid, Statement stmt) {
 		String sql="delete from Feedback where fid = '" +fid + "'";
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
+			System.out.println("success!");
 		}
 		catch(Exception e)
 		{
@@ -83,7 +85,7 @@ public class Feedback {
 		String sql="select * from Feedback where login != '"+login+"'";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -122,7 +124,7 @@ public class Feedback {
 
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())

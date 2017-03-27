@@ -12,7 +12,7 @@ public class Favorites {
 			String sql="select * from Favorites where hid = "+hid+" and login = '"+login+"'";
 			String output="";
 			ResultSet rs=null;
-   		 	System.out.println("executing "+sql);
+//   		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
 	   		 	while (rs.next())
@@ -43,9 +43,10 @@ public class Favorites {
 	public void addFavorite(int hid, String login, Statement stmt)
 	{
 		String sql="INSERT INTO Favorites (hid, login) VALUES ("+hid+", '"+login+"')";
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
+			System.out.println("success!");
 		}
 		catch(Exception e)
 		{
