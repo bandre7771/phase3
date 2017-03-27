@@ -50,7 +50,7 @@ public class Reserve {
 		String sql="select * from Reserve where login = '"+login+"' and hid = "+hid+" and pid = "+pid+"";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -86,7 +86,7 @@ public class Reserve {
 		String sql="select * from Reserve where hid = "+hid+" and pid = "+pid;
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -122,6 +122,7 @@ public class Reserve {
 		//System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
+			System.out.println("Reservation Successfully added");
 		}
 		catch(Exception e)
 		{

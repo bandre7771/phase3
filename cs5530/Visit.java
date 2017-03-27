@@ -13,10 +13,10 @@ public class Visit {
 		public boolean addVisit(String login, String hid, String pid, String cost, Statement stmt)
 		{
 			String sql="INSERT INTO Visit (login, hid, pid, cost) VALUES  ('"+login+"',"+hid+","+pid+","+cost+")";
-			System.out.println("executing " + sql);
+//			System.out.println("executing " + sql);
 			try{
 				stmt.executeUpdate(sql);
-				System.out.println("login: "+login+" hid: "+hid+" pid: "+pid);
+//				System.out.println("login: "+login+" hid: "+hid+" pid: "+pid);
 			}
 			catch(Exception e)
 			{
@@ -31,7 +31,7 @@ public class Visit {
 			String sql="select * from Visit where login = '"+login+"' and hid = "+hid+" and pid = "+pid;
 			String output="";
 			ResultSet rs=null;
-   		 	System.out.println("executing "+sql);
+//   		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
 				while (rs.next())
@@ -71,7 +71,7 @@ public class Visit {
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				System.out.println("login: "+login+" hid: "+hid);
+//				System.out.println("login: "+login+" hid: "+hid);
 				output+=rs.getString("login")+"   "+rs.getString("hid")+"   "+rs.getString("pid")+"\n";
 			}
 
@@ -102,7 +102,7 @@ public class Visit {
 		ResultSet rs=null;
 		List<List<String>> output = new ArrayList<List<String>>();
 
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -139,9 +139,10 @@ public class Visit {
 	public void addVisit(String login, String hid, String pid, Statement stmt)
 	{
 		String sql="INSERT INTO Visit(login, hid, pid, cost) VALUES ('"+login+"', "+ hid +", " + pid + ", 500)";
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
+			System.out.println("Visit successfully added");
 		}
 		catch(Exception e)
 		{

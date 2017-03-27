@@ -12,7 +12,7 @@ public class TH {
 			String sql="select * from TH";
 			String output="";
 			ResultSet rs=null;
-			System.out.println("executing "+sql);
+//			System.out.println("executing "+sql);
 			try{
 				rs=stmt.executeQuery(sql);
 				while (rs.next())
@@ -53,7 +53,7 @@ public class TH {
 			String sql="select * from TH where hid = "+hid;
 			String output="";
 			ResultSet rs=null;
-   		 	System.out.println("executing "+sql);
+//   		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
 				while (rs.next())
@@ -94,7 +94,7 @@ public class TH {
 		String sql="select * from TH where login = '"+login+"'";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -135,7 +135,7 @@ public class TH {
 		String sql="select * from TH where hid = "+hid+" AND login = '"+login+"'";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -176,7 +176,7 @@ public class TH {
 		String sql="INSERT INTO TH (category, login, hname, address," +
 				"url, phone_number, year_built, picture) VALUES ('"+category+"', '"+login+"', '"+hname+"', '"+address+"','"+url+"', '"
 				+phone_number+"', "+year_built+", '"+picture+"')";
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("Success!");
@@ -192,7 +192,7 @@ public class TH {
 	{
 		String sql="UPDATE TH SET category = '"+category+"', login = '"+login+"', hname = '"+hname+"', address = '"+address+"', url ='"+url+"', phone_number = '"
 				+phone_number+"', year_built = "+year_built+", picture = '"+picture+"' WHERE hid = "+hid;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("Success!");

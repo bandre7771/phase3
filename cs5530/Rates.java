@@ -12,7 +12,7 @@ public class Rates {
 			String sql="select * from Rates where fid = "+fid+" and login = '"+login+"'";
 			String output="";
 			ResultSet rs=null;
-   		 	System.out.println("executing "+sql);
+//   		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
 	   		 	while (rs.next())
@@ -48,7 +48,7 @@ public class Rates {
 		if(!fblogin.equals(login))
 		{
 			String sql="INSERT INTO Rates (fid, login, rating) VALUES ("+fid+", '"+ login +"', " + rating + ")";
-			System.out.println("executing "+sql);
+//			System.out.println("executing "+sql);
 			try{
 				stmt.executeUpdate(sql);
 				System.out.println("success!");

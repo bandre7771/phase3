@@ -43,7 +43,7 @@ public class Users {
 	public boolean addUser(String login, String name, String password, String address, String phone_number, Statement stmt)  {
 		String sql="INSERT INTO Users (login, name, password, address, phone_number, user_type) VALUES"+
 				"('"+login+"', '"+name+"', '"+password+"', '"+address+"', '"+phone_number+"', 0)";
-		System.out.println("executing " + sql);
+//		System.out.println("executing " + sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("success!");

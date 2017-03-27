@@ -55,7 +55,7 @@ public class Available {
 //		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
-			System.out.println("success!");
+			System.out.println("Available period successfully added!");
 		}
 		catch(Exception e)
 		{

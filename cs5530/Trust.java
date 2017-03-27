@@ -12,7 +12,7 @@ public class Trust {
 			String sql="select * from Trust where login1 = "+login1+" and login2 "+login2;
 			String output="";
 			ResultSet rs=null;
-   		 	System.out.println("executing "+sql);
+//   		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
 				while (rs.next())
@@ -47,7 +47,7 @@ public class Trust {
 		if(!login1.equals(login2))
 		{
 			String sql="INSERT INTO Trust (login1, login2, is_trusted) VALUES ('"+login1+"', '"+login2+"', "+is_trusted+")";
-			System.out.println("executing "+sql);
+//			System.out.println("executing "+sql);
 			try
 			{
 				stmt.executeUpdate(sql);

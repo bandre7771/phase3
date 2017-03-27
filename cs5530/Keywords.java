@@ -12,7 +12,7 @@ public class Keywords {
 		String sql="select * from Keywords";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -47,7 +47,7 @@ public class Keywords {
 		String sql="select * from Keywords where wid = "+wid;
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -80,7 +80,7 @@ public class Keywords {
 	public void addKeyword(String word, String language, Statement stmt)
 	{
 		String sql="INSERT INTO Keywords (word, language) VALUES ('"+ word +"', '" + language + "')";
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("Success!");
@@ -94,7 +94,7 @@ public class Keywords {
 	public void updateKeyword(String wid, String word, String language, Statement stmt)
 	{
 		String sql="UPDATE Keywords SET wid = "+wid+", word = '"+word+"', language = '"+language+"' WHERE wid = "+wid;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("Success!");
