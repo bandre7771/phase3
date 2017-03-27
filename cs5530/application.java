@@ -146,8 +146,8 @@ public class application {
 	{
 		System.out.println("       Statistics     ");
 		System.out.println("1. Show top most popular TH's for each category:");
-		System.out.println("2. Show top most popular TH's for each category:");
-		System.out.println("3. Show top most popular TH's for each category:");
+		System.out.println("2. Show top most expensive TH's for each category:");
+		System.out.println("3. Show top most highly rated TH's for each category:");
 		System.out.println("4. exit");
 	}
 
@@ -749,7 +749,7 @@ public class application {
 				"ORDER BY usefulness DESC LIMIT "+n;
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -852,7 +852,7 @@ public class application {
 				"        WHERE b.category=a.category and b.visit_count >= a.visit_count) <= "+m;
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -906,7 +906,7 @@ public class application {
 				"        WHERE b.category=a.category and b.average_cost >= a.average_cost) <= "+m;
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -960,7 +960,7 @@ public class application {
 				"        WHERE b.category=a.category and b.average_score >= a.average_score) <= "+m;
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			System.out.println("category\t\thid\t\thname\t\taddress\t\tlogin\t\tphone number\t\tyear built\t\turl\t\tpicture\t\taverage_score");
@@ -1352,7 +1352,7 @@ public class application {
 		String sql="SELECT hk.hid, th.hname, hk.wid, k.word FROM Keywords k NATURAL JOIN HasKeywords hk NATURAL JOIN TH th ORDER BY hk.hid;";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -1387,7 +1387,7 @@ public class application {
 		String sql="SELECT hk.hid, th.hname, hk.wid, k.word FROM Keywords k NATURAL JOIN HasKeywords hk NATURAL JOIN TH th WHERE login = '"+login+"' ORDER BY hk.hid;";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -1569,7 +1569,7 @@ public class application {
 				"WHERE login = '"+login+"'";
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -1650,7 +1650,7 @@ public class application {
 		String output="";
 		Boolean isAdmin = false;
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -1960,7 +1960,7 @@ public class application {
 				"and v.login = '" + _currentUser + "'";
 		String instance;
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			String table_header = "hid" + "\t\t" + "category" + "\t\t" + "hname";
@@ -2356,7 +2356,7 @@ public class application {
 				"GROUP BY a.hid, p.pid, p.from_date, p.to_date";
 		String instance;
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=con.stmt.executeQuery(sql);
 			int count = 0;
@@ -2396,7 +2396,7 @@ public class application {
 				"and r.login = '" + _currentUser + "'";
 		String instance;
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=con.stmt.executeQuery(sql);
 			int count = 0;

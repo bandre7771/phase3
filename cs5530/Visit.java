@@ -66,7 +66,7 @@ public class Visit {
 		String sql="select * from Visit where login = '"+login+"' and hid = "+hid;
 		String output="";
 		ResultSet rs=null;
-		System.out.println("executing "+sql);
+//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
