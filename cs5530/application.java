@@ -18,10 +18,18 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class application {
+public class Application {
+
 
 	private static String _currentUser;
 
+	public Application() {
+
+	}
+
+	public Application(String currentUser){
+		_currentUser = currentUser;
+	}
 	///Display Menu
 	public static void displayLoginMenu()
 	{
@@ -160,280 +168,280 @@ public class application {
 		System.out.println("please enter a choice:");
 	}
 
-	public static void main(String[] args)
-	{
-		System.out.println("5530u16");
-		Connector con=null;
-        String sql=null;
-         try
-		 {
-		 		 con = new Connector();
-	             System.out.println ("Database connection established");
-	             loginMenu(con);
-		 }
-         catch (Exception e)
-         {
-        	 e.printStackTrace();
-        	 System.err.println ("Connection error");
-         }
-         finally
-         {
-        	 if (con != null)
-        	 {
-        		 try
-        		 {
-        			 con.closeConnection();
-        			 System.out.println ("Database connection terminated");
-        		 }
-
-        		 catch (Exception e) { /* ignore close errors */ }
-        	 }
-         }
-
-	}
-
-	///Menus
-	public static void loginMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String choice;
-		boolean exit = false;
-		int c=0;
-
-		try
-		{
-			while(!exit)
-			{
-				displayLoginMenu();
-				while ((choice = in.readLine()) == null && choice.length() == 0);
-				try
-				{
-					c = Integer.parseInt(choice);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				switch (c)
-				{
-					case 1: //login
-						if(loginUser(in, con)) {
-							userMenu(con);
-						}
-						break;
-					case 2: //Register
-						registerUser(in, con);
-						break;
-					case 3:
-						exit = true;
-					default:
-						continue;
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-	
-	public static void userMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String choice;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayUserMenu();
-				while ((choice = in.readLine()) == null && choice.length() == 0);
-				try
-				{
-					c = Integer.parseInt(choice);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				switch (c)
-				{
-					case 1:
-						List<List<String>> reservations = makeReservation(in, con);
-						suggestTH(reservations, in, con);
-						break;
-                    case 2:
-                        tHMenu(con);
-                        break;
-					case 3:
-						recordVisit(in, con);
-						break;
-					case 4:
-						String thid;
-						printOutVisitedTHS(con.stmt);
-						System.out.println("Please enter the TH id you would like to favorite (hid)");
-						while ((thid = in.readLine()) == null && thid.length() == 0) ;
-						if(declareTHAsFavorite(thid, in, con))
-						{
-							System.out.println("Th: " + thid + " has successfully been favorited");
-						}
-						break;
-					case 5:
-						leaveFeedback(in, con);
-						break;
-					case 6:
-						usefulnessRatingsMenu(con);
-						break;
-					case 7:
-						trustRecordingsMenu(con);
-						break;
-					case 8:
-						usefulFeedbacksMenu(con);
-						break;
-					case 9:
-						twoDegreesOfSeparationMenu(con);
-						break;
-					case 10:
-						statisticsMenu(con);
-						break;
-					case 11:
-						if(isAdmin(_currentUser, con.stmt))
-						{
-							System.out.println("Access Granted.");
-							userAwardsMenu(con);
-						}
-						else
-						{
-							System.out.println("Access Denied! You must be an administrator to access this menu.");
-						}
-						break;
-					case 12:
-						exit = true;
-						break;
-					default:
-						continue;
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-
-    public static void tHMenu(Connector con)
-    {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        String choice;
-        String hname;
-        String category;
-        String url;
-        String phone_number;
-        String year;
-        String picture;
-		String hid;
-		String address;
-        TH th;
-        int c=0;
-        try
-        {
-			boolean exit = false;
-            while(!exit)
-            {
-                displayTHMenu();
-                while ((choice = in.readLine()) == null && choice.length() == 0);
-                try
-                {
-                    c = Integer.parseInt(choice);
-                }
-                catch (Exception e)
-                {
-                    continue;
-                }
-                switch (c)
-                {
-                    case 1: // Add TH
-                        th = new TH();
-						System.out.println("       Add TH     ");
-
-						System.out.println("please enter TH name:");
-                        while ((hname = in.readLine()) == null && hname.length() == 0);
-
-                        System.out.println("please enter category name:");
-                        while ((category = in.readLine()) == null && category.length() == 0);
-
-						System.out.println("please enter address:");
-						while ((address = in.readLine()) == null && address.length() == 0) ;
-
-						System.out.println("please enter phone number:");
-                        while ((phone_number =  in.readLine()) == null && phone_number.length() == 0);
-
-                        System.out.println("please enter year built:");
-                        while ((year =  in.readLine()) == null && year.length() == 0);
-
-                        System.out.println("please add picture:");
-                        while ((picture =  in.readLine()) == null && picture.length() == 0);
-
-                        System.out.println("please enter url:");
-                        while ((url =  in.readLine()) == null && url.length() == 0);
-                        th.addTH(category,_currentUser,hname,address,url,phone_number,year,picture,con.stmt);
-                        break;
-                    case 2:
-						th = new TH();
-						System.out.println("       Update TH     ");
-						System.out.println(th.getTHForLogin(_currentUser, con.stmt));
-						System.out.println("please enter TH id (hid):");
-						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (th.getTH(_currentUser, hid, con.stmt).isEmpty()) {
-							System.out.println("You do not own the TH with id:"+hid);
-							break;
-						}
-						System.out.println("please enter TH name:");
-						while ((hname = in.readLine()) == null && hname.length() == 0);
-
-						System.out.println("please enter category name:");
-						while ((category = in.readLine()) == null && category.length() == 0);
-
-						System.out.println("please enter address:");
-						while ((address = in.readLine()) == null && address.length() == 0) ;
-
-						System.out.println("please enter phone number:");
-						while ((phone_number =  in.readLine()) == null && phone_number.length() == 0);
-
-						System.out.println("please enter year built:");
-						while ((year =  in.readLine()) == null && year.length() == 0);
-
-						System.out.println("please add picture:");
-						while ((picture =  in.readLine()) == null && picture.length() == 0);
-
-						System.out.println("please enter url:");
-						while ((url =  in.readLine()) == null && url.length() == 0);
-
-						th.updateTH(hid, category, _currentUser, hname, address, url, phone_number, year, picture, con.stmt);
-                        break;
-					case 3: //browse TH
-						tHBrowsingMenu(con);
-						break;
-					case 4: //keywords TH
-						keywordsTHMenu(con);
-						break;
-					case 5: //availability TH
-						availabilityTHMenu(con);
-						break;
-					case 6:
-						exit = true;
-						break;
-                    default:
-                    	continue;
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            System.err.println ("Query Error");
-        }
-    }
+//	public static void main(String[] args)
+//	{
+//		System.out.println("5530u16");
+//		Connector con=null;
+//        String sql=null;
+//         try
+//		 {
+//		 		 con = new Connector();
+//	             System.out.println ("Database connection established");
+//	             loginMenu(con);
+//		 }
+//         catch (Exception e)
+//         {
+//        	 e.printStackTrace();
+//        	 System.err.println ("Connection error");
+//         }
+//         finally
+//         {
+//        	 if (con != null)
+//        	 {
+//        		 try
+//        		 {
+//        			 con.closeConnection();
+//        			 System.out.println ("Database connection terminated");
+//        		 }
+//
+//        		 catch (Exception e) { /* ignore close errors */ }
+//        	 }
+//         }
+//
+//	}
+//
+//	///Menus
+//	public static void loginMenu(Connector con)
+//	{
+//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+//		String choice;
+//		boolean exit = false;
+//		int c=0;
+//
+//		try
+//		{
+//			while(!exit)
+//			{
+//				displayLoginMenu();
+//				while ((choice = in.readLine()) == null && choice.length() == 0);
+//				try
+//				{
+//					c = Integer.parseInt(choice);
+//				}
+//				catch (Exception e)
+//				{
+//					continue;
+//				}
+//				switch (c)
+//				{
+//					case 1: //login
+//						if(loginUser(in, con)) {
+//							userMenu(con);
+//						}
+//						break;
+//					case 2: //Register
+//						registerUser(in, con);
+//						break;
+//					case 3:
+//						exit = true;
+//					default:
+//						continue;
+//				}
+//			}
+//		}
+//		catch (Exception e)
+//		{
+//			System.err.println ("Query Error");
+//		}
+//	}
+//
+//	public static void userMenu(Connector con)
+//	{
+//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+//		String choice;
+//		int c=0;
+//		try
+//		{
+//			boolean exit = false;
+//			while(!exit)
+//			{
+//				displayUserMenu();
+//				while ((choice = in.readLine()) == null && choice.length() == 0);
+//				try
+//				{
+//					c = Integer.parseInt(choice);
+//				}
+//				catch (Exception e)
+//				{
+//					continue;
+//				}
+//				switch (c)
+//				{
+//					case 1:
+//						List<List<String>> reservations = makeReservation(in, con);
+//						suggestTH(reservations, in, con);
+//						break;
+//                    case 2:
+//                        tHMenu(con);
+//                        break;
+//					case 3:
+//						recordVisit(in, con);
+//						break;
+//					case 4:
+//						String thid;
+//						printOutVisitedTHS(con.stmt);
+//						System.out.println("Please enter the TH id you would like to favorite (hid)");
+//						while ((thid = in.readLine()) == null && thid.length() == 0) ;
+//						if(declareTHAsFavorite(thid, in, con))
+//						{
+//							System.out.println("Th: " + thid + " has successfully been favorited");
+//						}
+//						break;
+//					case 5:
+//						leaveFeedback(in, con);
+//						break;
+//					case 6:
+//						usefulnessRatingsMenu(con);
+//						break;
+//					case 7:
+//						trustRecordingsMenu(con);
+//						break;
+//					case 8:
+//						usefulFeedbacksMenu(con);
+//						break;
+//					case 9:
+//						twoDegreesOfSeparationMenu(con);
+//						break;
+//					case 10:
+//						statisticsMenu(con);
+//						break;
+//					case 11:
+//						if(isAdmin(_currentUser, con.stmt))
+//						{
+//							System.out.println("Access Granted.");
+//							userAwardsMenu(con);
+//						}
+//						else
+//						{
+//							System.out.println("Access Denied! You must be an administrator to access this menu.");
+//						}
+//						break;
+//					case 12:
+//						exit = true;
+//						break;
+//					default:
+//						continue;
+//				}
+//			}
+//		}
+//		catch (Exception e)
+//		{
+//			System.err.println ("Query Error");
+//		}
+//	}
+//
+//    public static void tHMenu(Connector con)
+//    {
+//        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+//        String choice;
+//        String hname;
+//        String category;
+//        String url;
+//        String phone_number;
+//        String year;
+//        String picture;
+//		String hid;
+//		String address;
+//        TH th;
+//        int c=0;
+//        try
+//        {
+//			boolean exit = false;
+//            while(!exit)
+//            {
+//                displayTHMenu();
+//                while ((choice = in.readLine()) == null && choice.length() == 0);
+//                try
+//                {
+//                    c = Integer.parseInt(choice);
+//                }
+//                catch (Exception e)
+//                {
+//                    continue;
+//                }
+//                switch (c)
+//                {
+//                    case 1: // Add TH
+//                        th = new TH();
+//						System.out.println("       Add TH     ");
+//
+//						System.out.println("please enter TH name:");
+//                        while ((hname = in.readLine()) == null && hname.length() == 0);
+//
+//                        System.out.println("please enter category name:");
+//                        while ((category = in.readLine()) == null && category.length() == 0);
+//
+//						System.out.println("please enter address:");
+//						while ((address = in.readLine()) == null && address.length() == 0) ;
+//
+//						System.out.println("please enter phone number:");
+//                        while ((phone_number =  in.readLine()) == null && phone_number.length() == 0);
+//
+//                        System.out.println("please enter year built:");
+//                        while ((year =  in.readLine()) == null && year.length() == 0);
+//
+//                        System.out.println("please add picture:");
+//                        while ((picture =  in.readLine()) == null && picture.length() == 0);
+//
+//                        System.out.println("please enter url:");
+//                        while ((url =  in.readLine()) == null && url.length() == 0);
+//                        th.addTH(category,_currentUser,hname,address,url,phone_number,year,picture,con.stmt);
+//                        break;
+//                    case 2:
+//						th = new TH();
+//						System.out.println("       Update TH     ");
+//						System.out.println(th.getTHForLogin(_currentUser, con.stmt));
+//						System.out.println("please enter TH id (hid):");
+//						while ((hid = in.readLine()) == null && hid.length() == 0);
+//						if (th.getTH(_currentUser, hid, con.stmt).isEmpty()) {
+//							System.out.println("You do not own the TH with id:"+hid);
+//							break;
+//						}
+//						System.out.println("please enter TH name:");
+//						while ((hname = in.readLine()) == null && hname.length() == 0);
+//
+//						System.out.println("please enter category name:");
+//						while ((category = in.readLine()) == null && category.length() == 0);
+//
+//						System.out.println("please enter address:");
+//						while ((address = in.readLine()) == null && address.length() == 0) ;
+//
+//						System.out.println("please enter phone number:");
+//						while ((phone_number =  in.readLine()) == null && phone_number.length() == 0);
+//
+//						System.out.println("please enter year built:");
+//						while ((year =  in.readLine()) == null && year.length() == 0);
+//
+//						System.out.println("please add picture:");
+//						while ((picture =  in.readLine()) == null && picture.length() == 0);
+//
+//						System.out.println("please enter url:");
+//						while ((url =  in.readLine()) == null && url.length() == 0);
+//
+//						th.updateTH(hid, category, _currentUser, hname, address, url, phone_number, year, picture, con.stmt);
+//                        break;
+//					case 3: //browse TH
+//						tHBrowsingMenu(con);
+//						break;
+//					case 4: //keywords TH
+//						keywordsTHMenu(con);
+//						break;
+//					case 5: //availability TH
+//						availabilityTHMenu(con);
+//						break;
+//					case 6:
+//						exit = true;
+//						break;
+//                    default:
+//                    	continue;
+//                }
+//            }
+//        }
+//        catch (Exception e)
+//        {
+//            System.err.println ("Query Error");
+//        }
+//    }
 
 //	public static void staysMenu(Connector con)
 //	{
