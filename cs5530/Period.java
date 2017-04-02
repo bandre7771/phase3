@@ -128,32 +128,34 @@ public class Period {
 		return output;
 	}
 
-
-	public void addPeriod(String from_date, String to_date, Statement stmt)
+	public boolean addPeriod(String from_date, String to_date, Statement stmt)
 	{
 		String sql="INSERT INTO Period (from_date, to_date) VALUES ('"+from_date +"', '" + to_date + "')";
 //		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("success!");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot insert");
+			return false;
 		}
 	}
 
-	public void updatePeriod(String pid, String from_date, String to_date, Statement stmt)
+	public boolean updatePeriod(String pid, String from_date, String to_date, Statement stmt)
 	{
 		String sql="UPDATE Period SET from_date = '"+from_date+"' to_date = '"+to_date+"' WHERE pid = "+pid;
-//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("Success!");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot update");
+			return false;
 		}
 	}
 }

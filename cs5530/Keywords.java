@@ -10,18 +10,18 @@ public class Keywords {
 	public String getAllKeyWords(Statement stmt)
 	{
 		String sql="select * from Keywords";
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> wid </th> <th> word </th> <th> language </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+="wid: "+rs.getString("wid") + "   "
-						+"word: "+rs.getString("word") + "   "
-						+"language: "+rs.getString("language")+"\n";
+				output+="<tr><td>"+rs.getString("wid") + "</td>"
+						+"<td>"+rs.getString("word") + "</td>"
+						+"<td>"+rs.getString("language")+"</td></tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -45,19 +45,19 @@ public class Keywords {
 	public String getKeywords(String wid, Statement stmt)
 	{
 		String sql="select * from Keywords where wid = "+wid;
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> wid </th> <th> word </th> <th> language </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
-			 {
-				 output+="wid: "+rs.getString("wid") + "   "
-						 +"word: "+rs.getString("word") + "   "
-						 +"language: "+rs.getString("language")+"\n";
-			 }
-
-			 rs.close();
+			{
+				output+="<tr><td>"+rs.getString("wid") + "</td>"
+						+"<td>"+rs.getString("word") + "</td>"
+						+"<td>"+rs.getString("language")+"</td></tr>";
+			}
+			output += "</table>";
+			rs.close();
 		}
 		catch(Exception e)
 		{
@@ -77,31 +77,35 @@ public class Keywords {
 		return output;
 	}
 
-	public void addKeyword(String word, String language, Statement stmt)
+	public boolean addKeyword(String word, String language, Statement stmt)
 	{
 		String sql="INSERT INTO Keywords (word, language) VALUES ('"+ word +"', '" + language + "')";
 //		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("Success!");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot insert");
+			return false;
 		}
 	}
 
-	public void updateKeyword(String wid, String word, String language, Statement stmt)
+	public boolean updateKeyword(String wid, String word, String language, Statement stmt)
 	{
 		String sql="UPDATE Keywords SET wid = "+wid+", word = '"+word+"', language = '"+language+"' WHERE wid = "+wid;
 //		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("Success!");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot update");
+			return false;
 		}
 	}
 }

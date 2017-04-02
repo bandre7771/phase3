@@ -126,14 +126,6 @@ public class Application {
 		System.out.println(users.getAllUsers(stmt));
 	}
 
-//	public static void displayStaysMenu(Statement stmt)
-//	{
-//		System.out.println("       Stays     ");
-//		Reserve reserve = new Reserve();
-//		System.out.println(reserve.getReserve(_currentUser, stmt));
-//		System.out.println("please enter the TH id (hid)");
-//	}
-
 	public static void displayUsefulnessRatingsMenu(Statement stmt)
 	{
 		System.out.println("       Usefulness Recording     ");

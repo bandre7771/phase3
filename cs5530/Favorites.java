@@ -10,17 +10,18 @@ public class Favorites {
 	public String getFavorites(String hid, String login, Statement stmt)
 	{
 			String sql="select * from Favorites where hid = "+hid+" and login = '"+login+"'";
-			String output="";
+			String output="<table>";
+			output += "<tr> <th> hid </th> <th> login </th> </tr>";
 			ResultSet rs=null;
-//   		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
 	   		 	while (rs.next())
 				 {
-				        output+=rs.getString("hid")+"   "+rs.getString("login")+"\n";
+				        output+="<tr><td>"+rs.getString("hid")+"</td>"
+								+"<td>"+rs.getString("login")+"</td></tr>";
 				 }
-			     
-			     rs.close();
+				output += "</table>";
+				rs.close();
    		 	}
    		 	catch(Exception e)
    		 	{
@@ -38,19 +39,20 @@ public class Favorites {
    		 		}
    		 	}
 		    return output;
-		}
+	}
 
-	public void addFavorite(int hid, String login, Statement stmt)
+	public boolean addFavorite(int hid, String login, Statement stmt)
 	{
 		String sql="INSERT INTO Favorites (hid, login) VALUES ("+hid+", '"+login+"')";
-//		System.out.println("executing "+sql);
-		try{
+		try {
 			stmt.executeUpdate(sql);
 			System.out.println("success!");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot insert");
+			return false;
 		}
 	}
 
