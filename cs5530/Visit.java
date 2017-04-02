@@ -13,17 +13,16 @@ public class Visit {
 		public boolean addVisit(String login, String hid, String pid, String cost, Statement stmt)
 		{
 			String sql="INSERT INTO Visit (login, hid, pid, cost) VALUES  ('"+login+"',"+hid+","+pid+","+cost+")";
-//			System.out.println("executing " + sql);
 			try{
 				stmt.executeUpdate(sql);
-//				System.out.println("login: "+login+" hid: "+hid+" pid: "+pid);
+				return true;
 			}
 			catch(Exception e)
 			{
 				System.out.println("cannot execute the query");
 				return false;
 			}
-			return true;
+
 		}
 
 		public String getVisit(String login, String hid, String pid, Statement stmt)
@@ -64,15 +63,16 @@ public class Visit {
 	public String getVisit(String login, int hid, Statement stmt)
 	{
 		String sql="select * from Visit where login = '"+login+"' and hid = "+hid;
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> login </th> <th> hid </th> <th> pid </th> </tr>"
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-//				System.out.println("login: "+login+" hid: "+hid);
-				output+=rs.getString("login")+"   "+rs.getString("hid")+"   "+rs.getString("pid")+"\n";
+				output+="<tr><td>"+rs.getString("login")+"</td>"
+						+"<td>"+rs.getString("hid")+"</td>"
+						+"<td>"+rs.getString("pid")+"</td></tr>";
 			}
 
 			rs.close();
@@ -102,7 +102,6 @@ public class Visit {
 		ResultSet rs=null;
 		List<List<String>> output = new ArrayList<List<String>>();
 
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -136,17 +135,19 @@ public class Visit {
 		return output;
 	}
 
-	public void addVisit(String login, String hid, String pid, Statement stmt)
+	public boolean addVisit(String login, String hid, String pid, Statement stmt)
 	{
 		String sql="INSERT INTO Visit(login, hid, pid, cost) VALUES ('"+login+"', "+ hid +", " + pid + ", 500)";
 //		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("Visit successfully added");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot insert");
+			return false;
 		}
 	}
 
