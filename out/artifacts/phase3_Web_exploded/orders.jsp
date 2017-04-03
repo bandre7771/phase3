@@ -42,7 +42,7 @@ Form2: Search orders on director name:
         String attributeValue = request.getParameter("attributeValue");
         Connector connector = new Connector();
         Order order = new Order();
-        
+
 %>
 
 <p><b>Listing orders in JSP: </b><BR><BR>
@@ -57,7 +57,7 @@ Form2: Search orders on director name:
 %>
 
     <%
-            connector.closeStatment();
+            connector.closeStatement();
             connector.closeConnection();
         }  // We are ending the braces for else here
     %>

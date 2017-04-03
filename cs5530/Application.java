@@ -58,7 +58,7 @@ public class Application {
 		System.out.println( "please enter your choice:");
     }
 
-	public static void displayTHMenu()
+	public void displayTHMenu()
 	{
 		System.out.println("       TH     ");
 		System.out.println("1. add TH:");
@@ -70,7 +70,7 @@ public class Application {
 		System.out.println( "please enter your choice:");
 	}
 
-	public static void displayTHBrowsingMenu()
+	public void displayTHBrowsingMenu()
 	{
 		System.out.println("       TH Browsing     ");
 		System.out.println("1. search & sort by:");
@@ -78,7 +78,7 @@ public class Application {
 		System.out.println( "please enter your choice:");
 	}
 
-	public static void displaySearchByTHMenu()
+	public void displaySearchByTHMenu()
 	{
 		System.out.println("       TH Browsing     ");
 		System.out.println("search by");
@@ -90,7 +90,7 @@ public class Application {
 		System.out.println( "please enter your choice:");
 	}
 
-	public static void displayKeywordsTHMenu()
+	public void displayKeywordsTHMenu()
 	{
 		System.out.println("       TH Keywords     ");
 		System.out.println("1. add keyword:");
@@ -102,7 +102,7 @@ public class Application {
 		System.out.println("please enter your choice:");
 	}
 
-	public static void displayAvailabilityTHMenu()
+	public void displayAvailabilityTHMenu()
 	{
 		System.out.println("       Availability TH     ");
 		System.out.println("1. add TH period of availability:");
@@ -111,7 +111,7 @@ public class Application {
 		System.out.println("4. exit:");
 	}
 
-	public static void displayusefulFeedbacksMenu(Statement stmt)
+	public void displayusefulFeedbacksMenu(Statement stmt)
 	{
 		System.out.println("       Useful Feedbacks     ");
 		TH th = new TH();
@@ -119,12 +119,20 @@ public class Application {
 		System.out.println("please enter a TH id (hid):");
 	}
 
-	public static void displayTwoDegreesOfSeparationMenu(Statement stmt)
+	public void displayTwoDegreesOfSeparationMenu(Statement stmt)
 	{
 		System.out.println("       Two Degrees of Separation     ");
 		Users users = new Users();
 		System.out.println(users.getAllUsers(stmt));
 	}
+
+//	public static void displayStaysMenu(Statement stmt)
+//	{
+//		System.out.println("       Stays     ");
+//		Reserve reserve = new Reserve();
+//		System.out.println(reserve.getReserve(_currentUser, stmt));
+//		System.out.println("please enter the TH id (hid)");
+//	}
 
 	public static void displayUsefulnessRatingsMenu(Statement stmt)
 	{
@@ -134,7 +142,7 @@ public class Application {
 		System.out.println( "please enter the Feedback ID (fid):");
 	}
 
-	public static void displayTrustedRecordingsMenu(Statement stmt)
+	public void displayTrustedRecordingsMenu(Statement stmt)
 	{
 		System.out.println("       Trusted Rercordings     ");
 		Users users = new Users();
@@ -142,7 +150,7 @@ public class Application {
 		System.out.println( "please enter the User login:");
 	}
 
-	public static void displayStatisticsMenu()
+	public void displayStatisticsMenu()
 	{
 		System.out.println("       Statistics     ");
 		System.out.println("1. Show top most popular TH's for each category:");
@@ -151,7 +159,7 @@ public class Application {
 		System.out.println("4. exit");
 	}
 
-	public static void displayUserAdminMenu()
+	public void displayUserAdminMenu()
 	{
 		System.out.println("       User Awards     ");
 		System.out.println("1. show top most trusted users:");
@@ -530,150 +538,6 @@ public class Application {
 //			System.err.println ("Query Error");
 //		}
 //	}
-//
-//	public static void usefulnessRatingsMenu(Connector con)
-//	{
-//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//		String choice;
-//		String fid;
-//		String rating;
-//		Rates rates;
-//		int r;
-//		int c=0;
-//		try
-//		{
-//			boolean exit = false;
-//			while(!exit)
-//			{
-//				displayUsefulnessRatingsMenu(con.stmt);
-//				while ((fid = in.readLine()) == null && fid.length() == 0);
-//				System.out.println("0. useless");
-//				System.out.println("1. useful");
-//				System.out.println("2. very useful");
-//				System.out.println("please enter your choice");
-//
-//				while ((rating = in.readLine()) == null && rating.length() == 0);
-//				try
-//				{
-//					r = Integer.parseInt(rating);
-//				}
-//				catch (Exception e)
-//				{
-//					continue;
-//				}
-//				if (r == 0 | r == 1 | r == 2)
-//				{
-//					rates = new Rates();
-//					rates.addRating(fid, _currentUser, rating, con.stmt);
-//					exit = true;
-//				}
-//				else
-//				{
-//					System.out.println("your choice is out of bounds.");
-//				}
-//			}
-//		}
-//		catch (Exception e)
-//		{
-//			System.err.println ("Query Error");
-//		}
-//	}
-//
-//	public static void trustRecordingsMenu(Connector con)
-//	{
-//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//		String login2;
-//		String isTrusted;
-//		Trust trust;
-//		int t;
-//		int c=0;
-//		try
-//		{
-//			boolean exit = false;
-//			while(!exit)
-//			{
-//				displayTrustedRecordingsMenu(con.stmt);
-//				while ((login2 = in.readLine()) == null && login2.length() == 0);
-//				System.out.println("0. not trusted");
-//				System.out.println("1. trusted");
-//				System.out.println("please enter your choice");
-//				while ((isTrusted = in.readLine()) == null && isTrusted.length() == 0);
-//				try
-//				{
-//					t = Integer.parseInt(isTrusted);
-//				}
-//				catch (Exception e)
-//				{
-//					continue;
-//				}
-//				if (t == 0 | t == 1)
-//				{
-//					trust = new Trust();
-//					trust.addTrust(_currentUser, login2, isTrusted, con.stmt);
-//					exit = true;
-//				}
-//				else
-//				{
-//					System.out.println("your choice is out of bounds.");
-//				}
-//			}
-//		}
-//		catch (Exception e)
-//		{
-//			System.err.println ("Query Error");
-//		}
-//	}
-//
-//	public static void userAwardsMenu(Connector con)
-//	{
-//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//		String choice;
-//		String m; // amount displayed
-//		Trust trust;
-//		int c=0;
-//		try
-//		{
-//			boolean exit = false;
-//			while(!exit)
-//			{
-//				displayUserAdminMenu();
-//				while ((choice = in.readLine()) == null && choice.length() == 0);
-//				try
-//				{
-//					c = Integer.parseInt(choice);
-//				}
-//				catch (Exception e)
-//				{
-//					continue;
-//				}
-//				switch (c)
-//				{
-//					case 1:
-//						trust = new Trust();
-//						System.out.println("please enter the amount of users you’d like to display:");
-//						while ((m = in.readLine()) == null && m.length() == 0);
-//						System.out.println("Top most trusted users:");
-//						System.out.println(trust.getMMostTrusted(m, con.stmt));
-//						break;
-//					case 2:
-//						System.out.println("please enter the amount of users you’d like to display:");
-//						while ((m = in.readLine()) == null && m.length() == 0);
-//						System.out.println("Top most useful users:");
-//						System.out.println(mostUsefulUsers(m, con.stmt));
-//						break;
-//					case 3:
-//						exit = true;
-//						break;
-//					default:
-//						continue;
-//				}
-//			}
-//		}
-//		catch (Exception e)
-//		{
-//			System.err.println ("Query Error");
-//		}
-//	}
 
 	public String mostUsefulUsers(String m, Statement stmt)
 	{
@@ -684,6 +548,7 @@ public class Application {
 				"ORDER BY usefulness_score DESC LIMIT "+m;
 		String output="";
 		ResultSet rs=null;
+		//System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -712,7 +577,7 @@ public class Application {
 		return output;
 	}
 
-	public static void usefulFeedbacksMenu(Connector con)
+	public void usefulFeedbacksMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String n; // amount displayed
@@ -738,7 +603,7 @@ public class Application {
 		}
 	}
 
-	public static String mostUsefulFeedbacksForTh(String n, String hid, Statement stmt)
+	public String mostUsefulFeedbacksForTh(String n, String hid, Statement stmt)
 	{
 		String sql="SELECT f.fid, f.hid, f.login, f.text, f.score, f.fbdate, AVG(r.rating) as usefulness\n" +
 				"FROM Feedback f, Rates r\n" +
@@ -783,7 +648,7 @@ public class Application {
 		return output;
 	}
 
-	public static void statisticsMenu(Connector con)
+	public void statisticsMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String m; // amount displayed
@@ -2042,7 +1907,7 @@ public class Application {
 		}
 	}
 
-	private void leaveFeedback(BufferedReader in, Connector con) {
+	public void leaveFeedback(BufferedReader in, Connector con) {
 		String th;
 		String score;
 		String shortText;
