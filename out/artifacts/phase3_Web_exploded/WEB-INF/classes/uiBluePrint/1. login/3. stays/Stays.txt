@@ -1,0 +1,25 @@
+	Stays
+ID	Name		
+001	coolTH	
+please enter a TH id.
+001
+
+reserved periods		
+1. 1/10/2017:
+2. 1/30/2018:
+please choose which reservation you would like to record a stay for.
+1
+
+	Stays
+1. record another stay:
+2. exit:
+please enter your choice:
+2
+
+	Stays
+you have recorded stays for the following periods:
+001	coolTH
+1. confirm and exit:
+2. cancel and exit:
+please enter your choice:
+

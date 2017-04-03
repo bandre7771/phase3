@@ -271,7 +271,7 @@ public class Application {
 //						break;
 //					case 4:
 //						String thid;
-//						printOutVisitedTHS(con.stmt);
+//						System.out.println(getVisitedTHS(con.stmt));
 //						System.out.println("Please enter the TH id you would like to favorite (hid)");
 //						while ((thid = in.readLine()) == null && thid.length() == 0) ;
 //						if(declareTHAsFavorite(thid, in, con))
@@ -746,22 +746,23 @@ public class Application {
 				"  AND hid = "+hid+"\n" +
 				"GROUP BY f.fid\n" +
 				"ORDER BY usefulness DESC LIMIT "+n;
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> fid </th> <th> hid </th> <th> login </th> <th> text </th> <th> score </th> <th> fbdate </th> <th> usefulness </th> </tr>";
 		ResultSet rs=null;
 //		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+="fid: "+rs.getString("fid")+"   "
-						+ "hid: "+rs.getString("hid")+"   "
-						+ "login: "+rs.getString("login")+"   "
-						+ "text: "+rs.getString("text")+"   "
-						+ "score: "+rs.getString("score")+"   "
-						+ "fbdate: "+rs.getString("fbdate")+"   "
-						+ "usefulness: "+rs.getString("usefulness")+"\n";
+				output+="<tr>"+rs.getString("fid")+"</td>"
+						+ "<td>"+rs.getString("hid")+"</td>"
+						+ "<td>"+rs.getString("login")+"</td>"
+						+ "<td>"+rs.getString("text")+"</td>"
+						+ "<td>"+rs.getString("score")+"</td>"
+						+ "<td>"+rs.getString("fbdate")+"</td>"
+						+ "<td>"+rs.getString("usefulness")+"</tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -849,25 +850,25 @@ public class Application {
 				"                GROUP BY th1.category, th1.hid\n" +
 				"                ORDER BY category, visit_count DESC) as b\n" +
 				"        WHERE b.category=a.category and b.visit_count >= a.visit_count) <= "+m;
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> category </th> <th> hid </th> <th> hname </th> <th> address </th> <th> login </th> <th> phone number </th> <th> year built </th> <th> url </th> <th> picture </th> <th> visit count </th>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+= "category: "+rs.getString("category")+"   "
-						+ "hid: "+rs.getString("hid")+"   "
-						+ "hname: "+rs.getString("hname")+"   "
-						+ "address: "+rs.getString("address")+"   "
-						+ "login: "+rs.getString("login")+"   "
-						+ "phone number: "+rs.getString("phone_number")+"   "
-						+ "year built: "+rs.getString("year_built")+"   "
-						+ "url: " +rs.getString("url")+"   "
-						+ "picture: " +rs.getString("picture")+"   "
-						+ "visit count: " +rs.getString("visit_count")+"\n";
+				output+= "<tr><td>"+rs.getString("category")+"</td>"
+						+ "<td>"+rs.getString("hid")+"</td>"
+						+ "<td>"+rs.getString("hname")+"</td>"
+						+ "<td>"+rs.getString("address")+"</td>"
+						+ "<td>"+rs.getString("login")+"</td>"
+						+ "<td>"+rs.getString("phone_number")+"</td>"
+						+ "<td>"+rs.getString("year_built")+"</td>"
+						+ "<td>"+rs.getString("url")+"</td>"
+						+ "<td>"+rs.getString("picture")+"</td>"
+						+ "<td>"+rs.getString("visit_count")+"</td></tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -903,25 +904,25 @@ public class Application {
 				"                GROUP BY th.category, th.hid\n" +
 				"                ORDER BY category, average_cost DESC) as b\n" +
 				"        WHERE b.category=a.category and b.average_cost >= a.average_cost) <= "+m;
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> category </th> <th> hid </th> <th> hname </th> <th> address </th> <th> login </th> <th> phone number </th> <th> year built </th> <th> url </th> <th> picture </th> <th> average cost </th>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+= "category: "+rs.getString("category")+"   "
-						+ "hid: "+rs.getString("hid")+"   "
-						+ "hname: "+rs.getString("hname")+"   "
-						+ "address: "+rs.getString("address")+"   "
-						+ "login: "+rs.getString("login")+"   "
-						+ "phone number: "+rs.getString("phone_number")+"   "
-						+ "year built: "+rs.getString("year_built")+"   "
-						+ "url: " +rs.getString("url")+"   "
-						+ "picture: " +rs.getString("picture")+"   "
-						+ "average cost: " +rs.getString("average_cost")+"\n";
+				output+= "<tr><td>"+rs.getString("category")+"</td>"
+						+ "<td>"+rs.getString("hid")+"</td>"
+						+ "<td>"+rs.getString("hname")+"</td>"
+						+ "<td>"+rs.getString("address")+"</td>"
+						+ "<td>"+rs.getString("login")+"</td>"
+						+ "<td>"+rs.getString("phone_number")+"</td>"
+						+ "<td>"+rs.getString("year_built")+"</td>"
+						+ "<td>"+rs.getString("url")+"</td>"
+						+ "<td>"+rs.getString("picture")+"</td>"
+						+ "<td>"+rs.getString("visit_count")+"</td></tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -957,26 +958,25 @@ public class Application {
 				"                GROUP BY th.category, th.hid\n" +
 				"                ORDER BY category, average_score DESC) as b\n" +
 				"        WHERE b.category=a.category and b.average_score >= a.average_score) <= "+m;
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> category </th> <th> hid </th> <th> hname </th> <th> address </th> <th> login </th> <th> phone number </th> <th> year built </th> <th> url </th> <th> picture </th> <th> average score </th>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
-			System.out.println("category\t\thid\t\thname\t\taddress\t\tlogin\t\tphone number\t\tyear built\t\turl\t\tpicture\t\taverage_score");
 			while (rs.next())
 			{
-				output+= "category: "+rs.getString("category")+"\t\t"
-						+ "hid: "+rs.getString("hid")+"\t\t"
-						+ "hname: "+rs.getString("hname")+"\t\t"
-						+ "address: "+rs.getString("address")+"\t\t"
-						+ "login: "+rs.getString("login")+"\t\t"
-						+ "phone number: "+rs.getString("phone_number")+"\t\t"
-						+ "year built: "+rs.getString("year_built")+"\t\t"
-						+ "url: " +rs.getString("url")+"\t\t"
-						+ "picture: " +rs.getString("picture")+"\t\t"
-						+ "average_score: " +rs.getString("average_score")+"\n";
+				output+= "<tr><td>"+rs.getString("category")+"</td>"
+						+ "<td>"+rs.getString("hid")+"</td>"
+						+ "<td>"+rs.getString("hname")+"</td>"
+						+ "<td>"+rs.getString("address")+"</td>"
+						+ "<td>"+rs.getString("login")+"</td>"
+						+ "<td>"+rs.getString("phone_number")+"</td>"
+						+ "<td>"+rs.getString("year_built")+"</td>"
+						+ "<td>"+rs.getString("url")+"</td>"
+						+ "<td>"+rs.getString("picture")+"</td>"
+						+ "<td>"+rs.getString("average_score")+"</td></tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -1209,21 +1209,23 @@ public class Application {
 				"GROUP BY browsingTH1.hid, browsingTH1.hname, browsingTH1.category, browsingTH1.address, browsingTH1.login"+semiColon+"\n" +
 				orderPriceActive+"ORDER BY average_price DESC;\n" +
 				orderScoreActive+"ORDER BY average_fbscore DESC;";
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> hid </th> <th> hname </th> <th> category </th> <th> address </th> <th> login </th> <th> average fbscore </th> <th> average price </th> </tr>";
 		ResultSet rs=null;
 //		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+= "hid: "+rs.getString("hid")+"   "
-						+ "hname: "+rs.getString("hname")+"   "
-						+ "category: "+rs.getString("category")+"   "
-						+ "address: "+rs.getString("address")+"   "
-						+ "login: "+rs.getString("login")+"   "
-						+ "average_fbscore: " +rs.getString("average_fbscore")+"   "
-						+ "average_price: " +rs.getString("average_price")+"\n";
+				output+= "<tr><td>"+rs.getString("hid")+"</td>"
+						+ "<td>"+rs.getString("hname")+"</td>"
+						+ "<td>"+rs.getString("category")+"</td>"
+						+ "<td>"+rs.getString("address")+"</td>"
+						+ "<td>"+rs.getString("login")+"</td>"
+						+ "<td>" +rs.getString("average_fbscore")+"</td>"
+						+ "<td>" +rs.getString("average_price")+"</td></tr>";
 			}
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -1349,18 +1351,19 @@ public class Application {
 	public String getAllHasKeyWordDescription(Statement stmt)
 	{
 		String sql="SELECT hk.hid, th.hname, hk.wid, k.word FROM Keywords k NATURAL JOIN HasKeywords hk NATURAL JOIN TH th ORDER BY hk.hid;";
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> hid </th> <th> hname </th> <th> wid </th> <th> word </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+= "hid: "+rs.getString("hid")+"   "
-						+ "hname: "+rs.getString("hname")+"   "
-						+ "wid: "+rs.getString("wid")+"   "
-						+ "word: "+rs.getString("word")+"\n";
+				output+= "<tr><td>"+rs.getString("hid")+"</td>"
+						+ "<td>"+rs.getString("hname")+"</td>"
+						+ "<td>"+rs.getString("wid")+"</td>"
+						+ "<td>"+rs.getString("word")+"</td></tr>";
 			}
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -1384,18 +1387,19 @@ public class Application {
 	public String getHasKeyWordDescription(String login, Statement stmt)
 	{
 		String sql="SELECT hk.hid, th.hname, hk.wid, k.word FROM Keywords k NATURAL JOIN HasKeywords hk NATURAL JOIN TH th WHERE login = '"+login+"' ORDER BY hk.hid;";
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> hid </th> <th> hname </th> <th> wid </th> <th> word </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+= "hid: "+rs.getString("hid")+"   "
-						+ "hname: "+rs.getString("hname")+"   "
-						+ "wid: "+rs.getString("wid")+"   "
-						+ "word: "+rs.getString("word")+"\n";
+				output+= "<tr><td>"+rs.getString("hid")+"</td>"
+						+ "<td>"+rs.getString("hname")+"</td>"
+						+ "<td>"+rs.getString("wid")+"</td>"
+						+ "<td>"+rs.getString("word")+"</td></tr>";
 			}
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -1544,7 +1548,7 @@ public class Application {
 						pids.clear();
 						break;
 					case 3:
-						printTHAvailableTimes(in, con);
+						System.out.println(getTHAvailableTimes(in, con));
 						System.out.println("please press enter to continue:");
 						in.readLine();
 						break;
@@ -1566,20 +1570,21 @@ public class Application {
 	{
 		String sql="SELECT hid, hname, pid, from_date, to_date, price_per_night FROM Available NATURAL JOIN TH NATURAL JOIN Period\n" +
 				"WHERE login = '"+login+"'";
-		String output="";
+		String output = "<table>";
+		output = "<tr> <th> hid </th> <th> hname </th> <th> pid </th> <th> from date </th> <th> to date </th> <th> price per night </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+= "hid: "+rs.getString("hid")+"   "
-						+ "hname: "+rs.getString("hname")+"   "
-						+ "pid: "+rs.getString("pid")+"   "
-						+ "from date: "+rs.getString("from_date")+"   "
-						+ "to date: "+rs.getString("to_date")+"   "
-						+ "price per night: "+rs.getString("price_per_night")+"\n";
+				output+= "<tr><td>"+rs.getString("hid")+"</td>"
+						+ "<td>"+rs.getString("hname")+"</td>"
+						+ "<td>"+rs.getString("pid")+"</td>"
+						+ "<td>"+rs.getString("from_date")+"</td>"
+						+ "<td>"+rs.getString("to_date")+"</td>"
+						+ "<td>"+rs.getString("price_per_night")+"</td><tr>";
 			}
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -1696,7 +1701,7 @@ public class Application {
 		try {
 			while(!(readyForCheckout)) {
 				List<String> visit = new ArrayList<String>();
-				printUsersReservations(in, con);
+				System.out.println(getUsersReservations(in, con));
 				System.out.println("please choose the TH you want to record as a stay (hid):");
 				while ((thid = in.readLine()) == null && thid.length() == 0) ;
 				visit.add(thid);
@@ -1809,8 +1814,6 @@ public class Application {
 		for(int j = 0; j < reservations.size(); j+=2) {
 			ths.add(reservations.get(j).get(0));
 		}
-
-
 
 		for(String th: ths){
 			System.out.println("\nBased on your reservation for "+ th + ",here are some other THs we would suggest");
@@ -1952,29 +1955,23 @@ public class Application {
 		}
 	}
 
-	private void printOutVisitedTHS(Statement stmt) {
+	private String getVisitedTHS(Statement stmt) {
 		String sql="select DISTINCT(th.hid), category, hname\n" +
 				"from Visit v, TH th\n" +
 				"where v.hid = th.hid\n" +
 				"and v.login = '" + _currentUser + "'";
-		String instance;
+		String output = "<table>";
+		output += "<tr> <th> hid </th> <th> category </th> <th> hname </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
-			String table_header = "hid" + "\t\t" + "category" + "\t\t" + "hname";
-			System.out.println(table_header);
 			while (rs.next())
 			{
-				instance = "";
-				instance += rs.getString("hid");
-				//instance += "\t\t" + rs.getString("login");
-				instance += "\t\t" + rs.getString("category");
-				instance += "\t\t" + rs.getString("hname");
-				System.out.println(instance);
-
+				output += "<tr><td>"+rs.getString("hid")+"</td>"
+							+ "<td>"+rs.getString("category")+"</td>"
+							+ "<td>"+rs.getString("hname")+"</td>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -1989,6 +1986,7 @@ public class Application {
 				System.out.println("cannot close resultset");
 			}
 		}
+		return output;
 	}
 
 	public boolean loginUser(BufferedReader in, Connector con){
@@ -2050,7 +2048,7 @@ public class Application {
 		String shortText;
 		int thid;
 		try {
-			printOutVisitedTHS(con.stmt);
+			System.out.println(getVisitedTHS(con.stmt));
 			System.out.println("please choose a TH to leave feedback on");
 			while ((th = in.readLine()) == null && th.length() == 0) ;
 			System.out.println("please give a score of your stay (1-10)");
@@ -2099,7 +2097,7 @@ public class Application {
 		try {
 			while(!(readyForCheckout)) {
 				List<String> reservation = new ArrayList<String>();
-				printTHAvailableTimes(in, con);
+				System.out.println(getTHAvailableTimes(in, con));
 				System.out.println("please choose the TH you want to Reserve (hid):");
 				while ((thid = in.readLine()) == null && thid.length() == 0) ;
 				reservation.add(thid);
@@ -2348,30 +2346,25 @@ public class Application {
 		return givenDate;
 	}
 
-	public void printTHAvailableTimes(BufferedReader in, Connector con){
+	public String getTHAvailableTimes(BufferedReader in, Connector con){
 		String sql="select a.hid, p.pid, p.from_date, p.to_date\n" +
 				"from Available a, Period p\n" +
 				"where a.pid = p.pid\n" +
 				"GROUP BY a.hid, p.pid, p.from_date, p.to_date";
-		String instance;
+		String output = "<table>";
+		output += "<tr> <th> hid </th> <th> pid </th> <th> from date </th> <th> to date </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=con.stmt.executeQuery(sql);
 			int count = 0;
-			String table_header = "hid" + "\t\t" + "pid" + "\t\t" + "from_date" + "\t\t" + "to_date" + "\t\t";
-			System.out.println(table_header);
 			while (rs.next())
 			{
-				instance = "";
-				instance += rs.getString("hid");
-				instance += "\t\t" + rs.getString("pid");
-				instance += "\t\t" + rs.getString("from_date");
-				instance += "\t\t" + rs.getString("to_date");
-				System.out.println(instance);
-
+				output += "<tr><td>"+rs.getString("hid")+"</td>"
+							+"<td>"+rs.getString("pid")+"</td>"
+							+"<td>"+rs.getString("from_date")+"</td>"
+							+"<td>"+rs.getString("to_date")+"</td></tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -2386,33 +2379,28 @@ public class Application {
 				System.out.println("cannot close resultset");
 			}
 		}
+		return output;
 	}
 
-	public void printUsersReservations(BufferedReader in, Connector con){
+	public String getUsersReservations(BufferedReader in, Connector con){
 		String sql="select r.login, r.hid, p.pid, p.from_date, p.to_date\n" +
 				"from Reserve r, Period p\n" +
 				"where r.pid = p.pid\n" +
 				"and r.login = '" + _currentUser + "'";
-		String instance;
+		String output = "<table>";
+		output += "<tr> <th> login </th> <th> hid </th> <th> pid </th> <th> from date </th> <th> to date </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=con.stmt.executeQuery(sql);
-			int count = 0;
-			String table_header = "login" + "\t\t" + "hid" + "\t\t" + "pid" + "\t\t" + "from_date" + "\t\t" + "to_date" + "\t\t";
-			System.out.println(table_header);
 			while (rs.next())
 			{
-				instance = "";
-				instance += rs.getString("login");
-				instance += "\t\t" + rs.getString("hid");
-				instance += "\t\t" + rs.getString("pid");
-				instance += "\t\t" + rs.getString("from_date");
-				instance += "\t\t" + rs.getString("to_date");
-				System.out.println(instance);
-
+				output += "<tr><td>"+rs.getString("login")+"</td>"
+						+"<td>"+rs.getString("hid")+"</td>"
+						+"<td>"+rs.getString("pid")+"</td>"
+						+"<td>"+rs.getString("from_date")+"</td>"
+						+"<td>"+rs.getString("to_date")+"</td></tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -2427,10 +2415,6 @@ public class Application {
 				System.out.println("cannot close resultset");
 			}
 		}
+		return output;
 	}
-
-
-
-
-
 }

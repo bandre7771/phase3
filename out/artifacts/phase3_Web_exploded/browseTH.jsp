@@ -14,7 +14,7 @@
                 + form_obj.searchYearAttribute.value+"='"+form_obj.yearAttributeValue.value+"'\n"
                 + form_obj.searchPictureAttribute.value+"='"+form_obj.pictureAttributeValue.value+"'\n"
                 + form_obj.searchUrlAttribute.value+"='"+form_obj.urlAttributeValue.value+"'\n");
-            if(form_obj.hidAttributeValue.value == "" || form_obj.nameAttributeValue.value == "" || form_obj.categoryAttributeValue.value == "" || form_obj.addressAttributeValue.value == "" || form_obj.yearAttributeValue.value == "" || form_obj.pictureAttributeValue.value == "" || form_obj.urlAttributeValue.value == "") {
+            if( form_obj.nameAttributeValue.value == "" || form_obj.categoryAttributeValue.value == "" || form_obj.addressAttributeValue.value == "" || form_obj.yearAttributeValue.value == "" || form_obj.pictureAttributeValue.value == "" || form_obj.urlAttributeValue.value == "") {
                 alert("All search fields should be nonempty");
                 return false;
             } else {
@@ -22,12 +22,13 @@
             }
         }
     </script>
-    <title>Update TH</title>
-    <h1 align="center">Update TH</h1>
+    <title>Browse TH</title>
+    <h1 align="center">Browse TH</h1>
 </head>
 <body>
-
     <%
+//searchByTHMenu("#","","#","#", "#", con);
+
 String searchHidAttribute = request.getParameter("searchHidAttribute");
 String searchNameAttribute = request.getParameter("searchNameAttribute");
 String searchCategoryAttribute = request.getParameter("searchCategoryAttribute");
@@ -36,14 +37,14 @@ String searchPhoneAttribute = request.getParameter("searchPhoneAttribute");
 String searchYearAttribute = request.getParameter("searchYearAttribute");
 String searchPictureAttribute = request.getParameter("searchPictureAttribute");
 String searchUrlAttribute = request.getParameter("searchUrlAttribute");
-if(searchHidAttribute == null ||  searchNameAttribute == null || searchCategoryAttribute == null || searchAddressAttribute == null || searchPhoneAttribute == null || searchYearAttribute == null || searchPictureAttribute == null || searchUrlAttribute == null)
+if( searchHidAttribute == null || searchNameAttribute == null || searchCategoryAttribute == null || searchAddressAttribute == null || searchPhoneAttribute == null || searchYearAttribute == null || searchPictureAttribute == null || searchUrlAttribute == null)
 {
     Connector connector = new Connector();
     TH th = new TH();
     %>
-        <%=th.getTHForLogin("jpy", connector.stmt)%>
+        <%=th.getTHForLogin(session.getAttribute("currentUser"), connector.stmt)%>
 Please enter TH information Below:
-    <form name="th_update" method=get onsubmit="return check_all_fields(this)" action="updateTH.jsp">
+    <form name="th_browse" method=get onsubmit="return check_all_fields(this)" action="browseTH.jsp">
         <input type=hidden name="searchHidAttribute" value="hid">
         <input type=text name="hidAttributeValue" length=10 placeholder="Hid">
         <br>
@@ -71,7 +72,7 @@ Please enter TH information Below:
         <input type=submit>
     </form>
     <BR><BR>
-    <BR><a href="updateTH.jsp"> Reset </a></p>
+    <BR><a href="browseTH.jsp"> Reset </a></p>
     <%
 
 } else {
@@ -85,24 +86,9 @@ Please enter TH information Below:
         String urlAttributeValue = request.getParameter("urlAttributeValue");
         Connector connector = new Connector();
         TH th = new TH();
-        if (th.isOwnerOfTH("jpy", hidAttributeValue, connector.stmt))
-        {
-            if (th.updateTH(hidAttributeValue, categoryAttributeValue, "jpy", nameAttributeValue, addressAttributeValue, urlAttributeValue, phoneAttributeValue, yearAttributeValue, pictureAttributeValue, connector.stmt))
-            {
-                    %>
-                    <p><b>Successfully Update TH</b>
-                    <%
-            }
-        }
-        else
-        {
-                %>
-                <p><b>Failed to Update TH</b>
-                <%
-        }
         connector.closeConnection();
     %>
-    <BR><BR><a href="updateTH.jsp"> Update Another TH </a></p>
+    <BR><BR><a href="browseTH.jsp"> Browse Another TH </a></p>
     <%
         }  // We are ending the braces for else here
     %>

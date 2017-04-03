@@ -26,12 +26,6 @@
     <h1 align="center">Browse TH</h1>
 </head>
 <body>
-<select>
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="mercedes">Mercedes</option>
-    <option value="audi">Audi</option>
-</select>
     <%
 //searchByTHMenu("#","","#","#", "#", con);
 
@@ -48,7 +42,7 @@ if( searchHidAttribute == null || searchNameAttribute == null || searchCategoryA
     Connector connector = new Connector();
     TH th = new TH();
     %>
-        <%=th.getTHForLogin("jpy", connector.stmt)%>
+        <%=th.getTHForLogin(session.getAttribute("currentUser"), connector.stmt)%>
 Please enter TH information Below:
     <form name="th_browse" method=get onsubmit="return check_all_fields(this)" action="browseTH.jsp">
         <input type=hidden name="searchHidAttribute" value="hid">
