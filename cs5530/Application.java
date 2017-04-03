@@ -21,7 +21,7 @@ import java.util.*;
 public class Application {
 
 
-	private static String _currentUser;
+	private String _currentUser;
 
 	public Application() {
 
@@ -31,7 +31,7 @@ public class Application {
 		_currentUser = currentUser;
 	}
 	///Display Menu
-	public static void displayLoginMenu()
+	public void displayLoginMenu()
 	{
 		System.out.println("       Welcome to Uotel     ");
 		System.out.println("1. Login:");
@@ -40,7 +40,7 @@ public class Application {
 		System.out.println( "please enter your choice:");
     }
 
-	public static void displayUserMenu()
+	public void displayUserMenu()
 	{
 		System.out.println("       Welcome: "+ _currentUser+"     ");
 		System.out.println("1. reserve:");
@@ -58,7 +58,7 @@ public class Application {
 		System.out.println( "please enter your choice:");
     }
 
-	public static void displayTHMenu()
+	public void displayTHMenu()
 	{
 		System.out.println("       TH     ");
 		System.out.println("1. add TH:");
@@ -70,7 +70,7 @@ public class Application {
 		System.out.println( "please enter your choice:");
 	}
 
-	public static void displayTHBrowsingMenu()
+	public void displayTHBrowsingMenu()
 	{
 		System.out.println("       TH Browsing     ");
 		System.out.println("1. search & sort by:");
@@ -78,7 +78,7 @@ public class Application {
 		System.out.println( "please enter your choice:");
 	}
 
-	public static void displaySearchByTHMenu()
+	public void displaySearchByTHMenu()
 	{
 		System.out.println("       TH Browsing     ");
 		System.out.println("search by");
@@ -90,7 +90,7 @@ public class Application {
 		System.out.println( "please enter your choice:");
 	}
 
-	public static void displayKeywordsTHMenu()
+	public void displayKeywordsTHMenu()
 	{
 		System.out.println("       TH Keywords     ");
 		System.out.println("1. add keyword:");
@@ -102,7 +102,7 @@ public class Application {
 		System.out.println("please enter your choice:");
 	}
 
-	public static void displayAvailabilityTHMenu()
+	public void displayAvailabilityTHMenu()
 	{
 		System.out.println("       Availability TH     ");
 		System.out.println("1. add TH period of availability:");
@@ -111,7 +111,7 @@ public class Application {
 		System.out.println("4. exit:");
 	}
 
-	public static void displayusefulFeedbacksMenu(Statement stmt)
+	public void displayusefulFeedbacksMenu(Statement stmt)
 	{
 		System.out.println("       Useful Feedbacks     ");
 		TH th = new TH();
@@ -119,7 +119,7 @@ public class Application {
 		System.out.println("please enter a TH id (hid):");
 	}
 
-	public static void displayTwoDegreesOfSeparationMenu(Statement stmt)
+	public void displayTwoDegreesOfSeparationMenu(Statement stmt)
 	{
 		System.out.println("       Two Degrees of Separation     ");
 		Users users = new Users();
@@ -134,7 +134,7 @@ public class Application {
 //		System.out.println("please enter the TH id (hid)");
 //	}
 
-	public static void displayUsefulnessRatingsMenu(Statement stmt)
+	public void displayUsefulnessRatingsMenu(Statement stmt)
 	{
 		System.out.println("       Usefulness Recording     ");
 		Feedback feedback = new Feedback();
@@ -142,7 +142,7 @@ public class Application {
 		System.out.println( "please enter the Feedback ID (fid):");
 	}
 
-	public static void displayTrustedRecordingsMenu(Statement stmt)
+	public void displayTrustedRecordingsMenu(Statement stmt)
 	{
 		System.out.println("       Trusted Rercordings     ");
 		Users users = new Users();
@@ -150,7 +150,7 @@ public class Application {
 		System.out.println( "please enter the User login:");
 	}
 
-	public static void displayStatisticsMenu()
+	public void displayStatisticsMenu()
 	{
 		System.out.println("       Statistics     ");
 		System.out.println("1. Show top most popular TH's for each category:");
@@ -159,7 +159,7 @@ public class Application {
 		System.out.println("4. exit");
 	}
 
-	public static void displayUserAdminMenu()
+	public void displayUserAdminMenu()
 	{
 		System.out.println("       User Awards     ");
 		System.out.println("1. show top most trusted users:");
@@ -539,7 +539,7 @@ public class Application {
 //		}
 //	}
 
-	public static void usefulnessRatingsMenu(Connector con)
+	public void usefulnessRatingsMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice;
@@ -587,7 +587,7 @@ public class Application {
 		}
 	}
 
-	public static void trustRecordingsMenu(Connector con)
+	public void trustRecordingsMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String login2;
@@ -632,7 +632,7 @@ public class Application {
 		}
 	}
 
-	public static void userAwardsMenu(Connector con)
+	public void userAwardsMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice;
@@ -683,7 +683,7 @@ public class Application {
 		}
 	}
 
-	public static String mostUsefulUsers(String m, Statement stmt)
+	public String mostUsefulUsers(String m, Statement stmt)
 	{
 		String sql="SELECT  f.login, avg(r.rating) as usefulness_score\n" +
 				"FROM Feedback f, Rates r\n" +
@@ -721,7 +721,7 @@ public class Application {
 		return output;
 	}
 
-	public static void usefulFeedbacksMenu(Connector con)
+	public void usefulFeedbacksMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String n; // amount displayed
@@ -747,7 +747,7 @@ public class Application {
 		}
 	}
 
-	public static String mostUsefulFeedbacksForTh(String n, String hid, Statement stmt)
+	public String mostUsefulFeedbacksForTh(String n, String hid, Statement stmt)
 	{
 		String sql="SELECT f.fid, f.hid, f.login, f.text, f.score, f.fbdate, AVG(r.rating) as usefulness\n" +
 				"FROM Feedback f, Rates r\n" +
@@ -791,7 +791,7 @@ public class Application {
 		return output;
 	}
 
-	public static void statisticsMenu(Connector con)
+	public void statisticsMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String m; // amount displayed
@@ -843,7 +843,7 @@ public class Application {
 		}
 	}
 
-	public static String mostPopularThsPerCategory(String m, Statement stmt)
+	public String mostPopularThsPerCategory(String m, Statement stmt)
 	{
 		String sql="SELECT a.category, a.hid, a.hname, a.address, a.login, a.phone_number, a.year_built, a.url, a.picture, a.visit_count\n" +
 				"FROM    (SELECT th1.category, th1.hid, th1.hname, th1.address, th1.login, th1.phone_number, th1.year_built, th1.url, th1.picture, count(*) as visit_count\n" +
@@ -897,7 +897,7 @@ public class Application {
 		return output;
 	}
 
-	public static String mostExpensiveThsPerCategory(String m, Statement stmt)
+	public String mostExpensiveThsPerCategory(String m, Statement stmt)
 	{
 		String sql="SELECT a.category, a.hid, a.hname, a.address, a.login, a.phone_number, a.year_built, a.url, a.picture, a.average_cost\n" +
 				"FROM    (SELECT th.category, th.hid, th.hname, th.address, th.login, th.phone_number, th.year_built, th.url, th.picture, AVG(v.cost) as average_cost\n" +
@@ -951,7 +951,7 @@ public class Application {
 		return output;
 	}
 
-	public static String mostHighlyRatedThsPerCategory(String m, Statement stmt)
+	public String mostHighlyRatedThsPerCategory(String m, Statement stmt)
 	{
 		String sql="SELECT a.category, a.hid, a.hname, a.address, a.login, a.phone_number, a.year_built, a.url, a.picture, a.average_score\n" +
 				"FROM    (SELECT th.category, th.hid, th.hname, th.address, th.login, th.phone_number, th.year_built, th.url, th.picture, AVG(f.score) as average_score\n" +
@@ -1006,7 +1006,7 @@ public class Application {
 		return output;
 	}
 
-	public static void tHBrowsingMenu(Connector con)
+	public void tHBrowsingMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice;
@@ -1045,7 +1045,7 @@ public class Application {
 		}
 	}
 
-	public static void searchByTHMenu(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Connector con)
+	public void searchByTHMenu(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice = "";
@@ -1118,7 +1118,7 @@ public class Application {
 	}
 
 	/// # means not Active and an empty string means it is active ("#"=false; ""=true)
-	public static void completeTHSearchMenu(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Connector con)
+	public void completeTHSearchMenu(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice;
@@ -1184,7 +1184,7 @@ public class Application {
 		}
 	}
 
-	public static String browsingTH(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Statement stmt)
+	public String browsingTH(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Statement stmt)
 	{
 		String semiColon = "";
 		if(orderPriceActive.equals("#") && orderScoreActive.equals("#"))
@@ -1253,7 +1253,7 @@ public class Application {
 		return output;
 	}
 
-	public static void keywordsTHMenu(Connector con)
+	public void keywordsTHMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice = "";
@@ -1355,7 +1355,7 @@ public class Application {
 		}
 	}
 
-	public static String getAllHasKeyWordDescription(Statement stmt)
+	public String getAllHasKeyWordDescription(Statement stmt)
 	{
 		String sql="SELECT hk.hid, th.hname, hk.wid, k.word FROM Keywords k NATURAL JOIN HasKeywords hk NATURAL JOIN TH th ORDER BY hk.hid;";
 		String output="";
@@ -1390,7 +1390,7 @@ public class Application {
 		return output;
 	}
 
-	public static String getHasKeyWordDescription(String login, Statement stmt)
+	public String getHasKeyWordDescription(String login, Statement stmt)
 	{
 		String sql="SELECT hk.hid, th.hname, hk.wid, k.word FROM Keywords k NATURAL JOIN HasKeywords hk NATURAL JOIN TH th WHERE login = '"+login+"' ORDER BY hk.hid;";
 		String output="";
@@ -1425,7 +1425,7 @@ public class Application {
 		return output;
 	}
 
-	public static void availabilityTHMenu(Connector con)
+	public void availabilityTHMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice = "";
@@ -1571,7 +1571,7 @@ public class Application {
 		}
 	}
 
-	public static String getAllAvailableForLoginTH(String login, Statement stmt)
+	public  String getAllAvailableForLoginTH(String login, Statement stmt)
 	{
 		String sql="SELECT hid, hname, pid, from_date, to_date, price_per_night FROM Available NATURAL JOIN TH NATURAL JOIN Period\n" +
 				"WHERE login = '"+login+"'";
@@ -1609,7 +1609,7 @@ public class Application {
 		return output;
 	}
 
-	public static void twoDegreesOfSeparationMenu(Connector con)
+	public void twoDegreesOfSeparationMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String login1;
@@ -1650,7 +1650,7 @@ public class Application {
 		}
 	}
 
-	public static Boolean isAdmin(String login, Statement stmt)
+	public Boolean isAdmin(String login, Statement stmt)
 	{
 		String sql="SELECT user_type\n" +
 				"FROM Users\n" +
@@ -1694,7 +1694,7 @@ public class Application {
 	}
 
 	/*****This is where Ben's code starts*****/
-	private static void recordVisit(BufferedReader in, Connector con) {
+	private void recordVisit(BufferedReader in, Connector con) {
 		String thid = "";
 		String pid = "";
 		String fromDate = "";
@@ -1812,7 +1812,7 @@ public class Application {
 	 * @param in
 	 * @param con
 	 */
-	private static void suggestTH(List<List<String>> reservations, BufferedReader in, Connector con) {
+	private void suggestTH(List<List<String>> reservations, BufferedReader in, Connector con) {
 		Visit visit = new Visit();
 		Set<String> ths = new HashSet<String>();
 		for(int j = 0; j < reservations.size(); j+=2) {
@@ -1846,7 +1846,7 @@ public class Application {
 //		List<List<String>> suggestedTH = visit.getSuggestedTHs();
 	}
 
-	private static void addStay(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
+	private void addStay(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sqlDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 		Available available = new Available();
@@ -1898,7 +1898,7 @@ public class Application {
 		}
 	}
 
-	public static void addVisit(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt){
+	public void addVisit(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt){
 		Period period = new Period();
 		Visit visit = new Visit();
 		Available available = new Available();
@@ -1918,7 +1918,7 @@ public class Application {
 		}
 	}
 
-	public static void addLeftoverPeriodBeforeStay(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt){
+	public void addLeftoverPeriodBeforeStay(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt){
 		Period period = new Period();
 		Available available = new Available();
 		String newPid;
@@ -1939,7 +1939,7 @@ public class Application {
 		}
 	}
 
-	public static void addLeftoverPeriodAfterStay(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt) {
+	public void addLeftoverPeriodAfterStay(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt) {
 		Period period = new Period();
 		Available available = new Available();
 		String newPid;
@@ -1961,7 +1961,7 @@ public class Application {
 		}
 	}
 
-	private static void printOutVisitedTHS(Statement stmt) {
+	private void printOutVisitedTHS(Statement stmt) {
 		String sql="select DISTINCT(th.hid), category, hname\n" +
 				"from Visit v, TH th\n" +
 				"where v.hid = th.hid\n" +
@@ -2000,7 +2000,7 @@ public class Application {
 		}
 	}
 
-	public static boolean loginUser(BufferedReader in, Connector con){
+	public boolean loginUser(BufferedReader in, Connector con){
 		String username;
 		String password;
 		try {
@@ -2024,7 +2024,7 @@ public class Application {
 		}
 	}
 
-	public static void registerUser(BufferedReader in, Connector con){
+	public void registerUser(BufferedReader in, Connector con){
 		String username;
 		String password;
 		String fullname;
@@ -2053,7 +2053,7 @@ public class Application {
 		}
 	}
 
-	private static void leaveFeedback(BufferedReader in, Connector con) {
+	public void leaveFeedback(BufferedReader in, Connector con) {
 		String th;
 		String score;
 		String shortText;
@@ -2090,13 +2090,13 @@ public class Application {
 		}
 	}
 
-	public static boolean declareTHAsFavorite(String thid, BufferedReader in, Connector con){
+	public boolean declareTHAsFavorite(String thid, BufferedReader in, Connector con){
 		Favorites favorite = new Favorites();
 		favorite.addFavorite(Integer.parseInt(thid), _currentUser, con.stmt);
 		return true;
 	}
 
-	public static List<List<String>> makeReservation(BufferedReader in, Connector con){
+	public List<List<String>> makeReservation(BufferedReader in, Connector con){
 		String thid = "";
 		String pid = "";
 		String fromDate = "";
@@ -2217,7 +2217,7 @@ public class Application {
 		}
 	}
 
-	private static void addReservation(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
+	private void addReservation(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sqlDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 		Available available = new Available();
@@ -2278,7 +2278,7 @@ public class Application {
 	 * @param chosenPeriod
 	 * @param stmt
 	 */
-	public static void addReservationAndRemoveAvailable(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt){
+	public void addReservationAndRemoveAvailable(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt){
 		Period period = new Period();
 		Reserve reservation = new Reserve();
 		Available available = new Available();
@@ -2301,7 +2301,7 @@ public class Application {
 		available.deleteAvailable(thid, chosenPeriod.get(0), stmt);
 	}
 
-	public static void addLeftoverPeriodBeforeReservation(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt){
+	public void addLeftoverPeriodBeforeReservation(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt){
 		Period period = new Period();
 		Available available = new Available();
 		String newPid;
@@ -2323,7 +2323,7 @@ public class Application {
 		}
 	}
 
-	public static void addLeftoverPeriodAfterReservation(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt) {
+	public void addLeftoverPeriodAfterReservation(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt) {
 		Period period = new Period();
 		Available available = new Available();
 		String newPid;
@@ -2345,7 +2345,7 @@ public class Application {
 		}
 	}
 
-	public static Date convertToDate(String date, SimpleDateFormat formatter){
+	public Date convertToDate(String date, SimpleDateFormat formatter){
 		Date givenDate = null;
 		try
 		{
@@ -2357,7 +2357,7 @@ public class Application {
 		return givenDate;
 	}
 
-	public static void printTHAvailableTimes(BufferedReader in, Connector con){
+	public void printTHAvailableTimes(BufferedReader in, Connector con){
 		String sql="select a.hid, p.pid, p.from_date, p.to_date\n" +
 				"from Available a, Period p\n" +
 				"where a.pid = p.pid\n" +
@@ -2397,7 +2397,7 @@ public class Application {
 		}
 	}
 
-	public static void printUsersReservations(BufferedReader in, Connector con){
+	public void printUsersReservations(BufferedReader in, Connector con){
 		String sql="select r.login, r.hid, p.pid, p.from_date, p.to_date\n" +
 				"from Reserve r, Period p\n" +
 				"where r.pid = p.pid\n" +

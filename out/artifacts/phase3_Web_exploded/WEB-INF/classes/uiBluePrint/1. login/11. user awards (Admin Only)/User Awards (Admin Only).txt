@@ -1,0 +1,23 @@
+	User Awards (Admin’s only)
+1. Show top most trusted users
+2. Show top most useful users
+3. exit user awards
+please enter a choice:
+1
+
+	User Awards (Admin’s only)
+please enter the amount of users you’d like to display:
+1
+
+	User Awards (Admin’s only)
+Top most trusted users:
+login		trusted score subtracted from not trusted score
+Joe		0
+press enter to continue.
+
+	User Awards (Admin’s only)
+1. Show top most trusted users
+2. Show top most useful users
+3. exit user awards
+please enter a choice:
+3

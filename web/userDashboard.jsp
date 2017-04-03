@@ -41,19 +41,19 @@ Form2: Search orders on director name:
 
         String attributeValue = request.getParameter("attributeValue");
         Connector connector = new Connector();
-        Reserve order = new Reserve();
+        Reserve reserve = new Reserve();
         
 %>
 
 <p><b>Listing orders in JSP: </b><BR><BR>
 
     The orders for query: <b><%=searchAttribute%>='<%=attributeValue%>'</b> are  as follows:<BR><BR>
-        <%=order.getOrders(searchAttribute, attributeValue, connector.stmt)%> <BR><BR>
+        <%--<%=reserve.getReserve(searchAttribute, attributeValue, connector.stmt)%> <BR><BR>--%>
 
     <b>Alternate way (servlet method):</b> <BR><BR>
 <%
             out.println("The orders for query: <b>"+searchAttribute+"='"+attributeValue+ "'</b> are as follows:<BR><BR>");
-    out.println(order.getOrders(searchAttribute, attributeValue, connector.stmt));
+//    out.println(order.getOrders(searchAttribute, attributeValue, connector.stmt));
 %>
 
     <%

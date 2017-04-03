@@ -1,0 +1,24 @@
+	Statistics
+1. Show top most popular Th’s for each category:
+2. Show top most expensive Th’s for each category:
+3. Show top most highly rated Th’s for each category:
+4. exit statistics
+please enter a choice:
+1
+
+	Statistics
+please enter the amount of TH’s you’d like to display for each category:
+1
+
+	Statistics
+Top most popular Th’s for each category:
+Luxury coolTH
+press enter to continue.
+
+	Statistics
+1. Show top most popular Th’s for each category:
+2. Show top most expensive Th’s for each category:
+3. Show top most highly rated Th’s for each category:
+4. exit statistics
+please enter a choice:
+4
