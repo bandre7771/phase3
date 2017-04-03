@@ -28,18 +28,19 @@ public class Visit {
 		public String getVisit(String login, String hid, String pid, Statement stmt)
 		{
 			String sql="select * from Visit where login = '"+login+"' and hid = "+hid+" and pid = "+pid;
-			String output="";
+			String output="<table>";
+			output += "<tr> <th> login </th> <th> hid </th> <th> pid </th> </tr>";
 			ResultSet rs=null;
 //   		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
 				while (rs.next())
 				 {
-				        output+="login: "+rs.getString("login")+"   "
-								+"hid: "+rs.getString("hid")+"   "
-								+"pid: "+rs.getString("pid")+"\n";
+				        output+="<tr> <td>"+rs.getString("login")+"</td>"
+								+"<td>"+rs.getString("hid")+"</td>"
+								+"<td>"+rs.getString("pid")+"</td> </tr>";
 				 }
-			     
+			     output += "</table>";
 			     rs.close();
    		 	}
    		 	catch(Exception e)
@@ -64,7 +65,7 @@ public class Visit {
 	{
 		String sql="select * from Visit where login = '"+login+"' and hid = "+hid;
 		String output="<table>";
-		output += "<tr> <th> login </th> <th> hid </th> <th> pid </th> </tr>"
+		output += "<tr> <th> login </th> <th> hid </th> <th> pid </th> </tr>";
 		ResultSet rs=null;
 		try{
 			rs=stmt.executeQuery(sql);
@@ -74,7 +75,7 @@ public class Visit {
 						+"<td>"+rs.getString("hid")+"</td>"
 						+"<td>"+rs.getString("pid")+"</td></tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)

@@ -171,6 +171,36 @@ public class TH {
 		return output;
 	}
 
+	public boolean isOwnerOfTH(String login, String hid, Statement stmt)
+	{
+		String sql="select * from TH where hid = "+hid+" AND login = '"+login+"'";
+		String output="";
+		ResultSet rs=null;
+		try{
+			rs=stmt.executeQuery(sql);
+			while (rs.next()) {
+				output += rs.getString("hid");
+			}
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot close resultset");
+			}
+		}
+		return !output.isEmpty();
+	}
+
 	public boolean addTH(String category, String login, String hname, String address,
 					  String url, String phone_number, String year_built, String picture, Statement stmt)
 	{

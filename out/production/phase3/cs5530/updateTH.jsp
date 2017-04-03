@@ -22,6 +22,8 @@
             }
         }
     </script>
+    <title>Update TH</title>
+    <h1 align="center">Update TH</h1>
 </head>
 <body>
 
@@ -41,7 +43,6 @@ if( searchNameAttribute == null || searchCategoryAttribute == null || searchAddr
     %>
         <%=th.getTHForLogin("jpy", connector.stmt)%>
 Please enter TH information Below:
-
     <form name="th_update" method=get onsubmit="return check_all_fields(this)" action="updateTH.jsp">
         <input type=hidden name="searchHidAttribute" value="hid">
         <input type=text name="hidAttributeValue" length=10 placeholder="Hid">
@@ -84,7 +85,7 @@ Please enter TH information Below:
         String urlAttributeValue = request.getParameter("urlAttributeValue");
         Connector connector = new Connector();
         TH th = new TH();
-        if (!th.getTH("jpy", hidAttributeValue, connector.stmt).isEmpty())
+        if (th.isOwnerOfTH("jpy", hidAttributeValue, connector.stmt))
         {
             if (th.updateTH(hidAttributeValue, categoryAttributeValue, "jpy", nameAttributeValue, addressAttributeValue, urlAttributeValue, phoneAttributeValue, yearAttributeValue, pictureAttributeValue, connector.stmt))
             {

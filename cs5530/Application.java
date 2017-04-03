@@ -385,7 +385,7 @@ public class Application {
 //						System.out.println(th.getTHForLogin(_currentUser, con.stmt));
 //						System.out.println("please enter TH id (hid):");
 //						while ((hid = in.readLine()) == null && hid.length() == 0);
-//						if (th.getTH(_currentUser, hid, con.stmt).isEmpty()) {
+//						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
 //							System.out.println("You do not own the TH with id:"+hid);
 //							break;
 //						}
@@ -530,152 +530,152 @@ public class Application {
 //			System.err.println ("Query Error");
 //		}
 //	}
+//
+//	public static void usefulnessRatingsMenu(Connector con)
+//	{
+//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+//		String choice;
+//		String fid;
+//		String rating;
+//		Rates rates;
+//		int r;
+//		int c=0;
+//		try
+//		{
+//			boolean exit = false;
+//			while(!exit)
+//			{
+//				displayUsefulnessRatingsMenu(con.stmt);
+//				while ((fid = in.readLine()) == null && fid.length() == 0);
+//				System.out.println("0. useless");
+//				System.out.println("1. useful");
+//				System.out.println("2. very useful");
+//				System.out.println("please enter your choice");
+//
+//				while ((rating = in.readLine()) == null && rating.length() == 0);
+//				try
+//				{
+//					r = Integer.parseInt(rating);
+//				}
+//				catch (Exception e)
+//				{
+//					continue;
+//				}
+//				if (r == 0 | r == 1 | r == 2)
+//				{
+//					rates = new Rates();
+//					rates.addRating(fid, _currentUser, rating, con.stmt);
+//					exit = true;
+//				}
+//				else
+//				{
+//					System.out.println("your choice is out of bounds.");
+//				}
+//			}
+//		}
+//		catch (Exception e)
+//		{
+//			System.err.println ("Query Error");
+//		}
+//	}
+//
+//	public static void trustRecordingsMenu(Connector con)
+//	{
+//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+//		String login2;
+//		String isTrusted;
+//		Trust trust;
+//		int t;
+//		int c=0;
+//		try
+//		{
+//			boolean exit = false;
+//			while(!exit)
+//			{
+//				displayTrustedRecordingsMenu(con.stmt);
+//				while ((login2 = in.readLine()) == null && login2.length() == 0);
+//				System.out.println("0. not trusted");
+//				System.out.println("1. trusted");
+//				System.out.println("please enter your choice");
+//				while ((isTrusted = in.readLine()) == null && isTrusted.length() == 0);
+//				try
+//				{
+//					t = Integer.parseInt(isTrusted);
+//				}
+//				catch (Exception e)
+//				{
+//					continue;
+//				}
+//				if (t == 0 | t == 1)
+//				{
+//					trust = new Trust();
+//					trust.addTrust(_currentUser, login2, isTrusted, con.stmt);
+//					exit = true;
+//				}
+//				else
+//				{
+//					System.out.println("your choice is out of bounds.");
+//				}
+//			}
+//		}
+//		catch (Exception e)
+//		{
+//			System.err.println ("Query Error");
+//		}
+//	}
+//
+//	public static void userAwardsMenu(Connector con)
+//	{
+//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+//		String choice;
+//		String m; // amount displayed
+//		Trust trust;
+//		int c=0;
+//		try
+//		{
+//			boolean exit = false;
+//			while(!exit)
+//			{
+//				displayUserAdminMenu();
+//				while ((choice = in.readLine()) == null && choice.length() == 0);
+//				try
+//				{
+//					c = Integer.parseInt(choice);
+//				}
+//				catch (Exception e)
+//				{
+//					continue;
+//				}
+//				switch (c)
+//				{
+//					case 1:
+//						trust = new Trust();
+//						System.out.println("please enter the amount of users you’d like to display:");
+//						while ((m = in.readLine()) == null && m.length() == 0);
+//						System.out.println("Top most trusted users:");
+//						System.out.println(trust.getMMostTrusted(m, con.stmt));
+//						break;
+//					case 2:
+//						System.out.println("please enter the amount of users you’d like to display:");
+//						while ((m = in.readLine()) == null && m.length() == 0);
+//						System.out.println("Top most useful users:");
+//						System.out.println(mostUsefulUsers(m, con.stmt));
+//						break;
+//					case 3:
+//						exit = true;
+//						break;
+//					default:
+//						continue;
+//				}
+//			}
+//		}
+//		catch (Exception e)
+//		{
+//			System.err.println ("Query Error");
+//		}
+//	}
 
-	public static void usefulnessRatingsMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String choice;
-		String fid;
-		String rating;
-		Rates rates;
-		int r;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayUsefulnessRatingsMenu(con.stmt);
-				while ((fid = in.readLine()) == null && fid.length() == 0);
-				System.out.println("0. useless");
-				System.out.println("1. useful");
-				System.out.println("2. very useful");
-				System.out.println("please enter your choice");
-
-				while ((rating = in.readLine()) == null && rating.length() == 0);
-				try
-				{
-					r = Integer.parseInt(rating);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				if (r == 0 | r == 1 | r == 2)
-				{
-					rates = new Rates();
-					rates.addRating(fid, _currentUser, rating, con.stmt);
-					exit = true;
-				}
-				else
-				{
-					System.out.println("your choice is out of bounds.");
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-
-	public static void trustRecordingsMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String login2;
-		String isTrusted;
-		Trust trust;
-		int t;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayTrustedRecordingsMenu(con.stmt);
-				while ((login2 = in.readLine()) == null && login2.length() == 0);
-				System.out.println("0. not trusted");
-				System.out.println("1. trusted");
-				System.out.println("please enter your choice");
-				while ((isTrusted = in.readLine()) == null && isTrusted.length() == 0);
-				try
-				{
-					t = Integer.parseInt(isTrusted);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				if (t == 0 | t == 1)
-				{
-					trust = new Trust();
-					trust.addTrust(_currentUser, login2, isTrusted, con.stmt);
-					exit = true;
-				}
-				else
-				{
-					System.out.println("your choice is out of bounds.");
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-
-	public static void userAwardsMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String choice;
-		String m; // amount displayed
-		Trust trust;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayUserAdminMenu();
-				while ((choice = in.readLine()) == null && choice.length() == 0);
-				try
-				{
-					c = Integer.parseInt(choice);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				switch (c)
-				{
-					case 1:
-						trust = new Trust();
-						System.out.println("please enter the amount of users you’d like to display:");
-						while ((m = in.readLine()) == null && m.length() == 0);
-						System.out.println("Top most trusted users:");
-						System.out.println(trust.getMMostTrusted(m, con.stmt));
-						break;
-					case 2:
-						System.out.println("please enter the amount of users you’d like to display:");
-						while ((m = in.readLine()) == null && m.length() == 0);
-						System.out.println("Top most useful users:");
-						System.out.println(mostUsefulUsers(m, con.stmt));
-						break;
-					case 3:
-						exit = true;
-						break;
-					default:
-						continue;
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-
-	public static String mostUsefulUsers(String m, Statement stmt)
+	public String mostUsefulUsers(String m, Statement stmt)
 	{
 		String sql="SELECT  f.login, avg(r.rating) as usefulness_score\n" +
 				"FROM Feedback f, Rates r\n" +
@@ -684,7 +684,6 @@ public class Application {
 				"ORDER BY usefulness_score DESC LIMIT "+m;
 		String output="";
 		ResultSet rs=null;
-		//System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -809,17 +808,17 @@ public class Application {
 					case 1:
 						System.out.println("please enter the amount of TH’s you’d like to display for each category:");
 						while ((m = in.readLine()) == null && m.length() == 0);
-						System.out.println(mostPopularThsPerCategory(m, con.stmt));
+//						System.out.println(mostPopularThsPerCategory(m, con.stmt));
 						break;
 					case 2:
 						System.out.println("please enter the amount of TH’s you’d like to display for each category:");
 						while ((m = in.readLine()) == null && m.length() == 0);
-						System.out.println(mostExpensiveThsPerCategory(m, con.stmt));
+//						System.out.println(mostExpensiveThsPerCategory(m, con.stmt));
 						break;
 					case 3:
 						System.out.println("please enter the amount of TH’s you’d like to display for each category:");
 						while ((m = in.readLine()) == null && m.length() == 0);
-						System.out.println(mostHighlyRatedThsPerCategory(m, con.stmt));
+//						System.out.println(mostHighlyRatedThsPerCategory(m, con.stmt));
 						break;
 					case 4:
 						exit = true;
@@ -835,7 +834,7 @@ public class Application {
 		}
 	}
 
-	public static String mostPopularThsPerCategory(String m, Statement stmt)
+	public String mostPopularThsPerCategory(String m, Statement stmt)
 	{
 		String sql="SELECT a.category, a.hid, a.hname, a.address, a.login, a.phone_number, a.year_built, a.url, a.picture, a.visit_count\n" +
 				"FROM    (SELECT th1.category, th1.hid, th1.hname, th1.address, th1.login, th1.phone_number, th1.year_built, th1.url, th1.picture, count(*) as visit_count\n" +
@@ -889,7 +888,7 @@ public class Application {
 		return output;
 	}
 
-	public static String mostExpensiveThsPerCategory(String m, Statement stmt)
+	public String mostExpensiveThsPerCategory(String m, Statement stmt)
 	{
 		String sql="SELECT a.category, a.hid, a.hname, a.address, a.login, a.phone_number, a.year_built, a.url, a.picture, a.average_cost\n" +
 				"FROM    (SELECT th.category, th.hid, th.hname, th.address, th.login, th.phone_number, th.year_built, th.url, th.picture, AVG(v.cost) as average_cost\n" +
@@ -943,7 +942,7 @@ public class Application {
 		return output;
 	}
 
-	public static String mostHighlyRatedThsPerCategory(String m, Statement stmt)
+	public String mostHighlyRatedThsPerCategory(String m, Statement stmt)
 	{
 		String sql="SELECT a.category, a.hid, a.hname, a.address, a.login, a.phone_number, a.year_built, a.url, a.picture, a.average_score\n" +
 				"FROM    (SELECT th.category, th.hid, th.hname, th.address, th.login, th.phone_number, th.year_built, th.url, th.picture, AVG(f.score) as average_score\n" +
@@ -998,7 +997,7 @@ public class Application {
 		return output;
 	}
 
-	public static void tHBrowsingMenu(Connector con)
+	public void tHBrowsingMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice;
@@ -1037,7 +1036,7 @@ public class Application {
 		}
 	}
 
-	public static void searchByTHMenu(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Connector con)
+	public void searchByTHMenu(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice = "";
@@ -1110,7 +1109,7 @@ public class Application {
 	}
 
 	/// # means not Active and an empty string means it is active ("#"=false; ""=true)
-	public static void completeTHSearchMenu(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Connector con)
+	public void completeTHSearchMenu(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice;
@@ -1176,7 +1175,7 @@ public class Application {
 		}
 	}
 
-	public static String browsingTH(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Statement stmt)
+	public String browsingTH(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Statement stmt)
 	{
 		String semiColon = "";
 		if(orderPriceActive.equals("#") && orderScoreActive.equals("#"))
@@ -1245,7 +1244,7 @@ public class Application {
 		return output;
 	}
 
-	public static void keywordsTHMenu(Connector con)
+	public void keywordsTHMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice = "";
@@ -1307,7 +1306,7 @@ public class Application {
 						System.out.println(th.getTHForLogin(_currentUser, con.stmt));
 						System.out.println("please enter a TH id (hid):");
 						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (th.getTH(_currentUser, hid, con.stmt).isEmpty()) {
+						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
 							System.out.println("You don't own this TH or it doesn't exist");
 							break;
 						}
@@ -1325,7 +1324,7 @@ public class Application {
 						System.out.println("please enter a TH id (hid):");
 						th = new TH();
 						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (th.getTH(_currentUser, hid, con.stmt).isEmpty()) {
+						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
 							System.out.println("You don't own this TH or it doesn't exist");
 							break;
 						}
@@ -1347,7 +1346,7 @@ public class Application {
 		}
 	}
 
-	public static String getAllHasKeyWordDescription(Statement stmt)
+	public String getAllHasKeyWordDescription(Statement stmt)
 	{
 		String sql="SELECT hk.hid, th.hname, hk.wid, k.word FROM Keywords k NATURAL JOIN HasKeywords hk NATURAL JOIN TH th ORDER BY hk.hid;";
 		String output="";
@@ -1382,7 +1381,7 @@ public class Application {
 		return output;
 	}
 
-	public static String getHasKeyWordDescription(String login, Statement stmt)
+	public String getHasKeyWordDescription(String login, Statement stmt)
 	{
 		String sql="SELECT hk.hid, th.hname, hk.wid, k.word FROM Keywords k NATURAL JOIN HasKeywords hk NATURAL JOIN TH th WHERE login = '"+login+"' ORDER BY hk.hid;";
 		String output="";
@@ -1417,7 +1416,7 @@ public class Application {
 		return output;
 	}
 
-	public static void availabilityTHMenu(Connector con)
+	public void availabilityTHMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String choice = "";
@@ -1458,7 +1457,7 @@ public class Application {
 						System.out.println(th.getTHForLogin(_currentUser, con.stmt));
 						System.out.println("please enter a TH id (hid):");
 						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (th.getTH(_currentUser, hid, con.stmt).isEmpty()) {
+						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
 							System.out.println("You don't own this TH or it doesn't exist");
 							break;
 						}
@@ -1499,7 +1498,7 @@ public class Application {
 						System.out.println(getAllAvailableForLoginTH(_currentUser, con.stmt));
 						System.out.println("please enter a TH id (hid):");
 						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (th.getTH(_currentUser, hid, con.stmt).isEmpty()) {
+						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
 							System.out.println("You don't own this TH or it doesn't exist");
 							break;
 						}
@@ -1563,7 +1562,7 @@ public class Application {
 		}
 	}
 
-	public static String getAllAvailableForLoginTH(String login, Statement stmt)
+	public String getAllAvailableForLoginTH(String login, Statement stmt)
 	{
 		String sql="SELECT hid, hname, pid, from_date, to_date, price_per_night FROM Available NATURAL JOIN TH NATURAL JOIN Period\n" +
 				"WHERE login = '"+login+"'";
@@ -1601,7 +1600,7 @@ public class Application {
 		return output;
 	}
 
-	public static void twoDegreesOfSeparationMenu(Connector con)
+	public void twoDegreesOfSeparationMenu(Connector con)
 	{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String login1;
@@ -1614,13 +1613,13 @@ public class Application {
 			System.out.println("please enter the first login");
 			while ((login1 = in.readLine()) == null && login1.length() == 0);
 			users = new Users();
-			if(users.getUsers(login1,con.stmt).isEmpty())
+			if(users.userExists(login1,con.stmt))
 			{
 				throw new Exception("Invalid Login");
 			}
 			System.out.println("please enter the second login");
 			while ((login2 = in.readLine()) == null && login2.length() == 0);
-			if(users.getUsers(login2,con.stmt).isEmpty())
+			if(users.userExists(login2,con.stmt))
 			{
 				throw new Exception("Invalid Login");
 			}
@@ -1642,7 +1641,7 @@ public class Application {
 		}
 	}
 
-	public static Boolean isAdmin(String login, Statement stmt)
+	public Boolean isAdmin(String login, Statement stmt)
 	{
 		String sql="SELECT user_type\n" +
 				"FROM Users\n" +
@@ -1686,7 +1685,7 @@ public class Application {
 	}
 
 	/*****This is where Ben's code starts*****/
-	private static void recordVisit(BufferedReader in, Connector con) {
+	private void recordVisit(BufferedReader in, Connector con) {
 		String thid = "";
 		String pid = "";
 		String fromDate = "";
@@ -1804,7 +1803,7 @@ public class Application {
 	 * @param in
 	 * @param con
 	 */
-	private static void suggestTH(List<List<String>> reservations, BufferedReader in, Connector con) {
+	private void suggestTH(List<List<String>> reservations, BufferedReader in, Connector con) {
 		Visit visit = new Visit();
 		Set<String> ths = new HashSet<String>();
 		for(int j = 0; j < reservations.size(); j+=2) {
@@ -1838,7 +1837,7 @@ public class Application {
 //		List<List<String>> suggestedTH = visit.getSuggestedTHs();
 	}
 
-	private static void addStay(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
+	private void addStay(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sqlDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 		Available available = new Available();
@@ -1890,7 +1889,7 @@ public class Application {
 		}
 	}
 
-	public static void addVisit(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt){
+	public void addVisit(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt){
 		Period period = new Period();
 		Visit visit = new Visit();
 		Available available = new Available();
@@ -1910,7 +1909,7 @@ public class Application {
 		}
 	}
 
-	public static void addLeftoverPeriodBeforeStay(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt){
+	public void addLeftoverPeriodBeforeStay(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt){
 		Period period = new Period();
 		Available available = new Available();
 		String newPid;
@@ -1931,7 +1930,7 @@ public class Application {
 		}
 	}
 
-	public static void addLeftoverPeriodAfterStay(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt) {
+	public void addLeftoverPeriodAfterStay(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt) {
 		Period period = new Period();
 		Available available = new Available();
 		String newPid;
@@ -1953,7 +1952,7 @@ public class Application {
 		}
 	}
 
-	private static void printOutVisitedTHS(Statement stmt) {
+	private void printOutVisitedTHS(Statement stmt) {
 		String sql="select DISTINCT(th.hid), category, hname\n" +
 				"from Visit v, TH th\n" +
 				"where v.hid = th.hid\n" +
@@ -1992,7 +1991,7 @@ public class Application {
 		}
 	}
 
-	public static boolean loginUser(BufferedReader in, Connector con){
+	public boolean loginUser(BufferedReader in, Connector con){
 		String username;
 		String password;
 		try {
@@ -2016,7 +2015,7 @@ public class Application {
 		}
 	}
 
-	public static void registerUser(BufferedReader in, Connector con){
+	public void registerUser(BufferedReader in, Connector con){
 		String username;
 		String password;
 		String fullname;
@@ -2045,7 +2044,7 @@ public class Application {
 		}
 	}
 
-	private static void leaveFeedback(BufferedReader in, Connector con) {
+	private void leaveFeedback(BufferedReader in, Connector con) {
 		String th;
 		String score;
 		String shortText;
@@ -2082,13 +2081,13 @@ public class Application {
 		}
 	}
 
-	public static boolean declareTHAsFavorite(String thid, BufferedReader in, Connector con){
+	public boolean declareTHAsFavorite(String thid, BufferedReader in, Connector con){
 		Favorites favorite = new Favorites();
 		favorite.addFavorite(Integer.parseInt(thid), _currentUser, con.stmt);
 		return true;
 	}
 
-	public static List<List<String>> makeReservation(BufferedReader in, Connector con){
+	public List<List<String>> makeReservation(BufferedReader in, Connector con){
 		String thid = "";
 		String pid = "";
 		String fromDate = "";
@@ -2209,7 +2208,7 @@ public class Application {
 		}
 	}
 
-	private static void addReservation(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
+	private void addReservation(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sqlDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 		Available available = new Available();
@@ -2270,7 +2269,7 @@ public class Application {
 	 * @param chosenPeriod
 	 * @param stmt
 	 */
-	public static void addReservationAndRemoveAvailable(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt){
+	public void addReservationAndRemoveAvailable(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt){
 		Period period = new Period();
 		Reserve reservation = new Reserve();
 		Available available = new Available();
@@ -2293,7 +2292,7 @@ public class Application {
 		available.deleteAvailable(thid, chosenPeriod.get(0), stmt);
 	}
 
-	public static void addLeftoverPeriodBeforeReservation(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt){
+	public void addLeftoverPeriodBeforeReservation(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt){
 		Period period = new Period();
 		Available available = new Available();
 		String newPid;
@@ -2315,7 +2314,7 @@ public class Application {
 		}
 	}
 
-	public static void addLeftoverPeriodAfterReservation(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt) {
+	public void addLeftoverPeriodAfterReservation(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt) {
 		Period period = new Period();
 		Available available = new Available();
 		String newPid;
@@ -2337,7 +2336,7 @@ public class Application {
 		}
 	}
 
-	public static Date convertToDate(String date, SimpleDateFormat formatter){
+	public Date convertToDate(String date, SimpleDateFormat formatter){
 		Date givenDate = null;
 		try
 		{
@@ -2349,7 +2348,7 @@ public class Application {
 		return givenDate;
 	}
 
-	public static void printTHAvailableTimes(BufferedReader in, Connector con){
+	public void printTHAvailableTimes(BufferedReader in, Connector con){
 		String sql="select a.hid, p.pid, p.from_date, p.to_date\n" +
 				"from Available a, Period p\n" +
 				"where a.pid = p.pid\n" +
@@ -2389,7 +2388,7 @@ public class Application {
 		}
 	}
 
-	public static void printUsersReservations(BufferedReader in, Connector con){
+	public void printUsersReservations(BufferedReader in, Connector con){
 		String sql="select r.login, r.hid, p.pid, p.from_date, p.to_date\n" +
 				"from Reserve r, Period p\n" +
 				"where r.pid = p.pid\n" +

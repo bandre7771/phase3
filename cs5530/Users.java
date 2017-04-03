@@ -13,19 +13,20 @@ public class Users {
 	public String getAllUsers(Statement stmt)
 	{
 		String sql = "select * from Users";
-		String output = "";
+		String output = "<table>";
 		ResultSet rs = null;
-//		System.out.println("executing " + sql);
+		output += "<tr> <th> login </th> <th> name </th> <th> password </th> <th> address </th> <th> phone number </th> user type </th> <tr>";
 		try {
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				output += "login: "+rs.getString("login") + "   "
-						+ "name: "+rs.getString("name") + "   "
-						+ "password: "+rs.getString("password") + "   "
-						+ "address: "+rs.getString("address") + "   "
-						+ "phone number: "+rs.getString("phone_number") + "   "
-						+ "user type: "+rs.getString("user_type") + "\n";
+				output += "<tr><td>"+rs.getString("login") + "</td>"
+						+ "<td>"+rs.getString("name") + "</td>"
+						+ "<td>"+rs.getString("password") + "</td>"
+						+ "<td>"+rs.getString("address") + "</td>"
+						+ "<td>"+rs.getString("phone_number") + "</td>"
+						+ "<td>"+rs.getString("user_type") + "</td></tr>";
 			}
+			output += "</table>";
 			rs.close();
 		} catch (Exception e) {
 			System.out.println("cannot execute the query");
@@ -56,23 +57,46 @@ public class Users {
 		return true;
 	}
 
-
-	public String getUsers(String login, Statement stmt)
+	public boolean userExists(String login, Statement stmt)
 	{
 		String sql = "select * from Users where login = '" + login + "'";
 		String output = "";
 		ResultSet rs = null;
-//		System.out.println("executing " + sql);
 		try {
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				output += "login: "+rs.getString("login") + "   t"
-						+ "name: "+rs.getString("name") + "   "
-						+ "password: "+rs.getString("password") + "   "
-						+ "address: "+rs.getString("address") + "   "
-						+ "phone number: "+rs.getString("phone_number") + "   "
-						+ "user type: "+rs.getString("user_type") + "\n";
+				output += rs.getString("login");
 			}
+			rs.close();
+		} catch (Exception e) {
+			System.out.println("cannot execute the query");
+		} finally {
+			try {
+				if (rs != null && !rs.isClosed())
+					rs.close();
+			} catch (Exception e) {
+				System.out.println("cannot close resultset");
+			}
+		}
+		return !output.isEmpty();
+	}
+	public String getUsers(String login, Statement stmt)
+	{
+		String sql = "select * from Users where login = '" + login + "'";
+		String output = "<table>";
+		ResultSet rs = null;
+		output += "<tr> <th> login </th> <th> name </th> <th> password </th> <th> address </th> <th> phone number </th> user type </th> <tr>";
+		try {
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				output += "<tr><td>"+rs.getString("login") + "</td>"
+						+ "<td>"+rs.getString("name") + "</td>"
+						+ "<td>"+rs.getString("password") + "</td>"
+						+ "<td>"+rs.getString("address") + "</td>"
+						+ "<td>"+rs.getString("phone_number") + "</td>"
+						+ "<td>"+rs.getString("user_type") + "</td></tr>";
+			}
+			output += "</table>";
 			rs.close();
 		} catch (Exception e) {
 			System.out.println("cannot execute the query");
@@ -90,23 +114,20 @@ public class Users {
 	public String getUser(String login, String password, Statement stmt)
 	{
 		String sql="select * from Users where login = '"+login+"' and password = '"+ password+"'";
-		String output="";
-		ResultSet rs=null;
-//		System.out.println("executing "+sql);
-		try{
-			rs=stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				System.out.println("login: "+login);
-				output+=rs.getString("login")
-						+"   "+rs.getString("name")
-						+"   "+rs.getString("password")
-						+"   "+rs.getString("address")
-						+"   "+rs.getString("phone_number")
-						+"   "+rs.getString("user_type")
-						+"\n";
+		String output = "<table>";
+		ResultSet rs = null;
+		output += "<tr> <th> login </th> <th> name </th> <th> password </th> <th> address </th> <th> phone number </th> user type </th> <tr>";
+		try {
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				output += "<tr><td>"+rs.getString("login") + "</td>"
+						+ "<td>"+rs.getString("name") + "</td>"
+						+ "<td>"+rs.getString("password") + "</td>"
+						+ "<td>"+rs.getString("address") + "</td>"
+						+ "<td>"+rs.getString("phone_number") + "</td>"
+						+ "<td>"+rs.getString("user_type") + "</td></tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -130,23 +151,20 @@ public class Users {
 	public String getUser(String login, Statement stmt)
 	{
 		String sql="select * from Users where login = '"+login+"'";
-		String output="";
-		ResultSet rs=null;
-//		System.out.println("executing "+sql);
-		try{
-			rs=stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				System.out.println("login: "+login);
-				output+=rs.getString("login")
-						+"   "+rs.getString("name")
-						+"   "+rs.getString("password")
-						+"   "+rs.getString("address")
-						+"   "+rs.getString("phone_number")
-						+"   "+rs.getString("user_type")
-						+"\n";
+		String output = "<table>";
+		ResultSet rs = null;
+		output += "<tr> <th> login </th> <th> name </th> <th> password </th> <th> address </th> <th> phone number </th> user type </th> <tr>";
+		try {
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				output += "<tr><td>"+rs.getString("login") + "</td>"
+						+ "<td>"+rs.getString("name") + "</td>"
+						+ "<td>"+rs.getString("password") + "</td>"
+						+ "<td>"+rs.getString("address") + "</td>"
+						+ "<td>"+rs.getString("phone_number") + "</td>"
+						+ "<td>"+rs.getString("user_type") + "</td></tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -170,19 +188,20 @@ public class Users {
 	public String getAllOtherUsers(String login, Statement stmt)
 	{
 		String sql = "select * from Users where login != '" + login + "'";
-		String output = "";
+		String output = "<table>";
 		ResultSet rs = null;
-//		System.out.println("executing " + sql);
+		output += "<tr> <th> login </th> <th> name </th> <th> password </th> <th> address </th> <th> phone number </th> user type </th> <tr>";
 		try {
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				output += "login: "+rs.getString("login") + "   "
-						+ "name: "+rs.getString("name") + "   "
-						+ "password: "+rs.getString("password") + "   "
-						+ "address: "+rs.getString("address") + "   "
-						+ "phone number: "+rs.getString("phone_number") + "   "
-						+ "user type: "+rs.getString("user_type") + "\n";
+				output += "<tr><td>"+rs.getString("login") + "</td>"
+						+ "<td>"+rs.getString("name") + "</td>"
+						+ "<td>"+rs.getString("password") + "</td>"
+						+ "<td>"+rs.getString("address") + "</td>"
+						+ "<td>"+rs.getString("phone_number") + "</td>"
+						+ "<td>"+rs.getString("user_type") + "</td></tr>";
 			}
+			output += "</table>";
 			rs.close();
 		} catch (Exception e) {
 			System.out.println("cannot execute the query");
