@@ -1,5 +1,0 @@
-	TH
-1. add TH:
-2. update TH:
-3. browse TH:
-please enter your choice:

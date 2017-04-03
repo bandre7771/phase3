@@ -1,8 +1,0 @@
-	Favorite Recordings
-ID	Name		
-001	coolTH
-enter the name of the TH you would like to favorite:
-coolTH
-
-	Favorite Recordings
-success! press enter to continue:

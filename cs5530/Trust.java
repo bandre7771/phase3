@@ -10,18 +10,19 @@ public class Trust {
 	public String getTrust(String login1, String login2, Statement stmt)
 	{
 			String sql="select * from Trust where login1 = "+login1+" and login2 "+login2;
-			String output="";
+			String output="<table>";
+			output += "<tr> <th> login1 </th> <th> login2 </th> <th> Is Trusted </th> </tr>";
 			ResultSet rs=null;
-//   		 	System.out.println("executing "+sql);
    		 	try{
 	   		 	rs=stmt.executeQuery(sql);
 				while (rs.next())
 				 {
-				        output+="login1: "+rs.getString("login1")+"   "
-					 			+"login2: "+rs.getString("login2")+"   "
-								+"is_trusted: "+rs.getString("is_trusted")+"\n";
+				        output+="<tr><td>"+rs.getString("login1")+"</td>"
+					 			+"<td>"+rs.getString("login2")+"</td>"
+								+"<td>"+rs.getString("is_trusted")+"</td></tr>";
 				 }
-			     rs.close();
+				output += "</table>";
+				rs.close();
    		 	}
    		 	catch(Exception e)
    		 	{
@@ -42,7 +43,7 @@ public class Trust {
 		    return output;
 		}
 
-	public void addTrust(String login1, String login2, String is_trusted, Statement stmt)
+	public boolean addTrust(String login1, String login2, String is_trusted, Statement stmt)
 	{
 		if(!login1.equals(login2))
 		{
@@ -52,15 +53,18 @@ public class Trust {
 			{
 				stmt.executeUpdate(sql);
 				System.out.println("success!");
+				return true;
 			}
 			catch(Exception e)
 			{
 				System.out.println("cannot insert");
+				return false;
 			}
 		}
 		else
 		{
 			System.out.println("cannot declare yourself as trusted");
+			return false;
 		}
 	}
 
@@ -91,7 +95,7 @@ public class Trust {
 				"WHERE tt.login2 IS NOT NULL\n" +
 				"    AND (tt.c - tt.nc) IS NOT NULL\n" +
 				"ORDER BY trust_score DESC LIMIT "+m;
-		String output="";
+		String output="<tr> <th> login </th> <th> trust score </th> </tr>";
 		ResultSet rs=null;
 		//System.out.println("executing "+sql);
 		try{
@@ -100,14 +104,15 @@ public class Trust {
 			{
 				try
 				{
-					output+="login: "+rs.getString("login")+"   "
-							+"trust score: "+rs.getString("trust_score")+"\n";
+					output+="<tr><td>"+rs.getString("login")+"</td>"
+							+"<td>"+rs.getString("trust_score")+"</td></tr>";
 				}
 				catch (Exception e)
 				{
 					rs.afterLast();
 				}
 			}
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)

@@ -6,25 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reserve {
-		public Reserve()
-		{}
+	public Reserve()
+	{}
 
 	public String getReserve(String login, Statement stmt)
 	{
 		String sql="select * from Reserve where login = '"+login+"'";
-		String output="";
+		String output="<tr> <th> login </th> <th> hid </th> <th> pid </th> <th> cost </th></tr>";
 		ResultSet rs=null;
-		//System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+="login: "+rs.getString("login") + "   "
-						+ "hid: "+rs.getString("hid") + "   "
-						+ "pid: "+rs.getString("pid") + "   "
-						+ "cost: "+rs.getString("cost") + "\n";
+				output+="<tr><td>"+rs.getString("login") + "</td>"
+						+ "<td>"+rs.getString("hid") + "</td>"
+						+ "<td>"+rs.getString("pid") + "</td>"
+						+ "<td>"+rs.getString("cost") + "</td></tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -48,20 +47,19 @@ public class Reserve {
 	public String getReserve(String login, int hid, int pid, Statement stmt)
 	{
 		String sql="select * from Reserve where login = '"+login+"' and hid = "+hid+" and pid = "+pid+"";
-		String output="";
+		String output="<tr> <th> login </th> <th> hid </th> <th> pid </th> <th> cost </th></tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
-			 {
-				 output+="login: "+rs.getString("login") + "   "
-						 + "hid: "+rs.getString("hid") + "   "
-						 + "pid: "+rs.getString("pid") + "   "
-						 + "cost: "+rs.getString("cost") + "\n";
-			 }
-
-			 rs.close();
+			{
+				output+="<tr><td>"+rs.getString("login") + "</td>"
+						+ "<td>"+rs.getString("hid") + "</td>"
+						+ "<td>"+rs.getString("pid") + "</td>"
+						+ "<td>"+rs.getString("cost") + "</td></tr>";
+			}
+			output += "</table>";
+			rs.close();
 		}
 		catch(Exception e)
 		{
@@ -84,18 +82,18 @@ public class Reserve {
 	public String getReserve(int hid, int pid, Statement stmt)
 	{
 		String sql="select * from Reserve where hid = "+hid+" and pid = "+pid;
-		String output="";
+		String output="<tr> <th> login </th> <th> hid </th> <th> pid </th> <th> cost </th></tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
-		try{
+		try {
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				//System.out.print("cname:");
-				output+=rs.getString("login") + "   " + rs.getString("hid") + "   " + rs.getString("pid")+ rs.getString("cost") +"\n";
+				output+="<tr><td>"+rs.getString("login") + "</td>"
+						+ "<td>"+rs.getString("hid") + "</td>"
+						+ "<td>"+rs.getString("pid") + "</td>"
+						+ "<td>"+rs.getString("cost") + "</td></tr>";
 			}
-
-			rs.close();
+			output += "</table>";
 		}
 		catch(Exception e)
 		{
@@ -115,18 +113,19 @@ public class Reserve {
 		return output;
 	}
 
-
-	public void addReservation(String login, String hid, String pid, Statement stmt)
+	public boolean addReservation(String login, String hid, String pid, Statement stmt)
 	{
 		String sql="INSERT INTO Reserve (login, hid, pid, cost) VALUES ('"+login+"', "+ hid +", " + pid + ", 500)";
 		//System.out.println("executing "+sql);
-		try{
+		try {
 			stmt.executeUpdate(sql);
 			System.out.println("Reservation Successfully added");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot insert");
+			return false;
 		}
 	}
 

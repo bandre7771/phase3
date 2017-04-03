@@ -21,7 +21,7 @@ import java.util.*;
 public class Application {
 
 
-	private String _currentUser;
+	private static String _currentUser;
 
 	public Application() {
 
@@ -31,7 +31,7 @@ public class Application {
 		_currentUser = currentUser;
 	}
 	///Display Menu
-	public void displayLoginMenu()
+	public static void displayLoginMenu()
 	{
 		System.out.println("       Welcome to Uotel     ");
 		System.out.println("1. Login:");
@@ -40,7 +40,7 @@ public class Application {
 		System.out.println( "please enter your choice:");
     }
 
-	public void displayUserMenu()
+	public static void displayUserMenu()
 	{
 		System.out.println("       Welcome: "+ _currentUser+"     ");
 		System.out.println("1. reserve:");
@@ -134,7 +134,7 @@ public class Application {
 //		System.out.println("please enter the TH id (hid)");
 //	}
 
-	public void displayUsefulnessRatingsMenu(Statement stmt)
+	public static void displayUsefulnessRatingsMenu(Statement stmt)
 	{
 		System.out.println("       Usefulness Recording     ");
 		Feedback feedback = new Feedback();
@@ -393,7 +393,7 @@ public class Application {
 //						System.out.println(th.getTHForLogin(_currentUser, con.stmt));
 //						System.out.println("please enter TH id (hid):");
 //						while ((hid = in.readLine()) == null && hid.length() == 0);
-//						if (th.getTH(_currentUser, hid, con.stmt).isEmpty()) {
+//						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
 //							System.out.println("You do not own the TH with id:"+hid);
 //							break;
 //						}
@@ -539,150 +539,6 @@ public class Application {
 //		}
 //	}
 
-	public void usefulnessRatingsMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String choice;
-		String fid;
-		String rating;
-		Rates rates;
-		int r;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayUsefulnessRatingsMenu(con.stmt);
-				while ((fid = in.readLine()) == null && fid.length() == 0);
-				System.out.println("0. useless");
-				System.out.println("1. useful");
-				System.out.println("2. very useful");
-				System.out.println("please enter your choice");
-
-				while ((rating = in.readLine()) == null && rating.length() == 0);
-				try
-				{
-					r = Integer.parseInt(rating);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				if (r == 0 | r == 1 | r == 2)
-				{
-					rates = new Rates();
-					rates.addRating(fid, _currentUser, rating, con.stmt);
-					exit = true;
-				}
-				else
-				{
-					System.out.println("your choice is out of bounds.");
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-
-	public void trustRecordingsMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String login2;
-		String isTrusted;
-		Trust trust;
-		int t;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayTrustedRecordingsMenu(con.stmt);
-				while ((login2 = in.readLine()) == null && login2.length() == 0);
-				System.out.println("0. not trusted");
-				System.out.println("1. trusted");
-				System.out.println("please enter your choice");
-				while ((isTrusted = in.readLine()) == null && isTrusted.length() == 0);
-				try
-				{
-					t = Integer.parseInt(isTrusted);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				if (t == 0 | t == 1)
-				{
-					trust = new Trust();
-					trust.addTrust(_currentUser, login2, isTrusted, con.stmt);
-					exit = true;
-				}
-				else
-				{
-					System.out.println("your choice is out of bounds.");
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-
-	public void userAwardsMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String choice;
-		String m; // amount displayed
-		Trust trust;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayUserAdminMenu();
-				while ((choice = in.readLine()) == null && choice.length() == 0);
-				try
-				{
-					c = Integer.parseInt(choice);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				switch (c)
-				{
-					case 1:
-						trust = new Trust();
-						System.out.println("please enter the amount of users you’d like to display:");
-						while ((m = in.readLine()) == null && m.length() == 0);
-						System.out.println("Top most trusted users:");
-						System.out.println(trust.getMMostTrusted(m, con.stmt));
-						break;
-					case 2:
-						System.out.println("please enter the amount of users you’d like to display:");
-						while ((m = in.readLine()) == null && m.length() == 0);
-						System.out.println("Top most useful users:");
-						System.out.println(mostUsefulUsers(m, con.stmt));
-						break;
-					case 3:
-						exit = true;
-						break;
-					default:
-						continue;
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-
 	public String mostUsefulUsers(String m, Statement stmt)
 	{
 		String sql="SELECT  f.login, avg(r.rating) as usefulness_score\n" +
@@ -817,17 +673,17 @@ public class Application {
 					case 1:
 						System.out.println("please enter the amount of TH’s you’d like to display for each category:");
 						while ((m = in.readLine()) == null && m.length() == 0);
-						System.out.println(mostPopularThsPerCategory(m, con.stmt));
+//						System.out.println(mostPopularThsPerCategory(m, con.stmt));
 						break;
 					case 2:
 						System.out.println("please enter the amount of TH’s you’d like to display for each category:");
 						while ((m = in.readLine()) == null && m.length() == 0);
-						System.out.println(mostExpensiveThsPerCategory(m, con.stmt));
+//						System.out.println(mostExpensiveThsPerCategory(m, con.stmt));
 						break;
 					case 3:
 						System.out.println("please enter the amount of TH’s you’d like to display for each category:");
 						while ((m = in.readLine()) == null && m.length() == 0);
-						System.out.println(mostHighlyRatedThsPerCategory(m, con.stmt));
+//						System.out.println(mostHighlyRatedThsPerCategory(m, con.stmt));
 						break;
 					case 4:
 						exit = true;
@@ -1315,7 +1171,7 @@ public class Application {
 						System.out.println(th.getTHForLogin(_currentUser, con.stmt));
 						System.out.println("please enter a TH id (hid):");
 						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (th.getTH(_currentUser, hid, con.stmt).isEmpty()) {
+						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
 							System.out.println("You don't own this TH or it doesn't exist");
 							break;
 						}
@@ -1333,7 +1189,7 @@ public class Application {
 						System.out.println("please enter a TH id (hid):");
 						th = new TH();
 						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (th.getTH(_currentUser, hid, con.stmt).isEmpty()) {
+						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
 							System.out.println("You don't own this TH or it doesn't exist");
 							break;
 						}
@@ -1466,7 +1322,7 @@ public class Application {
 						System.out.println(th.getTHForLogin(_currentUser, con.stmt));
 						System.out.println("please enter a TH id (hid):");
 						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (th.getTH(_currentUser, hid, con.stmt).isEmpty()) {
+						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
 							System.out.println("You don't own this TH or it doesn't exist");
 							break;
 						}
@@ -1507,7 +1363,7 @@ public class Application {
 						System.out.println(getAllAvailableForLoginTH(_currentUser, con.stmt));
 						System.out.println("please enter a TH id (hid):");
 						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (th.getTH(_currentUser, hid, con.stmt).isEmpty()) {
+						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
 							System.out.println("You don't own this TH or it doesn't exist");
 							break;
 						}
@@ -1571,7 +1427,7 @@ public class Application {
 		}
 	}
 
-	public  String getAllAvailableForLoginTH(String login, Statement stmt)
+	public String getAllAvailableForLoginTH(String login, Statement stmt)
 	{
 		String sql="SELECT hid, hname, pid, from_date, to_date, price_per_night FROM Available NATURAL JOIN TH NATURAL JOIN Period\n" +
 				"WHERE login = '"+login+"'";
@@ -1622,13 +1478,13 @@ public class Application {
 			System.out.println("please enter the first login");
 			while ((login1 = in.readLine()) == null && login1.length() == 0);
 			users = new Users();
-			if(users.getUsers(login1,con.stmt).isEmpty())
+			if(users.userExists(login1,con.stmt))
 			{
 				throw new Exception("Invalid Login");
 			}
 			System.out.println("please enter the second login");
 			while ((login2 = in.readLine()) == null && login2.length() == 0);
-			if(users.getUsers(login2,con.stmt).isEmpty())
+			if(users.userExists(login2,con.stmt))
 			{
 				throw new Exception("Invalid Login");
 			}

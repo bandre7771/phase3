@@ -1,9 +1,0 @@
-	Registration
-please enter your login name:
-John
-
-please enter your password:
-********
-
-
-//Go to main menu after registration.

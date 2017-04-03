@@ -9,25 +9,25 @@ public class TH {
 
 	public String getAllTH(Statement stmt)
 	{
-			String sql="select * from TH";
-			String output="";
-			ResultSet rs=null;
-//			System.out.println("executing "+sql);
-			try{
-				rs=stmt.executeQuery(sql);
-				while (rs.next())
-				{
-					output+= "hid: "+rs.getString("hid") + "   "
-							+ "hname: "+rs.getString("hname") + "   "
-							+ "category: "+rs.getString("category") + "   "
-							+ "address: "+rs.getString("address") + "   "
-							+ "login: "+rs.getString("login") + "   "
-							+ "phone number: "+rs.getString("phone_number") + "   "
-							+ "year_built: "+rs.getString("year_built") + "   "
-							+ "url: "+rs.getString("url") + "   "
-							+ "picture: "+rs.getString("picture") +"\n";
-				}
-
+		String sql="select * from TH";
+		String output="<table>";
+		output += "<tr> <th> hid </th> <th> hname </th> <th> category </th> <th> address </th> <th> login </th> <th> phone number </th> <th> year built </th> <th> url </th> <th> picture </th> </tr>";
+		ResultSet rs=null;
+		try{
+			rs=stmt.executeQuery(sql);
+			while (rs.next())
+			{
+				output+= "<tr><td>"+rs.getString("hid") + "</td>"
+						+ "<td>"+rs.getString("hname") + "</td>"
+						+ "<td>"+rs.getString("category") + "</td>"
+						+ "<td>"+rs.getString("address") + "</td>"
+						+ "<td>"+rs.getString("login") + "</td>"
+						+ "<td>"+rs.getString("phone_number") + "</td>"
+						+ "<td>"+rs.getString("year_built") + "</td>"
+						+ "<td>"+rs.getString("url") + "</td>"
+						+ "<td>"+rs.getString("picture") +"</td></tr>";
+			}
+			output += "</table>";
 				rs.close();
 			}
 			catch(Exception e)
@@ -50,25 +50,25 @@ public class TH {
 
 	public String getTH(String hid, Statement stmt)
 	{
-			String sql="select * from TH where hid = "+hid;
-			String output="";
-			ResultSet rs=null;
-//   		 	System.out.println("executing "+sql);
-   		 	try{
-	   		 	rs=stmt.executeQuery(sql);
-				while (rs.next())
-				{
-					output+= "hid: "+rs.getString("hid") + "   "
-							+ "hname: "+rs.getString("hname") + "   "
-							+ "category: "+rs.getString("category") + "   "
-							+ "address: "+rs.getString("address") + "   "
-							+ "login: "+rs.getString("login") + "   "
-							+ "phone number: "+rs.getString("phone_number") + "   "
-							+ "year_built: "+rs.getString("year_built") + "   "
-							+ "url: "+rs.getString("url") + "   "
-							+ "picture: "+rs.getString("picture") +"\n";
-				}
-
+		String sql="select * from TH where hid = "+hid;
+		String output="<table>";
+		output += "<tr> <th> hid </th> <th> hname </th> <th> category </th> <th> address </th> <th> login </th> <th> phone number </th> <th> year built </th> <th> url </th> <th> picture </th> </tr>";
+		ResultSet rs=null;
+		try{
+			rs=stmt.executeQuery(sql);
+			while (rs.next())
+			{
+				output+= "<tr><td>"+rs.getString("hid") + "</td>"
+						+ "<td>"+rs.getString("hname") + "</td>"
+						+ "<td>"+rs.getString("category") + "</td>"
+						+ "<td>"+rs.getString("address") + "</td>"
+						+ "<td>"+rs.getString("login") + "</td>"
+						+ "<td>"+rs.getString("phone_number") + "</td>"
+						+ "<td>"+rs.getString("year_built") + "</td>"
+						+ "<td>"+rs.getString("url") + "</td>"
+						+ "<td>"+rs.getString("picture") +"</td></tr>";
+			}
+			output += "</table>";
 			     rs.close();
 			}
    		 	catch(Exception e)
@@ -92,24 +92,24 @@ public class TH {
 	public String getTHForLogin(String login, Statement stmt)
 	{
 		String sql="select * from TH where login = '"+login+"'";
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> hid </th> <th> hname </th> <th> category </th> <th> address </th> <th> login </th> <th> phone number </th> <th> year built </th> <th> url </th> <th> picture </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+= "hid: "+rs.getString("hid") + "   "
-						+ "hname: "+rs.getString("hname") + "   "
-						+ "category: "+rs.getString("category") + "   "
-						+ "address: "+rs.getString("address") + "   "
-						+ "login: "+rs.getString("login") + "   "
-						+ "phone number: "+rs.getString("phone_number") + "   "
-						+ "year_built: "+rs.getString("year_built") + "   "
-						+ "url: "+rs.getString("url") + "   "
-						+ "picture: "+rs.getString("picture") +"\n";
+				output+= "<tr><td>"+rs.getString("hid") + "</td>"
+						+ "<td>"+rs.getString("hname") + "</td>"
+						+ "<td>"+rs.getString("category") + "</td>"
+						+ "<td>"+rs.getString("address") + "</td>"
+						+ "<td>"+rs.getString("login") + "</td>"
+						+ "<td>"+rs.getString("phone_number") + "</td>"
+						+ "<td>"+rs.getString("year_built") + "</td>"
+						+ "<td>"+rs.getString("url") + "</td>"
+						+ "<td>"+rs.getString("picture") +"</td></tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -133,23 +133,24 @@ public class TH {
 	public String getTH(String login, String hid, Statement stmt)
 	{
 		String sql="select * from TH where hid = "+hid+" AND login = '"+login+"'";
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> hid </th> <th> hname </th> <th> category </th> <th> address </th> <th> login </th> <th> phone number </th> <th> year built </th> <th> url </th> <th> picture </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+= "hid: "+rs.getString("hid") + "   "
-						+ "hname: "+rs.getString("hname") + "   "
-						+ "category: "+rs.getString("category") + "   "
-						+ "address: "+rs.getString("address") + "   "
-						+ "login: "+rs.getString("login") + "   "
-						+ "phone number: "+rs.getString("phone_number") + "   "
-						+ "year_built: "+rs.getString("year_built") + "   "
-						+ "url: "+rs.getString("url") + "   "
-						+ "picture: "+rs.getString("picture") +"\n";
+				output+= "<tr><td>"+rs.getString("hid") + "</td>"
+						+ "<td>"+rs.getString("hname") + "</td>"
+						+ "<td>"+rs.getString("category") + "</td>"
+						+ "<td>"+rs.getString("address") + "</td>"
+						+ "<td>"+rs.getString("login") + "</td>"
+						+ "<td>"+rs.getString("phone_number") + "</td>"
+						+ "<td>"+rs.getString("year_built") + "</td>"
+						+ "<td>"+rs.getString("url") + "</td>"
+						+ "<td>"+rs.getString("picture") +"</td></tr>";
 			}
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -170,36 +171,68 @@ public class TH {
 		return output;
 	}
 
-	public void addTH(String category, String login, String hname, String address,
+	public boolean isOwnerOfTH(String login, String hid, Statement stmt)
+	{
+		String sql="select * from TH where hid = "+hid+" AND login = '"+login+"'";
+		String output="";
+		ResultSet rs=null;
+		try{
+			rs=stmt.executeQuery(sql);
+			while (rs.next()) {
+				output += rs.getString("hid");
+			}
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot close resultset");
+			}
+		}
+		return !output.isEmpty();
+	}
+
+	public boolean addTH(String category, String login, String hname, String address,
 					  String url, String phone_number, String year_built, String picture, Statement stmt)
 	{
 		String sql="INSERT INTO TH (category, login, hname, address," +
 				"url, phone_number, year_built, picture) VALUES ('"+category+"', '"+login+"', '"+hname+"', '"+address+"','"+url+"', '"
 				+phone_number+"', "+year_built+", '"+picture+"')";
-//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("Success!");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot insert");
 		}
+		return false;
 	}
 
-	public void updateTH(String hid, String category, String login, String hname, String address,
+	public boolean updateTH(String hid, String category, String login, String hname, String address,
 					  String url, String phone_number, String year_built, String picture, Statement stmt)
 	{
 		String sql="UPDATE TH SET category = '"+category+"', login = '"+login+"', hname = '"+hname+"', address = '"+address+"', url ='"+url+"', phone_number = '"
 				+phone_number+"', year_built = "+year_built+", picture = '"+picture+"' WHERE hid = "+hid;
-//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("Success!");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot update");
+			return false;
 		}
 	}
 }

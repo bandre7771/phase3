@@ -51,53 +51,55 @@ public class Feedback {
 		    return output;
 		}
 
-	public void addFeedback(String hid, String login, String text, int score, Statement stmt)
+	public boolean addFeedback(String hid, String login, String text, int score, Statement stmt)
 	{
 		Calendar calendar = Calendar.getInstance();
 		java.sql.Date ourJavaDateObject = new java.sql.Date(calendar.getTime().getTime());
 		String sql="INSERT INTO Feedback (hid, login, text, score, fbdate) VALUES ("+hid+", '" + login + "', '" + text +"', "+score+", '"+ourJavaDateObject+"')";
-//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("success!");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot insert");
+			return false;
 		}
 	}
 
-	public void deleteFeedback(String fid, Statement stmt) {
+	public boolean deleteFeedback(String fid, Statement stmt) {
 		String sql="delete from Feedback where fid = '" +fid + "'";
-//		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("success!");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot remove available period");
+			return false;
 		}
 	}
 
 	public String getAllOtherUserFeedback(String login, Statement stmt)
 	{
 		String sql="select * from Feedback where login != '"+login+"'";
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> fid </th> <th> hid </th> <th> login </th> <th> text </th> <th> score </th> <th> fbdate </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+="fid: "+rs.getString("fid")+"   "
-						+"hid: "+rs.getString("hid")+"   "
-						+"login: "+rs.getString("login")+"   "
-						+"text: "+rs.getString("text") + "   "
-						+"score: "+rs.getString("score")+"   "
-						+"fbdate: "+rs.getString("fbdate")+"\n";
+				output+="<tr><td>"+rs.getString("fid")+"</td>"
+						+"<td>"+rs.getString("hid")+"</td>"
+						+"<td>"+rs.getString("login")+"</td>"
+						+"<td>"+rs.getString("text") + "</td>"
+						+"<td>"+rs.getString("score")+"</td>"
+						+"<td>"+rs.getString("fbdate")+"</td></tr>";
 			}
-
+			output += "</table>";
 			rs.close();
 		}
 		catch(Exception e)
@@ -122,17 +124,17 @@ public class Feedback {
 	{
 		String sql="select DISTINCT login from Feedback where fid = "+fid;
 
-		String output="";
+		String output="<table>";
+		output += "<tr> <th> login </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+=rs.getString("login");
+				output+="<tr> <td>"+rs.getString("login")+"</tr> </td>";
 			}
-
 			rs.close();
+			output += "</table>";
 		}
 		catch(Exception e)
 		{
