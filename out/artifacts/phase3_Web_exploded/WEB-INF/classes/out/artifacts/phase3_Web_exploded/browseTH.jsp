@@ -5,6 +5,18 @@
 <head>
     <title>Browse TH</title>
     <h1 align="center">Browse TH</h1>
+    <script>
+//        function myFunction() {
+////            var x = document.getElementById("myCheck").checked;
+//            function check_all_fields(form_obj){
+//                form_obj. = form_obj.getElementById("t_id").checked;
+//                            var x = document.getElementById("myCheck").checked;
+//
+//                return true;
+//            }
+////            document.getElementById("demo").innerHTML = x;
+//        }
+    </script>
 </head>
 <body>
 <a href="browseTH.jsp"> New Search </a><BR>
@@ -76,7 +88,7 @@
         Connector connector = new Connector();
         Application app = new Application();
 %>
-<p>(Note: Search fields act as ANDs to use OR functionality complete the search)</p>
+<p>(Note: Fields act as ANDs to use OR functionality complete the search)</p>
 <form id="searchBy"  method=get action="browseTH.jsp">
     <h4>Search:</h4>
     <input type="hidden" name="whereQueryAttributeValue" value="<%=whereQueryAttributeValue%>">
@@ -85,11 +97,11 @@
     <input type="text" name="minPriceAttributeValue" length=10 placeholder="Min">
     <input type="text" name="maxPriceAttributeValue" length=10 placeholder="And Max"><BR>
     Address:<BR>
-    <input type="text" name="addressAttributeValue" length=10 placeholder="And address"><BR>
+    <input type="text" name="addressAttributeValue" length=10 placeholder="And Address"><BR>
     Name:<BR>
-    <input type="text" name="nameAttributeValue" length=10 placeholder="And hname"><BR>
+    <input type="text" name="nameAttributeValue" length=10 placeholder="And Name"><BR>
     Category:<BR>
-    <input type="text" name="categoryAttributeValue" length=10 placeholder="And category"><BR>
+    <input type="text" name="categoryAttributeValue" length=10 placeholder="And Category"><BR>
     <h4>Sort by:</h4>
     <input type="radio" name="orderBy" value="hid" checked> hid <BR>
     <input type="radio" name="orderBy" value="average price"> average price <BR>

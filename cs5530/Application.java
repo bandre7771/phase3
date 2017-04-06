@@ -862,192 +862,22 @@ public class Application {
 		return output;
 	}
 
-	public void tHBrowsingMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String choice;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayTHBrowsingMenu();
-				while ((choice = in.readLine()) == null && choice.length() == 0);
-				try
-				{
-					c = Integer.parseInt(choice);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				switch (c)
-				{
-					case 1:
-						searchByTHMenu("#","","#","#", "#", con);
-						break;
-					case 2:
-						exit = true;
-						break;
-					default:
-						continue;
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-
-	public void searchByTHMenu(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String choice = "";
-		String minPrice = "";
-		String maxPrice = "";
-		String address = "";
-		String hname = "";
-		String category = "";
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displaySearchByTHMenu();
-				while ((choice = in.readLine()) == null && choice.length() == 0);
-				try
-				{
-					c = Integer.parseInt(choice);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				switch (c)
-				{
-					case 1:
-						completeTHSearchMenu("#","","#","#", "#", con);
-						exit = true;
-						break;
-					case 2:
-						System.out.println("please enter a min price:");
-						minPrice = in.readLine();
-						System.out.println("please enter a max price:");
-						maxPrice = in.readLine();
-						whereQuery += "(price >= "+minPrice+" AND price <= "+maxPrice+") ";
-						completeTHSearchMenu("", whereQuery, orderPriceActive, orderScoreActive, onlyTrustedActive, con);
-						exit = true;
-						break;
-					case 3:
-						System.out.println("please enter a keyword for the address");
-						address = in.readLine();
-						whereQuery += "address LIKE '%"+address+"%' ";
-						completeTHSearchMenu("", whereQuery, orderPriceActive, orderScoreActive, onlyTrustedActive, con);
-						exit = true;
-						break;
-					case 4:
-						System.out.println("please enter a keyword for the name");
-						hname = in.readLine();
-						whereQuery += "hname LIKE '%"+hname+"%' ";
-						completeTHSearchMenu("", whereQuery, orderPriceActive, orderScoreActive, onlyTrustedActive, con);
-						exit = true;
-						break;
-					case 5:
-						System.out.println("please enter a keyword for a category");
-						category = in.readLine();
-						whereQuery += "category LIKE '%"+category+"%' ";
-						completeTHSearchMenu("", whereQuery, orderPriceActive, orderScoreActive, onlyTrustedActive, con);
-						exit = true;
-						break;
-					default:
-						continue;
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-
-	/// # means not Active and an empty string means it is active ("#"=false; ""=true)
-	public void completeTHSearchMenu(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String choice;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				System.out.println("current search: "+whereQuery);
-				System.out.println("1. complete current search:");
-				System.out.println("2. add to current search with another search (OR):");
-				System.out.println("3. add to current search with another search (AND):");
-				System.out.println("4. complete and sort by price:");
-				System.out.println("5. complete and sort by average score of feedbacks:");
-				System.out.println("6. complete and sort by average score of only trusted feedbacks:");
-
-				while ((choice = in.readLine()) == null && choice.length() == 0);
-				try
-				{
-					c = Integer.parseInt(choice);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				switch (c)
-				{
-					case 1:
-						System.out.println(browsingTH(whereActive, whereQuery, orderPriceActive, orderScoreActive, onlyTrustedActive, con.stmt));
-						exit = true;
-						break;
-					case 2:
-						whereQuery += "OR ";
-						searchByTHMenu(whereActive, whereQuery, orderPriceActive, orderScoreActive, onlyTrustedActive, con);
-						exit = true;
-						break;
-					case 3:
-						whereQuery += "AND ";
-						searchByTHMenu(whereActive, whereQuery, orderPriceActive, orderScoreActive, onlyTrustedActive, con);
-						exit = true;
-						break;
-					case 4:
-						System.out.println(browsingTH(whereActive, whereQuery, "", orderScoreActive, onlyTrustedActive, con.stmt));
-						exit = true;
-						break;
-					case 5:
-						System.out.println(browsingTH(whereActive, whereQuery, orderPriceActive, "", onlyTrustedActive, con.stmt));
-						exit = true;
-						break;
-					case 6:
-						System.out.println(browsingTH(whereActive, whereQuery, orderPriceActive, "", "", con.stmt));
-						exit = true;
-						break;
-					default:
-						continue;
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-
-	public String browsingTH(String whereActive, String whereQuery, String orderPriceActive, String orderScoreActive, String onlyTrustedActive, Statement stmt)
+	public static String browsingTH(String whereQuery, Boolean orderByPriceActive, Boolean orderByScoreActive, Boolean onlyTrustedIsActive, Statement stmt)
 	{
 		String semiColon = "";
+		String whereActive = "";
+		String orderPriceActive = orderByPriceActive ? "" : "#" ;
+		String orderScoreActive = orderByScoreActive ? "" : "#" ;
+		String onlyTrustedActive = onlyTrustedIsActive ? "" : "#";
+		if(whereQuery.isEmpty())
+		{
+			whereActive = "#";
+		}
 		if(orderPriceActive.equals("#") && orderScoreActive.equals("#"))
 		{
 			semiColon = ";";
 		}
-		String sql="SELECT browsingTH1.hid, browsingTH1.hname, browsingTH1.category, browsingTH1.address, browsingTH1.login, AVG(browsingTH1.fbscore) AS average_fbscore, AVG(browsingTH1.price) average_price #START OF FULL OUTER JOINS long because mysql doesn't support it short hand\n" +
+		String sql="SELECT browsingTH1.hid, browsingTH1.hname, browsingTH1.category, browsingTH1.address, browsingTH1.login, AVG(browsingTH1.fbscore) AS average_fbscore, AVG(browsingTH1.price) average_price #START OF FULL OUTER JOINS\n" +
 				"FROM (SELECT browsingTH.hid1 as hid, browsingTH.hname1 as hname, browsingTH.category1 as category, browsingTH.address1 as address, browsingTH.login1 as login, browsingTH.score1 fbscore, browsingTH.cost as price\n" +
 				"FROM (SELECT * FROM ((SELECT * FROM ((SELECT th.hid as hid1, th.hname as hname1, th.category as category1, th.address address1, th.login as login1, th.phone_number as phone_number1, th.year_built as year_built1, th.url as url1, th.picture as picture1, f.fid as fid1, f.hid as hid2, f.text as text1, f.score as score1, f.fbdate as fbdate1 FROM TH th\n" +
 				"LEFT JOIN Feedback f ON th.hid = f.hid)\n" +
@@ -1068,16 +898,15 @@ public class Application {
 				"RIGHT JOIN Feedback f ON th.hid = f.hid)) as tf RIGHT JOIN Visit v ON tf.hid1 = v.hid)) tfv\n" +
 				"RIGHT JOIN (SELECT login1 as loginA, login2 as loginB, is_trusted FROM Trust) as t ON tfv.login1 = t.loginB)) as browsingTH\n" +
 				"WHERE browsingTH.hid IS NOT NULL\n" +
-				"      "+onlyTrustedActive+"AND browsingTH.is_trusted = 1 #THIS IS WHERE THE TRUSTED STRING WILL GO _______________\n" +
-				"     ) as browsingTH1 #END OF FULL OUTER JOINS long because mysql doesn't support it short hand\n" +
-				whereActive+"WHERE "+whereQuery+"#THIS IS WHERE THE WHERE STRING WILL GO_________\n" +
+				"      "+onlyTrustedActive+"AND browsingTH.is_trusted = 1 \n" +
+				"     ) as browsingTH1 #END OF FULL OUTER JOINS \n" +
+				whereActive+"WHERE "+whereQuery+"\n" +
 				"GROUP BY browsingTH1.hid, browsingTH1.hname, browsingTH1.category, browsingTH1.address, browsingTH1.login"+semiColon+"\n" +
 				orderPriceActive+"ORDER BY average_price DESC;\n" +
 				orderScoreActive+"ORDER BY average_fbscore DESC;";
 		String output="<table>";
 		output += "<tr> <th> hid </th> <th> hname </th> <th> category </th> <th> address </th> <th> login </th> <th> average fbscore </th> <th> average price </th> </tr>";
 		ResultSet rs=null;
-//		System.out.println("executing "+sql);
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())

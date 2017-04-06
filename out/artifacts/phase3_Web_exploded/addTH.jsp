@@ -10,7 +10,6 @@
                 + form_obj.searchYearAttribute.value+"='"+form_obj.yearAttributeValue.value+"'\n"
                 + form_obj.searchPictureAttribute.value+"='"+form_obj.pictureAttributeValue.value+"'\n"
                 + form_obj.searchUrlAttribute.value+"='"+form_obj.urlAttributeValue.value+"'\n");
-
             if( form_obj.nameAttributeValue.value == "" || form_obj.categoryAttributeValue.value == "" || form_obj.addressAttributeValue.value == "" || form_obj.yearAttributeValue.value == "" || form_obj.pictureAttributeValue.value == "" || form_obj.urlAttributeValue.value == "") {
                 alert("All search fields should be nonempty");
                 return false;
@@ -18,9 +17,7 @@
                 return true;
             }
         }
-
     </script>
-
     <title>Add TH</title>
     <h1 align="center">Add TH</h1>
 </head>
@@ -36,7 +33,6 @@ String searchPictureAttribute = request.getParameter("searchPictureAttribute");
 String searchUrlAttribute = request.getParameter("searchUrlAttribute");
 if( searchNameAttribute == null || searchCategoryAttribute == null || searchAddressAttribute == null || searchPhoneAttribute == null || searchYearAttribute == null || searchPictureAttribute == null || searchUrlAttribute == null) {
 %>
-
 Please enter TH information Below:
     <form name="th_add" method=get onsubmit="return check_all_fields(this)" action="addTH.jsp">
         <input type=hidden name="searchNameAttribute" value="hname">
@@ -62,11 +58,9 @@ Please enter TH information Below:
         <br><br>
         <input type=submit>
     </form>
-    <BR><BR>
-    <BR><a href="addTH.jsp"> Reset </a></p>
-    <BR><a href="th.jsp"> TH Menu </a></p>
+    <BR><a href="addTH.jsp"> Clear All Fields</a><BR>
+    <BR><a href="th.jsp"> TH Menu </a>
     <%
-
 } else {
 
         String nameAttributeValue = request.getParameter("nameAttributeValue");
@@ -90,7 +84,7 @@ Please enter TH information Below:
         }
             connector.closeConnection();
     %>
-    <BR><BR><a href="addTH.jsp"> Add Another TH </a></p>
+    <BR><BR><a href="addTH.jsp"> Add Another TH </a>
     <%
         }  // We are ending the braces for else here
     %>

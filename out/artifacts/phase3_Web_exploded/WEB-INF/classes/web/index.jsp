@@ -11,8 +11,8 @@
     <%
         String currentUser = (String)session.getAttribute("currentUser");
         if(currentUser == null) {
-            session.setAttribute("currentUser", "jpy".toString());
-            currentUser = "jpy";
+            session.setAttribute("currentUser", "bandre7771".toString());
+            currentUser = "bandre7771";
         }
     %>
     <title>JSP Example</title>
