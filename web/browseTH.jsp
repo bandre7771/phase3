@@ -79,20 +79,20 @@
     <h4>Search:</h4>
     <input type="hidden" name="whereQueryAttributeValue" value="<%=whereQueryAttributeValue%>">
     <input type="hidden" name="orActiveAttributeValue" value="orActive">
-    Price:<BR>
-    <input type="text" name="minPriceAttributeValue" length=10 placeholder="Min">
-    <input type="text" name="maxPriceAttributeValue" length=10 placeholder="And Max"><BR>
-    Address:<BR>
-    <input type="text" name="addressAttributeValue" length=10 placeholder="And address"><BR>
-    Name:<BR>
-    <input type="text" name="nameAttributeValue" length=10 placeholder="And hname"><BR>
-    Category:<BR>
-    <input type="text" name="categoryAttributeValue" length=10 placeholder="And category"><BR>
+    Price Range (optional):<BR>
+    <input type="text" name="minPriceAttributeValue" length=10 placeholder="min">
+    <input type="text" name="maxPriceAttributeValue" length=10 placeholder="max"><BR>
+    Address (optional):<BR>
+    <input type="text" name="addressAttributeValue" length=10 placeholder="address"><BR>
+    Name (optional):<BR>
+    <input type="text" name="nameAttributeValue" length=10 placeholder="hname"><BR>
+    Category (optional):<BR>
+    <input type="text" name="categoryAttributeValue" length=10 placeholder="category"><BR>
     <h4>Sort by:</h4>
     <input type="radio" name="orderBy" value="hid" checked> hid <BR>
     <input type="radio" name="orderBy" value="average price"> price <BR>
-    <input type="radio" name="orderBy" value="average fbscore"> fbscore <BR>
-    <input type="radio" name="orderBy" value="average fbscore of the trusted user feedbacks"> fbscore of trusted user feedbacks <BR>
+    <input type="radio" name="orderBy" value="average fbscore"> average fbscore <BR>
+    <input type="radio" name="orderBy" value="average fbscore of the trusted user feedbacks"> average fbscore of trusted user feedbacks <BR>
     <BR>
     <input type="submit" value="<%=submitButtonLabelText%>">
 </form>
