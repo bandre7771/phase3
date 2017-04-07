@@ -37,8 +37,10 @@ if(searchHidAttribute == null ||  searchNameAttribute == null || searchCategoryA
 {
     Connector connector = new Connector();
     TH th = new TH();
+
+    out.println(th.getTHForLogin((String)session.getAttribute("currentUser"), connector.stmt));
     %>
-        <%=th.getTHForLogin((String)session.getAttribute("currentUser"), connector.stmt)%>
+
 Please enter TH information Below:
     <form name="th_update" method=get onsubmit="return check_all_fields(this)" action="updateTH.jsp">
         <input type=hidden name="searchHidAttribute" value="hid">
@@ -67,9 +69,8 @@ Please enter TH information Below:
         <br><br>
         <input type=submit>
     </form>
-    <BR><BR>
-    <BR><a href="updateTH.jsp"> Reset </a></p>
-    <BR><a href="th.jsp"> TH Menu </a></p>
+    <BR><a href="updateTH.jsp"> Clear All Fields</a><BR>
+    <BR><a href="th.jsp"> TH Menu </a>
     <%
 
 } else {
@@ -100,7 +101,7 @@ Please enter TH information Below:
         }
         connector.closeConnection();
     %>
-    <BR><BR><a href="updateTH.jsp"> Update Another TH </a></p>
+    <BR><BR><a href="updateTH.jsp"> Update Another TH </a>
     <%
         }  // We are ending the braces for else here
     %>

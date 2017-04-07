@@ -5,6 +5,18 @@
 <head>
     <title>Browse TH</title>
     <h1 align="center">Browse TH</h1>
+    <script>
+//        function myFunction() {
+////            var x = document.getElementById("myCheck").checked;
+//            function check_all_fields(form_obj){
+//                form_obj. = form_obj.getElementById("t_id").checked;
+//                            var x = document.getElementById("myCheck").checked;
+//
+//                return true;
+//            }
+////            document.getElementById("demo").innerHTML = x;
+//        }
+    </script>
 </head>
 <body>
 <a href="browseTH.jsp"> New Search </a><BR>
@@ -76,7 +88,7 @@
         Connector connector = new Connector();
         Application app = new Application();
 %>
-<p>(Note: Search fields act as ANDs to use OR functionality complete the search)</p>
+<p>(Note: Fields act as ANDs to use OR functionality complete the search)</p>
 <form id="searchBy"  method=get action="browseTH.jsp">
     <h4>Search:</h4>
     <input type="hidden" name="whereQueryAttributeValue" value="<%=whereQueryAttributeValue%>">
@@ -85,47 +97,49 @@
     <input type="text" name="minPriceAttributeValue" length=10 placeholder="Min">
     <input type="text" name="maxPriceAttributeValue" length=10 placeholder="And Max"><BR>
     Address:<BR>
-    <input type="text" name="addressAttributeValue" length=10 placeholder="And address"><BR>
+    <input type="text" name="addressAttributeValue" length=10 placeholder="And Address"><BR>
     Name:<BR>
-    <input type="text" name="nameAttributeValue" length=10 placeholder="And hname"><BR>
+    <input type="text" name="nameAttributeValue" length=10 placeholder="And Name"><BR>
     Category:<BR>
-    <input type="text" name="categoryAttributeValue" length=10 placeholder="And category"><BR>
+    <input type="text" name="categoryAttributeValue" length=10 placeholder="And Category"><BR>
     <h4>Sort by:</h4>
     <input type="radio" name="orderBy" value="hid" checked> hid <BR>
-    <input type="radio" name="orderBy" value="average price"> price <BR>
-    <input type="radio" name="orderBy" value="average fbscore"> fbscore <BR>
-    <input type="radio" name="orderBy" value="average fbscore of the trusted user feedbacks"> fbscore of trusted user feedbacks <BR>
+    <input type="radio" name="orderBy" value="average price"> average price <BR>
+    <input type="radio" name="orderBy" value="average fbscore"> average fbscore <BR>
+    <BR>
+    <input id="t_id" type="checkbox" name="trustedOnly"> Show Trusted Only <BR>
     <BR>
     <input type="submit" value="<%=submitButtonLabelText%>">
 </form>
     <%
 
+        boolean trustedOnly = false;
+        if (trustedOnlyAttribute != null) {
+            trustedOnly = trustedOnlyAttribute.equals("on");
+        }
         %>
         Current Search: <%= whereQueryAttributeValue.isEmpty() ? "All" : whereQueryAttributeValue%> <BR>
         Sorted By: <%=orderBy == null ? "hid" : orderBy %>
+        <%=trustedOnly ? "<BR>(Showing only TH listed by trusted users)<BR>" : "" %>
         <%
         if(orderBy != null)
         {
             if(orderBy.equals("average price"))
             {
-                out.println(app.browsingTH(whereQueryAttributeValue, true, false, false, connector.stmt));
+                out.println(app.browsingTH(whereQueryAttributeValue, true, false, trustedOnly, connector.stmt));
             }
             else if (orderBy.equals("average fbscore"))
             {
-                out.println(app.browsingTH(whereQueryAttributeValue, false, true, false, connector.stmt));
-            }
-            else if (orderBy.equals("average fbscore of the trusted user feedbacks"))
-            {
-                out.println(app.browsingTH(whereQueryAttributeValue, false, true, true, connector.stmt));
+                out.println(app.browsingTH(whereQueryAttributeValue, false, true, trustedOnly, connector.stmt));
             }
             else // orderBy.equals("hid")
             {
-                out.println(app.browsingTH(whereQueryAttributeValue, false, false, false, connector.stmt));
+                out.println(app.browsingTH(whereQueryAttributeValue, false, false, trustedOnly, connector.stmt));
             }
         }
         else
         {
-            out.println(app.browsingTH(whereQueryAttributeValue, false, false, false, connector.stmt));
+            out.println(app.browsingTH(whereQueryAttributeValue, false, false, trustedOnly, connector.stmt));
         }
     %>
 <BR><a href="th.jsp"> TH Menu </a>

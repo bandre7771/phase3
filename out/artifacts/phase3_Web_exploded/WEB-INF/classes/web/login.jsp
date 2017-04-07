@@ -9,7 +9,7 @@
     </h1>
     <%
         String currentUser = (String)session.getAttribute("currentUser");
-        if(currentUser == null){
+        if(currentUser == null) {
             session.setAttribute("currentUser", "".toString());
         }
 

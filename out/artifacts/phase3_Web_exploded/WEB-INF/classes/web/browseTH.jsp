@@ -1,95 +1,133 @@
 <%@ page language="java" import="cs5530.*" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <html>
 <head>
-    <%
-        //TODO: load user name
-    %>
-    <script LANGUAGE="javascript">
-
-        function check_all_fields(form_obj){
-            alert(form_obj.searchHidAttribute.value+"='"+form_obj.hidAttributeValue.value+"'\n"
-                + form_obj.searchNameAttribute.value+"='"+form_obj.nameAttributeValue.value+"'\n"
-                + form_obj.searchCategoryAttribute.value+"='"+form_obj.categoryAttributeValue.value+"'\n"
-                + form_obj.searchAddressAttribute.value+"='"+form_obj.addressAttributeValue.value+"'\n"
-                + form_obj.searchYearAttribute.value+"='"+form_obj.yearAttributeValue.value+"'\n"
-                + form_obj.searchPictureAttribute.value+"='"+form_obj.pictureAttributeValue.value+"'\n"
-                + form_obj.searchUrlAttribute.value+"='"+form_obj.urlAttributeValue.value+"'\n");
-            if( form_obj.nameAttributeValue.value == "" || form_obj.categoryAttributeValue.value == "" || form_obj.addressAttributeValue.value == "" || form_obj.yearAttributeValue.value == "" || form_obj.pictureAttributeValue.value == "" || form_obj.urlAttributeValue.value == "") {
-                alert("All search fields should be nonempty");
-                return false;
-            } else {
-                return true;
-            }
-        }
-    </script>
     <title>Browse TH</title>
     <h1 align="center">Browse TH</h1>
 </head>
 <body>
+<a href="browseTH.jsp"> New Search </a><BR>
     <%
-//searchByTHMenu("#","","#","#", "#", con);
-
-String searchHidAttribute = request.getParameter("searchHidAttribute");
-String searchNameAttribute = request.getParameter("searchNameAttribute");
-String searchCategoryAttribute = request.getParameter("searchCategoryAttribute");
-String searchAddressAttribute = request.getParameter("searchAddressAttribute");
-String searchPhoneAttribute = request.getParameter("searchPhoneAttribute");
-String searchYearAttribute = request.getParameter("searchYearAttribute");
-String searchPictureAttribute = request.getParameter("searchPictureAttribute");
-String searchUrlAttribute = request.getParameter("searchUrlAttribute");
-if( searchHidAttribute == null || searchNameAttribute == null || searchCategoryAttribute == null || searchAddressAttribute == null || searchPhoneAttribute == null || searchYearAttribute == null || searchPictureAttribute == null || searchUrlAttribute == null)
-{
-    Connector connector = new Connector();
-    TH th = new TH();
-    %>
-        <%=th.getTHForLogin(session.getAttribute("currentUser"), connector.stmt)%>
-Please enter TH information Below:
-    <form name="th_browse" method=get onsubmit="return check_all_fields(this)" action="browseTH.jsp">
-        <input type=hidden name="searchHidAttribute" value="hid">
-        <input type=text name="hidAttributeValue" length=10 placeholder="Hid">
-        <br>
-        <input type=hidden name="searchNameAttribute" value="hname">
-        <input type=text name="nameAttributeValue" length=10 placeholder="Name">
-        <br>
-        <input type=hidden name="searchCategoryAttribute" value="category">
-        <input type=text name="categoryAttributeValue" length=10 placeholder="Category">
-        <br>
-        <input type=hidden name="searchAddressAttribute" value="address">
-        <input type=text name="addressAttributeValue" length=10 placeholder="Address">
-        <br>
-        <input type=hidden name="searchPhoneAttribute" value="phone_number">
-        <input type=text name="phoneAttributeValue" length=10 placeholder="Phone Number">
-        <br>
-        <input type=hidden name="searchYearAttribute" value="year_built">
-        <input type=text name="yearAttributeValue" length=10 placeholder="Year Built">
-        <br>
-        <input type=hidden name="searchPictureAttribute" value="picture">
-        <input type=text name="pictureAttributeValue" length=10 placeholder="image (url)">
-        <br>
-        <input type=hidden name="searchUrlAttribute" value="url">
-        <input type=text name="urlAttributeValue" length=10 placeholder="URL">
-        <br><br>
-        <input type=submit>
-    </form>
-    <BR><BR>
-    <BR><a href="browseTH.jsp"> Reset </a></p>
-    <%
-
-} else {
-        String hidAttributeValue = request.getParameter("hidAttributeValue");
+        String minPriceAttributeValue = request.getParameter("minPriceAttributeValue");
+        String maxPriceAttributeValue = request.getParameter("maxPriceAttributeValue");
+        String addressAttributeValue = request.getParameter("addressAttributeValue");
         String nameAttributeValue = request.getParameter("nameAttributeValue");
         String categoryAttributeValue = request.getParameter("categoryAttributeValue");
-        String addressAttributeValue = request.getParameter("addressAttributeValue");
-        String phoneAttributeValue = request.getParameter("phoneAttributeValue");
-        String yearAttributeValue = request.getParameter("yearAttributeValue");
-        String pictureAttributeValue = request.getParameter("pictureAttributeValue");
-        String urlAttributeValue = request.getParameter("urlAttributeValue");
+
+        String submitButtonLabelText = "Complete Search / Sort By";
+
+        String orderBy = request.getParameter("orderBy");
+
+        String trustedOnlyAttribute = request.getParameter("trustedOnly");
+
+        String whereQueryAttributeValue = request.getParameter("whereQueryAttributeValue");
+        if(whereQueryAttributeValue == null)
+        {
+            whereQueryAttributeValue = "";
+        }
+        else
+        {
+            if(!whereQueryAttributeValue.isEmpty())
+            {
+                if((!minPriceAttributeValue.isEmpty() && !maxPriceAttributeValue.isEmpty()) || !addressAttributeValue.isEmpty() || !nameAttributeValue.isEmpty() || !categoryAttributeValue.isEmpty())
+                {
+                    whereQueryAttributeValue += "OR ";
+                }
+            }
+            boolean andRequired = false;
+            if(!minPriceAttributeValue.isEmpty() && !maxPriceAttributeValue.isEmpty()) {
+                if(andRequired)
+                {
+                    whereQueryAttributeValue += "AND ";
+                }
+                whereQueryAttributeValue += "(price >= "+minPriceAttributeValue+" AND price <= "+maxPriceAttributeValue+") ";
+                andRequired = true;
+            }
+            if(!addressAttributeValue.isEmpty()) {
+                if(andRequired)
+                {
+                    whereQueryAttributeValue += "AND ";
+                }
+                whereQueryAttributeValue += "address LIKE '%"+addressAttributeValue+"%' ";
+                andRequired = true;
+            }
+            if(!nameAttributeValue.isEmpty()) {
+                if(andRequired)
+                {
+                    whereQueryAttributeValue += "AND ";
+                }
+                whereQueryAttributeValue += "hname LIKE '%"+nameAttributeValue+"%' ";
+                andRequired = true;
+            }
+            if(!categoryAttributeValue.isEmpty()) {
+                if(andRequired)
+                {
+                    whereQueryAttributeValue += "AND ";
+                }
+                whereQueryAttributeValue += "category LIKE '%"+categoryAttributeValue+"%' ";
+                andRequired = true;
+            }
+            if(!whereQueryAttributeValue.isEmpty())
+            {
+                submitButtonLabelText = "Sort / Add To Search (Using OR)";
+            }
+        }
         Connector connector = new Connector();
-        TH th = new TH();
-        connector.closeConnection();
-    %>
-    <BR><BR><a href="browseTH.jsp"> Browse Another TH </a></p>
+        Application app = new Application();
+%>
+<p>(Note: Search fields act as ANDs to use OR functionality complete the search)</p>
+<form id="searchBy"  method=get action="browseTH.jsp">
+    <h4>Search:</h4>
+    <input type="hidden" name="whereQueryAttributeValue" value="<%=whereQueryAttributeValue%>">
+    <input type="hidden" name="orActiveAttributeValue" value="orActive">
+    Price:<BR>
+    <input type="text" name="minPriceAttributeValue" length=10 placeholder="Min">
+    <input type="text" name="maxPriceAttributeValue" length=10 placeholder="And Max"><BR>
+    Address:<BR>
+    <input type="text" name="addressAttributeValue" length=10 placeholder="And address"><BR>
+    Name:<BR>
+    <input type="text" name="nameAttributeValue" length=10 placeholder="And hname"><BR>
+    Category:<BR>
+    <input type="text" name="categoryAttributeValue" length=10 placeholder="And category"><BR>
+    <h4>Sort by:</h4>
+    <input type="radio" name="orderBy" value="hid" checked> hid <BR>
+    <input type="radio" name="orderBy" value="average price"> price <BR>
+    <input type="radio" name="orderBy" value="average fbscore"> fbscore <BR>
+    <input type="radio" name="orderBy" value="average fbscore of the trusted user feedbacks"> fbscore of trusted user feedbacks <BR>
+    <BR>
+    <input type="submit" value="<%=submitButtonLabelText%>">
+</form>
     <%
-        }  // We are ending the braces for else here
+
+        %>
+        Current Search: <%= whereQueryAttributeValue.isEmpty() ? "All" : whereQueryAttributeValue%> <BR>
+        Sorted By: <%=orderBy == null ? "hid" : orderBy %>
+        <%
+        if(orderBy != null)
+        {
+            if(orderBy.equals("average price"))
+            {
+                out.println(app.browsingTH(whereQueryAttributeValue, true, false, false, connector.stmt));
+            }
+            else if (orderBy.equals("average fbscore"))
+            {
+                out.println(app.browsingTH(whereQueryAttributeValue, false, true, false, connector.stmt));
+            }
+            else if (orderBy.equals("average fbscore of the trusted user feedbacks"))
+            {
+                out.println(app.browsingTH(whereQueryAttributeValue, false, true, true, connector.stmt));
+            }
+            else // orderBy.equals("hid")
+            {
+                out.println(app.browsingTH(whereQueryAttributeValue, false, false, false, connector.stmt));
+            }
+        }
+        else
+        {
+            out.println(app.browsingTH(whereQueryAttributeValue, false, false, false, connector.stmt));
+        }
     %>
+<BR><a href="th.jsp"> TH Menu </a>
+
 </body>
