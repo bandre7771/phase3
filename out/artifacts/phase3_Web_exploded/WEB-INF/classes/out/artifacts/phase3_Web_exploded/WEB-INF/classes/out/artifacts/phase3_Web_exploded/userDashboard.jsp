@@ -22,7 +22,7 @@
 <a href="make_reservation.jsp">Make a reservation</a><br>
 <a href="record_visit.jsp">Record a Visit</a><br>
 <a href="favorite_th.jsp">Favorite a TH you have visited</a><br>
-<a href="feedback.jsp">Leave Feedback on a Visit</a><br>
+<a href="login.jsp">Leave Feedback on a Visit</a><br>
 <a href="th.jsp">Rate user Feedback</a><br>
 
 

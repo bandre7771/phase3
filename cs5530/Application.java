@@ -21,7 +21,10 @@ import java.util.*;
 public class Application {
 
 
-	private static String _currentUser;
+	public String _currentUser;
+
+	public List<List<String>> reservations = new ArrayList<>();
+	public List<List<String>> visits = new ArrayList<>();
 
 	public Application() {
 
@@ -31,7 +34,7 @@ public class Application {
 		_currentUser = currentUser;
 	}
 	///Display Menu
-	public static void displayLoginMenu()
+	public void displayLoginMenu()
 	{
 		System.out.println("       Welcome to Uotel     ");
 		System.out.println("1. Login:");
@@ -40,7 +43,7 @@ public class Application {
 		System.out.println( "please enter your choice:");
     }
 
-	public static void displayUserMenu()
+	public void displayUserMenu()
 	{
 		System.out.println("       Welcome: "+ _currentUser+"     ");
 		System.out.println("1. reserve:");
@@ -134,7 +137,7 @@ public class Application {
 //		System.out.println("please enter the TH id (hid)");
 //	}
 
-	public static void displayUsefulnessRatingsMenu(Statement stmt)
+	public void displayUsefulnessRatingsMenu(Statement stmt)
 	{
 		System.out.println("       Usefulness Recording     ");
 		Feedback feedback = new Feedback();
@@ -1413,7 +1416,7 @@ public class Application {
 						pids.clear();
 						break;
 					case 3:
-						System.out.println(getTHAvailableTimes(in, con));
+						//System.out.println(getTHAvailableTimes(in, con));
 						System.out.println("please press enter to continue:");
 						in.readLine();
 						break;
@@ -1555,108 +1558,107 @@ public class Application {
 	}
 
 	/*****This is where Ben's code starts*****/
-	private void recordVisit(BufferedReader in, Connector con) {
+	public void recordVisit(List<List<String>> chosenPeriods, Connector con) {
 		String thid = "";
 		String pid = "";
 		String fromDate = "";
 		String toDate = "";
-		List<List<String>> visits = new ArrayList<List<String>>();
-		List<String> chosenPeriod = new ArrayList<String>();
-		boolean readyForCheckout = false;
+		List<String> chosenPeriod = new ArrayList<>();
+//		boolean readyForCheckout = false;
 		try {
-			while(!(readyForCheckout)) {
-				List<String> visit = new ArrayList<String>();
-				System.out.println(getUsersReservations(in, con));
-				System.out.println("please choose the TH you want to record as a stay (hid):");
-				while ((thid = in.readLine()) == null && thid.length() == 0) ;
-				visit.add(thid);
-
-				System.out.println("please choose the time period of your stay (pid):");
-				while ((pid = in.readLine()) == null && pid.length() == 0) ;
-				//visit.add(pid);
-				Period period = new Period();
-				chosenPeriod = period.getPeriod(pid, con.stmt).get(0);
-				System.out.println("Your Chosen Period for TH: " + thid);
-				System.out.println("\t\t" + chosenPeriod.get(0) + "\t\t" + chosenPeriod.get(1) + "\t\t" + chosenPeriod.get(2));
-				//getTHAndPeriod(thid, pid, in, con);
-
-				System.out.println("please choose a start date for your stay (date format: mm/dd/yyyy ex: 01/23/1994):");
-				while ((fromDate = in.readLine()) == null && fromDate.length() == 0) ;
-				visit.add(fromDate);
-
-				System.out.println("please choose an end date for your stay (date format: mm/dd/yyyy ex: 01/23/1994):");
-				while ((toDate = in.readLine()) == null && toDate.length() == 0) ;
-				visit.add(toDate);
-
-				visits.add(visit);
-				visits.add(chosenPeriod);
-
-				String makeAnother;
-				System.out.println("Would you like to make another visit? (Please answer yes or no)");
-				while(true) {
-					String choice;
-					int c;
-					System.out.println("\nWould you like record another visit? \n 1: Yes \n 2: No");
-					while ((choice = in.readLine()) == null && choice.length() == 0) ;
-					try {
-						c = Integer.parseInt(choice);
-					} catch (Exception e) {
-						continue;
-					}
-					if (c < 1 | c > 5) {
-						continue;
-					}
-					// user chooses to make another visit
-					if (c == 1) {
-						break;
-					}
-					// user does not want to make another visit
-					else if (c == 2) {
-						readyForCheckout = true;
-						break;
-					}
-				}
-			}
-
-			// Display all visits and ask if they are done recording visits
-			System.out.println("\nList of made visits:\nthid\t\tpid\t\tfrom_date\t\tto_date");
-			for(int i = 0; i < visits.size(); i+=2){
-				String reservation = "";
-				reservation += visits.get(i).get(0) + "\t\t";
-				reservation += visits.get(i).get(1) + "\t\t";
-				reservation += visits.get(i).get(2);
-				System.out.println(reservation);
-			}
-			while(true) {
-				String choice;
-				int c;
-				System.out.println("\nPlease double check your recorded stays \n 1: Finish \n 2: Quit");
-				while ((choice = in.readLine()) == null && choice.length() == 0);
-				try {
-					c = Integer.parseInt(choice);
-				} catch (Exception e) {
-					continue;
-				}
-				if (c < 1 | c > 5) {
-					continue;
-				}
-				// User makes a reservation
-				if (c == 1) {
-					break;
-				}
-				// Leave feedback on stay
-				else if (c == 2) {
-					return;
-				}
-			}
-
-
-			for(int i = 0; i < visits.size(); i+=2){
+//			while(!(readyForCheckout)) {
+//				List<String> visit = new ArrayList<String>();
+//				System.out.println(getUsersReservations(in, con));
+//				System.out.println("please choose the TH you want to record as a stay (hid):");
+//				while ((thid = in.readLine()) == null && thid.length() == 0) ;
+//				visit.add(thid);
+//
+//				System.out.println("please choose the time period of your stay (pid):");
+//				while ((pid = in.readLine()) == null && pid.length() == 0) ;
+//				//visit.add(pid);
+//				Period period = new Period();
+//				chosenPeriod = period.getPeriod(pid, con.stmt).get(0);
+//				System.out.println("Your Chosen Period for TH: " + thid);
+//				System.out.println("\t\t" + chosenPeriod.get(0) + "\t\t" + chosenPeriod.get(1) + "\t\t" + chosenPeriod.get(2));
+//				//getTHAndPeriod(thid, pid, in, con);
+//
+//				System.out.println("please choose a start date for your stay (date format: mm/dd/yyyy ex: 01/23/1994):");
+//				while ((fromDate = in.readLine()) == null && fromDate.length() == 0) ;
+//				visit.add(fromDate);
+//
+//				System.out.println("please choose an end date for your stay (date format: mm/dd/yyyy ex: 01/23/1994):");
+//				while ((toDate = in.readLine()) == null && toDate.length() == 0) ;
+//				visit.add(toDate);
+//
+//				visits.add(visit);
+//				visits.add(chosenPeriod);
+//
+//				String makeAnother;
+//				System.out.println("Would you like to make another visit? (Please answer yes or no)");
+//				while(true) {
+//					String choice;
+//					int c;
+//					System.out.println("\nWould you like record another visit? \n 1: Yes \n 2: No");
+//					while ((choice = in.readLine()) == null && choice.length() == 0) ;
+//					try {
+//						c = Integer.parseInt(choice);
+//					} catch (Exception e) {
+//						continue;
+//					}
+//					if (c < 1 | c > 5) {
+//						continue;
+//					}
+//					// user chooses to make another visit
+//					if (c == 1) {
+//						break;
+//					}
+//					// user does not want to make another visit
+//					else if (c == 2) {
+//						readyForCheckout = true;
+//						break;
+//					}
+//				}
+//			}
+//
+//			// Display all visits and ask if they are done recording visits
+//			System.out.println("\nList of made visits:\nthid\t\tpid\t\tfrom_date\t\tto_date");
+//			for(int i = 0; i < visits.size(); i+=2){
+//				String reservation = "";
+//				reservation += visits.get(i).get(0) + "\t\t";
+//				reservation += visits.get(i).get(1) + "\t\t";
+//				reservation += visits.get(i).get(2);
+//				System.out.println(reservation);
+//			}
+//			while(true) {
+//				String choice;
+//				int c;
+//				System.out.println("\nPlease double check your recorded stays \n 1: Finish \n 2: Quit");
+//				while ((choice = in.readLine()) == null && choice.length() == 0);
+//				try {
+//					c = Integer.parseInt(choice);
+//				} catch (Exception e) {
+//					continue;
+//				}
+//				if (c < 1 | c > 5) {
+//					continue;
+//				}
+//				// User makes a reservation
+//				if (c == 1) {
+//					break;
+//				}
+//				// Leave feedback on stay
+//				else if (c == 2) {
+//					return;
+//				}
+//			}
+//
+//
+			for(int i = 0; i < visits.size(); i+=1){
 //				for(int j = 0; j < visits.get(i).size(); j++){
 				thid = visits.get(i).get(0);
-				chosenPeriod = visits.get(i+1);
-				fromDate = visits.get(i).get(1);
-				toDate = visits.get(i).get(2);
+				chosenPeriod = chosenPeriods.get(i);
+				fromDate = visits.get(i).get(2);
+				toDate = visits.get(i).get(3);
 				addStay(thid, chosenPeriod, fromDate, toDate, con.stmt);
 				//}
 			}
@@ -1673,36 +1675,35 @@ public class Application {
 	 * @param in
 	 * @param con
 	 */
-	private void suggestTH(List<List<String>> reservations, BufferedReader in, Connector con) {
+	public String suggestTH(List<List<String>> reservations, Connector con) {
 		Visit visit = new Visit();
 		Set<String> ths = new HashSet<String>();
-		for(int j = 0; j < reservations.size(); j+=2) {
+		for(int j = 0; j < reservations.size(); j+=1) {
 			ths.add(reservations.get(j).get(0));
 		}
-
+		String output = "";
 		for(String th: ths){
-			System.out.println("\nBased on your reservation for "+ th + ",here are some other THs we would suggest");
-			System.out.println("|\tHid\t\t|\tHname\t|\tCategor\t|\tAddress\t|\tYrBlt\t|\tPhone #\t|\tUrl\t\t|\t#of Vts");
+			output += "<caption> Based on your reservation for " + th + ", here are some other THs we would suggest</caption>";
+			output += "<table>";
+			//System.out.println("\nBased on your reservation for "+ th + ",here are some other THs we would suggest");
+			output += "<tr> <th> Hid </th> <th> Hname </th> <th> Category </th> <th> Address </th> <th> Year Built </th> <th> Phone Number </th> <th> Url </th> <th> Number of Visits </th>";
 			List<List<String>> suggestedTHs = visit.getSuggestedTHs(th, con.stmt);
 			for(List<String> suggestedTH : suggestedTHs) {
 				if(suggestedTH.get(0).equals(th)){
 					continue;
 				}
+				output += "<tr>";
 				for(int i = 0; i < suggestedTH.size(); i++) {
 					String attribute = suggestedTH.get(i);
-					if(attribute.length() < 4){
-						attribute += "\t";
-					}
-					if(suggestedTH.get(i).length() > 7)
-						System.out.print("|\t" + attribute.substring(0, 7) + "\t");
-					else {
-						System.out.print("|\t" + attribute + "\t");
-					}
+					output += "<td>" + attribute + "</td>";
 				}
-				System.out.println();
+				output += "</tr>";
+
 			}
+			output += "</table> <BR>";
+
 		}
-//		List<List<String>> suggestedTH = visit.getSuggestedTHs();
+		return output;
 	}
 
 	private void addStay(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
@@ -1820,7 +1821,7 @@ public class Application {
 		}
 	}
 
-	private String getVisitedTHS(Statement stmt) {
+	public String getVisitedTHS(Statement stmt) {
 		String sql="select DISTINCT(th.hid), category, hname\n" +
 				"from Visit v, TH th\n" +
 				"where v.hid = th.hid\n" +
@@ -1907,21 +1908,11 @@ public class Application {
 		}
 	}
 
-	public void leaveFeedback(BufferedReader in, Connector con) {
-		String th;
-		String score;
-		String shortText;
-		int thid;
-		try {
-			System.out.println(getVisitedTHS(con.stmt));
-			System.out.println("please choose a TH to leave feedback on");
-			while ((th = in.readLine()) == null && th.length() == 0) ;
-			System.out.println("please give a score of your stay (1-10)");
-			while ((score = in.readLine()) == null && score.length() == 0) ;
-			System.out.println("please write a short summary of your stay (optional)");
-			while ((shortText = in.readLine()) == null);
+	public void leaveFeedback(String th, String score, String shortText, Connector con) {
 
-			thid = Integer.parseInt(th);
+		try {
+
+			int thid = Integer.parseInt(th);
 
 
 
@@ -1944,116 +1935,116 @@ public class Application {
 		}
 	}
 
-	public boolean declareTHAsFavorite(String thid, BufferedReader in, Connector con){
+	public boolean declareTHAsFavorite(String thid, Connector con){
 		Favorites favorite = new Favorites();
 		favorite.addFavorite(Integer.parseInt(thid), _currentUser, con.stmt);
 		return true;
 	}
 
-	public List<List<String>> makeReservation(BufferedReader in, Connector con){
+	public List<List<String>> makeReservation(List<List<String>> chosenPeriods,Connector con){
 		String thid = "";
 		String pid = "";
 		String fromDate = "";
 		String toDate = "";
-		List<List<String>> reservations = new ArrayList<List<String>>();
+		//List<List<String>> reservations = new ArrayList<List<String>>();
 		List<String> chosenPeriod = new ArrayList<String>();
 		boolean readyForCheckout = false;
 		boolean makeAnotherReservation = false;
 		try {
-			while(!(readyForCheckout)) {
-				List<String> reservation = new ArrayList<String>();
-				System.out.println(getTHAvailableTimes(in, con));
-				System.out.println("please choose the TH you want to Reserve (hid):");
-				while ((thid = in.readLine()) == null && thid.length() == 0) ;
-				reservation.add(thid);
+//			while(!(readyForCheckout)) {
+//				List<String> reservation = new ArrayList<String>();
+//				System.out.println(getTHAvailableTimes(in, con));
+//				System.out.println("please choose the TH you want to Reserve (hid):");
+//				while ((thid = in.readLine()) == null && thid.length() == 0) ;
+//				reservation.add(thid);
+//
+//				System.out.println("please choose a period of time you would like to reserve (pid):");
+//				while ((pid = in.readLine()) == null && pid.length() == 0) ;
+//				//reservation.add(pid);
+//				Period period = new Period();
+//				chosenPeriod = period.getPeriod(pid, con.stmt).get(0);
+//				System.out.println("Your Chosen Period for TH: " + thid);
+//				System.out.println("\t\t" + chosenPeriod.get(0) + "\t\t" + chosenPeriod.get(1) + "\t\t" + chosenPeriod.get(2));
+//				//getTHAndPeriod(thid, pid, in, con);
+//
+//				System.out.println("please choose a start date for your reservation (date format: mm/dd/yyyy ex: 01/23/1994):");
+//				while ((fromDate = in.readLine()) == null && fromDate.length() == 0) ;
+//				reservation.add(fromDate);
+//
+//				System.out.println("please choose an end date for your reservation (date format: mm/dd/yyyy ex: 01/23/1994):");
+//				while ((toDate = in.readLine()) == null && toDate.length() == 0) ;
+//				reservation.add(toDate);
+//
+//				reservations.add(reservation);
+//				reservations.add(chosenPeriod);
+//
+//				String makeAnother;
+//				System.out.println("Would you like to make another reservation? (Please answer yes or no)");
+//				while(true) {
+//					String choice;
+//					int c;
+//					System.out.println("\nWould you like to make another reservation? \n 1: yes \n 2: no");
+//					while ((choice = in.readLine()) == null && choice.length() == 0) ;
+//					try {
+//						c = Integer.parseInt(choice);
+//					} catch (Exception e) {
+//						continue;
+//					}
+//					if (c < 1 | c > 5) {
+//						continue;
+//					}
+//					// user chooses to make another reservation
+//					if (c == 1) {
+//						break;
+//					}
+//					// user does not want to make another reservation
+//					else if (c == 2) {
+//						readyForCheckout = true;
+//						break;
+//					}
+//				}
 
-				System.out.println("please choose a period of time you would like to reserve (pid):");
-				while ((pid = in.readLine()) == null && pid.length() == 0) ;
-				//reservation.add(pid);
-				Period period = new Period();
-				chosenPeriod = period.getPeriod(pid, con.stmt).get(0);
-				System.out.println("Your Chosen Period for TH: " + thid);
-				System.out.println("\t\t" + chosenPeriod.get(0) + "\t\t" + chosenPeriod.get(1) + "\t\t" + chosenPeriod.get(2));
-				//getTHAndPeriod(thid, pid, in, con);
-
-				System.out.println("please choose a start date for your reservation (date format: mm/dd/yyyy ex: 01/23/1994):");
-				while ((fromDate = in.readLine()) == null && fromDate.length() == 0) ;
-				reservation.add(fromDate);
-
-				System.out.println("please choose an end date for your reservation (date format: mm/dd/yyyy ex: 01/23/1994):");
-				while ((toDate = in.readLine()) == null && toDate.length() == 0) ;
-				reservation.add(toDate);
-
-				reservations.add(reservation);
-				reservations.add(chosenPeriod);
-
-				String makeAnother;
-				System.out.println("Would you like to make another reservation? (Please answer yes or no)");
-				while(true) {
-					String choice;
-					int c;
-					System.out.println("\nWould you like to make another reservation? \n 1: yes \n 2: no");
-					while ((choice = in.readLine()) == null && choice.length() == 0) ;
-					try {
-						c = Integer.parseInt(choice);
-					} catch (Exception e) {
-						continue;
-					}
-					if (c < 1 | c > 5) {
-						continue;
-					}
-					// user chooses to make another reservation
-					if (c == 1) {
-						break;
-					}
-					// user does not want to make another reservation
-					else if (c == 2) {
-						readyForCheckout = true;
-						break;
-					}
-				}
-
-			}
+//			}
 
 			// Display all reservations and ask if they would like to checkout
-			System.out.println("\nList of made reservations:\nthid\t\tpid\t\tfrom_date\t\tto_date");
-			for(int i = 0; i < reservations.size(); i+=2){
-				String reservation = "";
-				reservation += reservations.get(i).get(0) + "\t\t";
-				reservation += reservations.get(i).get(1) + "\t\t";
-				reservation += reservations.get(i).get(2);
-				System.out.println(reservation);
-			}
-			while(true) {
-				String choice;
-				int c;
-				System.out.println("\nWould you like to Checkout? \n 1: Checkout \n 2: quit");
-				while ((choice = in.readLine()) == null && choice.length() == 0) ;
-				try {
-					c = Integer.parseInt(choice);
-				} catch (Exception e) {
-					continue;
-				}
-				if (c < 1 | c > 5) {
-					continue;
-				}
-				// User makes a reservation
-				if (c == 1) {
-					break;
-				}
-				// Leave feedback on stay
-				else if (c == 2) {
-					return new ArrayList<List<String>>();
-				}
-			}
+//			System.out.println("\nList of made reservations:\nthid\t\tpid\t\tfrom_date\t\tto_date");
+//			for(int i = 0; i < reservations.size(); i+=2){
+//				String reservation = "";
+//				reservation += reservations.get(i).get(0) + "\t\t";
+//				reservation += reservations.get(i).get(1) + "\t\t";
+//				reservation += reservations.get(i).get(2);
+//				System.out.println(reservation);
+//			}
+//			while(true) {
+//				String choice;
+//				int c;
+//				System.out.println("\nWould you like to Checkout? \n 1: Checkout \n 2: quit");
+//				while ((choice = in.readLine()) == null && choice.length() == 0) ;
+//				try {
+//					c = Integer.parseInt(choice);
+//				} catch (Exception e) {
+//					continue;
+//				}
+//				if (c < 1 | c > 5) {
+//					continue;
+//				}
+//				// User makes a reservation
+//				if (c == 1) {
+//					break;
+//				}
+//				// Leave feedback on stay
+//				else if (c == 2) {
+//					return new ArrayList<List<String>>();
+//				}
+//			}
 
 
-			for(int i = 0; i < reservations.size(); i+=2){
+			for(int i = 0; i < reservations.size(); i+=1){
 //				for(int j = 0; j < reservations.get(i).size(); j++){
 				thid = reservations.get(i).get(0);
-				chosenPeriod = reservations.get(i+1);
-				fromDate = reservations.get(i).get(1);
-				toDate = reservations.get(i).get(2);
+				chosenPeriod = chosenPeriods.get(i);
+				fromDate = reservations.get(i).get(2);
+				toDate = reservations.get(i).get(3);
 				addReservation(thid, chosenPeriod, fromDate, toDate, con.stmt);
 				//}
 			}
@@ -2211,7 +2202,7 @@ public class Application {
 		return givenDate;
 	}
 
-	public String getTHAvailableTimes(BufferedReader in, Connector con){
+	public String getTHAvailableTimes(Connector con){
 		String sql="select a.hid, p.pid, p.from_date, p.to_date\n" +
 				"from Available a, Period p\n" +
 				"where a.pid = p.pid\n" +
@@ -2247,7 +2238,7 @@ public class Application {
 		return output;
 	}
 
-	public String getUsersReservations(BufferedReader in, Connector con){
+	public String getUsersReservations(Connector con){
 		String sql="select r.login, r.hid, p.pid, p.from_date, p.to_date\n" +
 				"from Reserve r, Period p\n" +
 				"where r.pid = p.pid\n" +
