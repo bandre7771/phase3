@@ -12,6 +12,16 @@
         if(currentUser == null) {
             session.setAttribute("currentUser", "".toString());
         }
+
+        List<List<String>> reservations = (List<List<String>>)session.getAttribute("reservations");
+        if(reservations == null) {
+            session.setAttribute("reservations", new ArrayList<List<String>>());
+        }
+
+        List<List<String>> stays = (List<List<String>>)session.getAttribute("stays");
+        if(stays == null) {
+            session.setAttribute("visits", new ArrayList<List<String>>());
+        }
     %>
     <script LANGUAGE="javascript">
 
@@ -60,9 +70,9 @@ SignUp for UOtel
 <%
 
 }
-else if(currentUser != ""){
-
-}
+//else if(currentUser != ""){
+//
+//}
 else {
 
 

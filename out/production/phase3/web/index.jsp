@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: John
   Date: 4/3/17
@@ -11,9 +12,15 @@
     <%
         String currentUser = (String)session.getAttribute("currentUser");
         if(currentUser == null) {
+<<<<<<< HEAD
+            session.setAttribute("currentUser", "jpy".toString());
+=======
             session.setAttribute("currentUser", "bandre7771".toString());
             currentUser = "bandre7771";
+>>>>>>> f82a1a38ad4ffca5c47d4a753ba93fa39dd5751d
         }
+
+
     %>
     <title>JSP Example</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -23,6 +30,5 @@
 <a href="orders.sql">orders.sql</a><br>
 <a href="orders.jsp">orders.jsp</a><br>
 <a href="login.jsp">login</a><br>
-<a href="th.jsp">TH</a><br>
 </body>
 </html>
