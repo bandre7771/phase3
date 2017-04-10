@@ -111,6 +111,41 @@ public class Users {
 		return output;
 	}
 
+	public boolean userExists(String login, String password, Statement stmt)
+	{
+		String sql="select * from Users where login = '"+login+"' and password = '"+ password+"'";
+		String output = "";
+		ResultSet rs = null;
+		try {
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				output += rs.getString("login")
+						+rs.getString("name")
+						+rs.getString("password")
+						+rs.getString("address")
+						+rs.getString("phone_number")
+						+rs.getString("user_type");
+			}
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot close resultset");
+			}
+		}
+		return !output.isEmpty();
+	}
+
 	public String getUser(String login, String password, Statement stmt)
 	{
 		String sql="select * from Users where login = '"+login+"' and password = '"+ password+"'";

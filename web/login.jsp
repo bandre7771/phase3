@@ -76,9 +76,6 @@ SignUp for UOtel
 <%
 
 }
-//else if(currentUser != ""){
-//
-//}
 else {
 
 
@@ -86,7 +83,7 @@ else {
     passwordAttribute = request.getParameter("passwordValue");
     Application app = new Application();
     Users user = new Users();
-    if (user.getUser(usernameAttribute, passwordAttribute, connector.stmt) != "") {
+    if (user.userExists(usernameAttribute, passwordAttribute, connector.stmt)) {
         currentUser = usernameAttribute;
         session.setAttribute("currentUser", currentUser);
        %>

@@ -76,9 +76,6 @@ SignUp for UOtel
 <%
 
 }
-//else if(currentUser != ""){
-//
-//}
 else {
 
 
