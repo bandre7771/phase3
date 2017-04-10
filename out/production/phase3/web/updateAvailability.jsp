@@ -34,7 +34,8 @@ if(connector == null) {
     connector = new Connector();
     session.setAttribute("connector", connector);
 }
-if(searchHidAttribute == null || searchPidAttribute == null || searchStartDateAttribute == null || searchEndDateAttribute == null || searchCostAttribute == null) {
+if(searchHidAttribute == null || searchPidAttribute == null || searchStartDateAttribute == null || searchEndDateAttribute == null || searchCostAttribute == null)
+{
 %>
 Please enter Availability information Below:
     <form name="availability_Update" method=get onsubmit="return check_all_fields(this)" action="updateAvailability.jsp">
@@ -65,8 +66,9 @@ Please enter Availability information Below:
     <%
         Application app = new Application();
         out.println(app.getAllAvailableForLoginTH((String)session.getAttribute("currentUser"), connector.stmt));
-    } else {
-
+    }
+    else
+        {
         String hidAttributeValue = request.getParameter("hidAttributeValue");
         String pidAttributeValue = request.getParameter("pidAttributeValue");
         String startDateAttributeValue = request.getParameter("startDateAttributeValue");

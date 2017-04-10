@@ -120,21 +120,19 @@ public class Feedback {
 		return output;
 	}
 
-	public String getLoginFeedback(String fid, Statement stmt)
+	public boolean isThereOwnFeedback(String login, String fid, Statement stmt)
 	{
 		String sql="select DISTINCT login from Feedback where fid = "+fid;
 
-		String output="<table>";
-		output += "<tr> <th> login </th> </tr>";
+		String output="";
 		ResultSet rs=null;
 		try{
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+="<tr> <td>"+rs.getString("login")+"</tr> </td>";
+				output+=rs.getString("login");
 			}
 			rs.close();
-			output += "</table>";
 		}
 		catch(Exception e)
 		{
@@ -151,6 +149,6 @@ public class Feedback {
 				System.out.println("cannot close resultset");
 			}
 		}
-		return output;
+		return login.equals(output);
 	}
 }

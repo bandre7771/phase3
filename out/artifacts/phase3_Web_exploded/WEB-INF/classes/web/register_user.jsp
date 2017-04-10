@@ -47,8 +47,11 @@ Please choose a login name
     fullnameAttribute = request.getParameter("fullnameValue");
     addressAttribute = request.getParameter("addressValue");
     phonenumberAttribute = request.getParameter("phonenumberValue");
-
-    Connector connector = new Connector();
+    Connector connector = (Connector)session.getAttribute("connector");
+    if(connector == null) {
+        connector = new Connector();
+        session.setAttribute("connector", connector);
+    }
     Users user = new Users();
     user.addUser(usernameAttribute, fullnameAttribute, passwordAttribute, addressAttribute, phonenumberAttribute, connector.stmt);
 %>

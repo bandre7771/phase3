@@ -17,12 +17,17 @@
 </head>
 <body>
 <h2><%=(String)session.getAttribute("currentUser")%>'s Dashboard</h2>
-<ul>
+<ol>
     <li><a href="make_reservation.jsp">Make a reservation</a></li>
     <li><a href="th.jsp">TH Menu</a></li>
     <li><a href="record_visit.jsp">Record a Visit</a></li>
+    <li><a href="favorite_th.jsp">Favorite a TH</a></li>
     <li><a href="feedback.jsp">Leave Feedback on a Visit</a></li>
-    <li><a href="usefullness_ratings.jsp">Rate user Feedback</a></li>
-</ul>
+    <li><a href="usefulness_ratings.jsp">Rate user Feedback</a></li>
+    <li><a href="trust_recordings.jsp">Declare a Users Trust</a></li>
+    <li><a href="useful_feedbacks.jsp">Show Top Most Useful Feedback For a Given TH</a></li>
+    <li><a href="statistics.jsp">Statistics</a></li><BR>
+    <li><a href="login.jsp">Log out</a></li>
+</ol>
 
 </body>

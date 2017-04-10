@@ -622,13 +622,13 @@ public class Application {
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				output+="<tr>"+rs.getString("fid")+"</td>"
+				output+="<tr><td>"+rs.getString("fid")+"</td>"
 						+ "<td>"+rs.getString("hid")+"</td>"
 						+ "<td>"+rs.getString("login")+"</td>"
 						+ "<td>"+rs.getString("text")+"</td>"
 						+ "<td>"+rs.getString("score")+"</td>"
 						+ "<td>"+rs.getString("fbdate")+"</td>"
-						+ "<td>"+rs.getString("usefulness")+"</tr>";
+						+ "<td>"+rs.getString("usefulness")+"</td></tr>";
 			}
 			output += "</table>";
 			rs.close();
@@ -773,7 +773,7 @@ public class Application {
 				"                ORDER BY category, average_cost DESC) as b\n" +
 				"        WHERE b.category=a.category and b.average_cost >= a.average_cost) <= "+m;
 		String output="<table>";
-		output += "<tr> <th> category </th> <th> hid </th> <th> hname </th> <th> address </th> <th> login </th> <th> phone number </th> <th> year built </th> <th> url </th> <th> picture </th> <th> average cost </th>";
+		output += "<tr> <th> category </th> <th> hid </th> <th> hname </th> <th> address </th> <th> login </th> <th> phone number </th> <th> year built </th> <th> url </th> <th> picture </th> <th> average cost </th> </tr>";
 		ResultSet rs=null;
 		try{
 			rs=stmt.executeQuery(sql);
@@ -788,7 +788,7 @@ public class Application {
 						+ "<td>"+rs.getString("year_built")+"</td>"
 						+ "<td>"+rs.getString("url")+"</td>"
 						+ "<td>"+rs.getString("picture")+"</td>"
-						+ "<td>"+rs.getString("visit_count")+"</td></tr>";
+						+ "<td>"+rs.getString("average_cost")+"</td></tr>";
 			}
 			output += "</table>";
 			rs.close();

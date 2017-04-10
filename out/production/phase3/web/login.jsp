@@ -102,8 +102,6 @@ else {
 <jsp:forward page = "login.jsp" />
 <%
     }
-    connector.closeConnection();
-    connector.closeStatement();
 }
 %>
 

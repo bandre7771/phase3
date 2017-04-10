@@ -13,7 +13,8 @@
 <html>
 <head>
     <title>Make Reservation</title>
-    <h1>Enter Information for a Reservation</h1>
+    <h1 align="center">Make Reservation</h1>
+    <h3>Enter Information for a Reservation</h3>
 </head>
 <body>
 
@@ -46,8 +47,6 @@ Make a Reservation
         reservation.add(request.getParameter("fromdateInput"));
         reservation.add(request.getParameter("todateInput"));
 
-        Connector connector = new Connector();
-
         reservations.add(reservation);
         session.setAttribute("reservations", reservations);
 
@@ -66,9 +65,13 @@ Would you like to make another reservation?
     <input type=submit>
 </form>
 <%
-    Connector con = new Connector();
+    Connector connector = (Connector)session.getAttribute("connector");
+    if(connector == null) {
+        connector = new Connector();
+        session.setAttribute("connector", connector);
+    }
     Available availPeriod = new Available();
-    String availTimes = app.getTHAvailableTimes(con);
+    String availTimes = app.getTHAvailableTimes(connector);
     String availTimesReservations = "<b> All Available TH's and there times <b> <table> <td>" + availTimes + "</td>";
 //    out.println("All Available TH's and there available times: <br>" + availTimes + "<BR><BR>");
 %>
@@ -87,9 +90,10 @@ Would you like to make another reservation?
         output += "</table>";
 
     }
-    availTimesReservations += "<td>" + output + "</td> </table>";
+    availTimesReservations += "<td valign=\"top\">" + output + "</td> </table>";
     out.println(availTimesReservations + "<BR><BR>");
-
+    %><BR><a href="userDashboard.jsp">User Dashboard</a><%
 %>
+
 </body>
 </html>

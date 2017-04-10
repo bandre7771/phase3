@@ -14,7 +14,7 @@
 <html>
 <head>
     <title>Leave Feedback</title>
-    <h1>Leave Feedback</h1>
+    <h1 align="center">Leave Feedback</h1>
     <script LANGUAGE="javascript">
 
         function check_all_fields(form_obj){
@@ -41,7 +41,11 @@
 
     app.reservations = reservations;
     app._currentUser = currentUser;
-
+    Connector connector = (Connector)session.getAttribute("connector");
+    if(connector == null) {
+        connector = new Connector();
+        session.setAttribute("connector", connector);
+    }
     if (thID == null || score == null || summary == null) {
 %>
 
@@ -54,14 +58,12 @@ Enter the TH you would like to leave feedback on
     <input type=submit>
 </form>
 <%
-    Connector con = new Connector();
-    String visitedTHs = app.getVisitedTHS(con.stmt);
+    String visitedTHs = app.getVisitedTHS(connector.stmt);
     out.println("All the THs you have visited: <br><br>" + visitedTHs + "<BR><BR>");
+%><BR><a href="userDashboard.jsp">User Dashboard</a><%
 } else {
-    Connector con = new Connector();
-    app.leaveFeedback(thID, score, summary, con);
+    app.leaveFeedback(thID, score, summary, connector);
     out.println("You have left feedback on TH: " + thID);
-
 %>
 Would you like to leave feedback on another TH
 <form name="addAnother" method=get action="feedback.jsp">
