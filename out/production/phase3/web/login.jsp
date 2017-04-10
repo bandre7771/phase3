@@ -13,6 +13,12 @@
             session.setAttribute("currentUser", "".toString());
         }
 
+        Connector connector = (Connector)session.getAttribute("connector");
+        if(connector == null) {
+            connector = new Connector();
+            session.setAttribute("connector", connector);
+        }
+
         List<List<String>> reservations = (List<List<String>>)session.getAttribute("reservations");
         if(reservations == null) {
             session.setAttribute("reservations", new ArrayList<List<String>>());
@@ -78,7 +84,6 @@ else {
 
     usernameAttribute = request.getParameter("usernameValue");
     passwordAttribute = request.getParameter("passwordValue");
-    Connector connector = new Connector();
     Application app = new Application();
     Users user = new Users();
     if (user.getUser(usernameAttribute, passwordAttribute, connector.stmt) != "") {
@@ -97,9 +102,9 @@ else {
 <jsp:forward page = "login.jsp" />
 <%
     }
+    connector.closeConnection();
+    connector.closeStatement();
 }
-
-
 %>
 
 <%--<p><b>Listing orders in JSP: </b><BR><BR>--%>

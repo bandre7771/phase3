@@ -12,7 +12,7 @@
                 + form_obj.searchPictureAttribute.value+"='"+form_obj.pictureAttributeValue.value+"'\n"
                 + form_obj.searchUrlAttribute.value+"='"+form_obj.urlAttributeValue.value+"'\n");
             if(form_obj.hidAttributeValue.value == "" || form_obj.nameAttributeValue.value == "" || form_obj.categoryAttributeValue.value == "" || form_obj.addressAttributeValue.value == "" || form_obj.yearAttributeValue.value == "" || form_obj.pictureAttributeValue.value == "" || form_obj.urlAttributeValue.value == "") {
-                alert("All search fields should be nonempty");
+                alert("All fields should be nonempty");
                 return false;
             } else {
                 return true;
@@ -33,11 +33,15 @@ String searchPhoneAttribute = request.getParameter("searchPhoneAttribute");
 String searchYearAttribute = request.getParameter("searchYearAttribute");
 String searchPictureAttribute = request.getParameter("searchPictureAttribute");
 String searchUrlAttribute = request.getParameter("searchUrlAttribute");
+
+Connector connector = (Connector)session.getAttribute("connector");
+if(connector == null) {
+    connector = new Connector();
+    session.setAttribute("connector", connector);
+}
 if(searchHidAttribute == null ||  searchNameAttribute == null || searchCategoryAttribute == null || searchAddressAttribute == null || searchPhoneAttribute == null || searchYearAttribute == null || searchPictureAttribute == null || searchUrlAttribute == null)
 {
-    Connector connector = new Connector();
     TH th = new TH();
-
     out.println(th.getTHForLogin((String)session.getAttribute("currentUser"), connector.stmt));
     %>
 
@@ -82,27 +86,26 @@ Please enter TH information Below:
         String yearAttributeValue = request.getParameter("yearAttributeValue");
         String pictureAttributeValue = request.getParameter("pictureAttributeValue");
         String urlAttributeValue = request.getParameter("urlAttributeValue");
-        Connector connector = new Connector();
         TH th = new TH();
         if (th.isOwnerOfTH((String)session.getAttribute("currentUser"), hidAttributeValue, connector.stmt))
         {
             if (th.updateTH(hidAttributeValue, categoryAttributeValue, (String)session.getAttribute("currentUser"), nameAttributeValue, addressAttributeValue, urlAttributeValue, phoneAttributeValue, yearAttributeValue, pictureAttributeValue, connector.stmt))
             {
                     %>
-                    <p><b>Successfully Update TH</b>
+                    <b>Successfully Updated TH</b>
                     <%
             }
         }
         else
         {
                 %>
-                <p><b>Failed to Update TH</b>
+                <b>Failed to Update TH</b>
                 <%
         }
-        connector.closeConnection();
+
     %>
     <BR><BR><a href="updateTH.jsp"> Update Another TH </a>
     <%
-        }  // We are ending the braces for else here
+    }
     %>
 </body>

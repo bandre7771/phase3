@@ -11,7 +11,7 @@
                 + form_obj.searchPictureAttribute.value+"='"+form_obj.pictureAttributeValue.value+"'\n"
                 + form_obj.searchUrlAttribute.value+"='"+form_obj.urlAttributeValue.value+"'\n");
             if( form_obj.nameAttributeValue.value == "" || form_obj.categoryAttributeValue.value == "" || form_obj.addressAttributeValue.value == "" || form_obj.yearAttributeValue.value == "" || form_obj.pictureAttributeValue.value == "" || form_obj.urlAttributeValue.value == "") {
-                alert("All search fields should be nonempty");
+                alert("All fields should be nonempty");
                 return false;
             } else {
                 return true;
@@ -31,6 +31,11 @@ String searchPhoneAttribute = request.getParameter("searchPhoneAttribute");
 String searchYearAttribute = request.getParameter("searchYearAttribute");
 String searchPictureAttribute = request.getParameter("searchPictureAttribute");
 String searchUrlAttribute = request.getParameter("searchUrlAttribute");
+Connector connector = (Connector)session.getAttribute("connector");
+if(connector == null) {
+    connector = new Connector();
+    session.setAttribute("connector", connector);
+}
 if( searchNameAttribute == null || searchCategoryAttribute == null || searchAddressAttribute == null || searchPhoneAttribute == null || searchYearAttribute == null || searchPictureAttribute == null || searchUrlAttribute == null) {
 %>
 Please enter TH information Below:
@@ -62,7 +67,6 @@ Please enter TH information Below:
     <BR><a href="th.jsp"> TH Menu </a>
     <%
 } else {
-
         String nameAttributeValue = request.getParameter("nameAttributeValue");
         String categoryAttributeValue = request.getParameter("categoryAttributeValue");
         String addressAttributeValue = request.getParameter("addressAttributeValue");
@@ -70,22 +74,20 @@ Please enter TH information Below:
         String yearAttributeValue = request.getParameter("yearAttributeValue");
         String pictureAttributeValue = request.getParameter("pictureAttributeValue");
         String urlAttributeValue = request.getParameter("urlAttributeValue");
-        Connector connector = new Connector();
         TH th = new TH();
         if (th.addTH(categoryAttributeValue, (String)session.getAttribute("currentUser"), nameAttributeValue, addressAttributeValue, urlAttributeValue, phoneAttributeValue, yearAttributeValue, pictureAttributeValue, connector.stmt))
         {
             %>
-             <p><b>Successfully Added TH</b>
+             <b>Successfully Added TH</b>
             <%
         } else {
             %>
-            <p><b>Failed to Add TH</b>
+            <b>Failed to Add TH</b>
             <%
         }
-            connector.closeConnection();
     %>
     <BR><BR><a href="addTH.jsp"> Add Another TH </a>
     <%
-        }  // We are ending the braces for else here
+    }
     %>
 </body>

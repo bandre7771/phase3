@@ -12,12 +12,6 @@
     <%
         String currentUser = (String)session.getAttribute("currentUser");
         if(currentUser == null) {
-<<<<<<< HEAD
-            session.setAttribute("currentUser", "jpy".toString());
-=======
-            session.setAttribute("currentUser", "bandre7771".toString());
-            currentUser = "bandre7771";
->>>>>>> f82a1a38ad4ffca5c47d4a753ba93fa39dd5751d
         }
 
 

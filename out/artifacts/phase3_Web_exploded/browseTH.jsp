@@ -64,14 +64,17 @@ else
             whereQueryAttributeValue += "AND ";
         }
         whereQueryAttributeValue += "category LIKE '%"+categoryAttributeValue+"%' ";
-        andRequired = true;
     }
     if(!whereQueryAttributeValue.isEmpty())
     {
         submitButtonLabelText = "Sort / Add To Search (Using OR)";
     }
 }
-Connector connector = new Connector();
+Connector connector = (Connector)session.getAttribute("connector");
+if(connector == null) {
+    connector = new Connector();
+    session.setAttribute("connector", connector);
+}
 Application app = new Application();
 %>
 <p>(Note: Search fields act as ANDs to use OR functionality complete the search)</p>

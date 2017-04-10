@@ -40,7 +40,11 @@
 
     app.reservations = reservations;
     app._currentUser = currentUser;
-
+    Connector connector = (Connector)session.getAttribute("connector");
+    if(connector == null) {
+        connector = new Connector();
+        session.setAttribute("connector", connector);
+    }
     if (thID == null) {
 %>
 
@@ -51,12 +55,10 @@ Enter the TH you would like to favorite
     <input type=submit>
 </form>
 <%
-    Connector con = new Connector();
-    String visitedTHs = app.getVisitedTHS(con.stmt);
+    String visitedTHs = app.getVisitedTHS(connector.stmt);
     out.println("All the THs you have visited: <br><br>" + visitedTHs + "<BR><BR>");
 } else {
-    Connector con = new Connector();
-    app.declareTHAsFavorite(thID, con);
+    app.declareTHAsFavorite(thID, connector);
     out.println("TH " + thID + " has been favorited");
 
 %>

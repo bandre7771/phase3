@@ -48,8 +48,6 @@ Record a Visit
         visit.add(request.getParameter("fromdateInput"));
         visit.add(request.getParameter("todateInput"));
 
-        Connector connector = new Connector();
-
         visits.add(visit);
         session.setAttribute("visits", visits);
 
@@ -68,9 +66,13 @@ Would you like to record another visit?
     <input type=submit>
 </form>
 <%
-    Connector con = new Connector();
+    Connector connector = (Connector)session.getAttribute("connector");
+    if(connector == null) {
+        connector = new Connector();
+        session.setAttribute("connector", connector);
+    }
     Available availPeriod = new Available();
-    String usersReservations = app.getUsersReservations(con);
+    String usersReservations = app.getUsersReservations(connector);
     String tableReservationsVisits = "<b> All your reservations <b> <table> <td>" + usersReservations + "</td>";
    // out.println("All reservations made: <br>" + usersReservations + "<BR><BR>");
 %>

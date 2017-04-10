@@ -1268,7 +1268,7 @@ public class Application {
 		String sql="SELECT hid, hname, pid, from_date, to_date, price_per_night FROM Available NATURAL JOIN TH NATURAL JOIN Period\n" +
 				"WHERE login = '"+login+"'";
 		String output = "<table>";
-		output = "<tr> <th> hid </th> <th> hname </th> <th> pid </th> <th> from date </th> <th> to date </th> <th> price per night </th> </tr>";
+		output += "<tr> <th> hid </th> <th> hname </th> <th> pid </th> <th> from date </th> <th> to date </th> <th> price per night </th> </tr>";
 		ResultSet rs=null;
 		try{
 			rs=stmt.executeQuery(sql);
@@ -1279,7 +1279,7 @@ public class Application {
 						+ "<td>"+rs.getString("pid")+"</td>"
 						+ "<td>"+rs.getString("from_date")+"</td>"
 						+ "<td>"+rs.getString("to_date")+"</td>"
-						+ "<td>"+rs.getString("price_per_night")+"</td><tr>";
+						+ "<td>"+rs.getString("price_per_night")+"</td></tr>";
 			}
 			output += "</table>";
 			rs.close();

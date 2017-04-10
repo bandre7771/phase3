@@ -45,8 +45,8 @@ public class TH {
 					System.out.println("cannot close resultset");
 				}
 			}
-			return output;
-		}
+		return output;
+	}
 
 	public String getTH(String hid, Statement stmt)
 	{
@@ -86,8 +86,8 @@ public class TH {
    		 			System.out.println("cannot close resultset");
    		 		}
    		 	}
-		    return output;
-		}
+		return output;
+	}
 
 	public String getTHForLogin(String login, Statement stmt)
 	{
