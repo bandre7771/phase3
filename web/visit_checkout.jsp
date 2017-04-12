@@ -35,7 +35,11 @@
     String currentUser = (String)session.getAttribute("currentUser");
 
     List<List<String>> visits = (List<List<String>>)session.getAttribute("visits");
-
+    Connector connector = (Connector)session.getAttribute("connector");
+    if(connector == null) {
+        connector = new Connector();
+        session.setAttribute("connector", connector);
+    }
     if (checkoutAttribute == null) {
 %>
 
@@ -46,11 +50,6 @@ Would you like to Checkout?
     <input type=submit>
 </form>
 <%
-        Connector connector = (Connector)session.getAttribute("connector");
-        if(connector == null) {
-            connector = new Connector();
-            session.setAttribute("connector", connector);
-        }
         if (!visits.isEmpty()) {
             String output = "<table>";
             output += "<tr> <th> hid </th> <th> pid </th> <th> from date </th> <th> to date </th> </tr>";
