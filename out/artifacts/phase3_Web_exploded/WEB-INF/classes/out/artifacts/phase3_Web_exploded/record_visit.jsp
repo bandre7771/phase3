@@ -34,9 +34,9 @@
 Record a Visit
 <form name="record_visit" method=get onsubmit="return check_all_fields(this)" action="record_visit.jsp">
     <%--<input type=hidden name="searchAttribute" value="login">--%>
-    <input type=text name="thInput" length=10 placeholder="THID"> <BR><BR>
-    <input type="text" name="pidInput" length=10 placeholder="PID"> <BR><BR>
-    <input type=text name="fromdateInput" length=10 placeholder="mm/dd/yyyy"> <BR><BR>
+    <input type=text name="thInput" length=10 placeholder="hid">
+    <input type="text" name="pidInput" length=10 placeholder="pid"> <BR>Start Date:<BR>
+    <input type=text name="fromdateInput" length=10 placeholder="mm/dd/yyyy"> <BR>End Date:<BR>
     <input type="text" name="todateInput" length=10 placeholder="mm/dd/yyyy"> <BR><BR>
         Add Visit
         <input type=submit>

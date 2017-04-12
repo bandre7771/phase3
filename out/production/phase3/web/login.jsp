@@ -77,8 +77,6 @@ SignUp for UOtel
 
 }
 else {
-
-
     usernameAttribute = request.getParameter("usernameValue");
     passwordAttribute = request.getParameter("passwordValue");
     Application app = new Application();
@@ -89,9 +87,6 @@ else {
        %>
         Finally
         <jsp:forward page = "userDashboard.jsp" />
-        <%--<form id="main" method="post" name="main" action="" onsubmit="redirect(this);">--%>
-        <%--<input type="submit" name="submit"/>--%>
-        <%--</form>--%>
        <%
     } else {
         currentUser = "";

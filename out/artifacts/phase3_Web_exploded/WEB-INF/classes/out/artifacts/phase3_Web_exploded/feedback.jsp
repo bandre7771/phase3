@@ -52,7 +52,7 @@
 </form>
 Enter the TH you would like to leave feedback on
 <form name="checkout" method=get onsubmit="return check_all_fields(this)" action="feedback.jsp">
-    <input type=text name="thInput" length=10 placeholder="THID">
+    <input type=text name="thInput" length=10 placeholder="hid">
     <input type=text name="score" length=10 placeholder="Score">
     <input type=text name="summary" length=50 placeholder="Summary">
     <input type=submit>

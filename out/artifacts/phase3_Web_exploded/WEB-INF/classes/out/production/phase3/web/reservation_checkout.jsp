@@ -68,7 +68,7 @@ Would you like to Checkout?
             output += "</table>";
             out.println("All the reservations made so far: <br>" + output + "<BR><BR>");
 
-            String suggestedTHs = app.suggestTH(reservations, con);
+            String suggestedTHs = app.suggestTH(reservations, connector);
             out.println("Suggested THs based on your reservation(s): <br><br>" + suggestedTHs + "<BR><BR>");
         }
     }

@@ -48,7 +48,7 @@
 </form>
 Enter the TH you would like to favorite
 <form name="checkout" method=get onsubmit="return check_all_fields(this)" action="favorite_th.jsp">
-    <input type=text name="thInput" length=10 placeholder="THID">
+    <input type=text name="thInput" length=10 placeholder="hid">
     <input type=submit>
 </form>
 <%

@@ -20,7 +20,6 @@ import java.util.*;
 
 public class Application {
 
-
 	public String _currentUser;
 
 	public List<List<String>> reservations = new ArrayList<>();
@@ -32,578 +31,6 @@ public class Application {
 
 	public Application(String currentUser){
 		_currentUser = currentUser;
-	}
-	///Display Menu
-	public void displayLoginMenu()
-	{
-		System.out.println("       Welcome to Uotel     ");
-		System.out.println("1. Login:");
-		System.out.println("2. Register:");
-		System.out.println("3. exit: ");
-		System.out.println( "please enter your choice:");
-    }
-
-	public void displayUserMenu()
-	{
-		System.out.println("       Welcome: "+ _currentUser+"     ");
-		System.out.println("1. reserve:");
-		System.out.println("2. th:");
-		System.out.println("3. stay recordings:");
-		System.out.println("4. favorite recordings:");
-		System.out.println("5. feedback recordings:");
-		System.out.println("6. usefulness ratings:");
-		System.out.println("7. trust recordings:");
-		System.out.println("8. useful feedbacks:");
-		System.out.println("9. two degrees of separation:");
-		System.out.println("10. statistics:");
-		System.out.println("11. user awards (Admin Only):");
-		System.out.println("12. logout:");
-		System.out.println( "please enter your choice:");
-    }
-
-	public void displayTHMenu()
-	{
-		System.out.println("       TH     ");
-		System.out.println("1. add TH:");
-		System.out.println("2. update TH:");
-		System.out.println("3. browse TH:");
-		System.out.println("4. keywords TH:");
-		System.out.println("5. availability TH:");
-		System.out.println("6. exit:");
-		System.out.println( "please enter your choice:");
-	}
-
-	public void displayTHBrowsingMenu()
-	{
-		System.out.println("       TH Browsing     ");
-		System.out.println("1. search & sort by:");
-		System.out.println("2. exit:");
-		System.out.println( "please enter your choice:");
-	}
-
-	public void displaySearchByTHMenu()
-	{
-		System.out.println("       TH Browsing     ");
-		System.out.println("search by");
-		System.out.println("1. all (clears current search):");
-		System.out.println("2. price:");
-		System.out.println("3. address:");
-		System.out.println("4. name:");
-		System.out.println("5. category:");
-		System.out.println( "please enter your choice:");
-	}
-
-	public void displayKeywordsTHMenu()
-	{
-		System.out.println("       TH Keywords     ");
-		System.out.println("1. add keyword:");
-		System.out.println("2. update keyword:");
-		System.out.println("3. show all TH keywords:");
-		System.out.println("4. assign TH keyword:");
-		System.out.println("5. unassign TH keyword:");
-		System.out.println("6. exit:");
-		System.out.println("please enter your choice:");
-	}
-
-	public void displayAvailabilityTHMenu()
-	{
-		System.out.println("       Availability TH     ");
-		System.out.println("1. add TH period of availability:");
-		System.out.println("2. update TH period of availability:");
-		System.out.println("3. show all periods of availability:");
-		System.out.println("4. exit:");
-	}
-
-	public void displayusefulFeedbacksMenu(Statement stmt)
-	{
-		System.out.println("       Useful Feedbacks     ");
-		TH th = new TH();
-		System.out.println(th.getAllTH(stmt));
-		System.out.println("please enter a TH id (hid):");
-	}
-
-	public void displayTwoDegreesOfSeparationMenu(Statement stmt)
-	{
-		System.out.println("       Two Degrees of Separation     ");
-		Users users = new Users();
-		System.out.println(users.getAllUsers(stmt));
-	}
-
-//	public static void displayStaysMenu(Statement stmt)
-//	{
-//		System.out.println("       Stays     ");
-//		Reserve reserve = new Reserve();
-//		System.out.println(reserve.getReserve(_currentUser, stmt));
-//		System.out.println("please enter the TH id (hid)");
-//	}
-
-	public void displayUsefulnessRatingsMenu(Statement stmt)
-	{
-		System.out.println("       Usefulness Recording     ");
-		Feedback feedback = new Feedback();
-		System.out.println(feedback.getAllOtherUserFeedback(_currentUser, stmt));
-		System.out.println( "please enter the Feedback ID (fid):");
-	}
-
-	public void displayTrustedRecordingsMenu(Statement stmt)
-	{
-		System.out.println("       Trusted Rercordings     ");
-		Users users = new Users();
-		System.out.println(users.getAllOtherUsers(_currentUser, stmt));
-		System.out.println( "please enter the User login:");
-	}
-
-	public void displayStatisticsMenu()
-	{
-		System.out.println("       Statistics     ");
-		System.out.println("1. Show top most popular TH's for each category:");
-		System.out.println("2. Show top most expensive TH's for each category:");
-		System.out.println("3. Show top most highly rated TH's for each category:");
-		System.out.println("4. exit");
-	}
-
-	public void displayUserAdminMenu()
-	{
-		System.out.println("       User Awards     ");
-		System.out.println("1. show top most trusted users:");
-		System.out.println("2. show top most useful users:");
-		System.out.println("3. exit:");
-		System.out.println("please enter a choice:");
-	}
-
-//	public static void main(String[] args)
-//	{
-//		System.out.println("5530u16");
-//		Connector con=null;
-//        String sql=null;
-//         try
-//		 {
-//		 		 con = new Connector();
-//	             System.out.println ("Database connection established");
-//	             loginMenu(con);
-//		 }
-//         catch (Exception e)
-//         {
-//        	 e.printStackTrace();
-//        	 System.err.println ("Connection error");
-//         }
-//         finally
-//         {
-//        	 if (con != null)
-//        	 {
-//        		 try
-//        		 {
-//        			 con.closeConnection();
-//        			 System.out.println ("Database connection terminated");
-//        		 }
-//
-//        		 catch (Exception e) { /* ignore close errors */ }
-//        	 }
-//         }
-//
-//	}
-//
-//	///Menus
-//	public static void loginMenu(Connector con)
-//	{
-//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//		String choice;
-//		boolean exit = false;
-//		int c=0;
-//
-//		try
-//		{
-//			while(!exit)
-//			{
-//				displayLoginMenu();
-//				while ((choice = in.readLine()) == null && choice.length() == 0);
-//				try
-//				{
-//					c = Integer.parseInt(choice);
-//				}
-//				catch (Exception e)
-//				{
-//					continue;
-//				}
-//				switch (c)
-//				{
-//					case 1: //login
-//						if(loginUser(in, con)) {
-//							userMenu(con);
-//						}
-//						break;
-//					case 2: //Register
-//						registerUser(in, con);
-//						break;
-//					case 3:
-//						exit = true;
-//					default:
-//						continue;
-//				}
-//			}
-//		}
-//		catch (Exception e)
-//		{
-//			System.err.println ("Query Error");
-//		}
-//	}
-//
-//	public static void userMenu(Connector con)
-//	{
-//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//		String choice;
-//		int c=0;
-//		try
-//		{
-//			boolean exit = false;
-//			while(!exit)
-//			{
-//				displayUserMenu();
-//				while ((choice = in.readLine()) == null && choice.length() == 0);
-//				try
-//				{
-//					c = Integer.parseInt(choice);
-//				}
-//				catch (Exception e)
-//				{
-//					continue;
-//				}
-//				switch (c)
-//				{
-//					case 1:
-//						List<List<String>> reservations = makeReservation(in, con);
-//						suggestTH(reservations, in, con);
-//						break;
-//                    case 2:
-//                        tHMenu(con);
-//                        break;
-//					case 3:
-//						recordVisit(in, con);
-//						break;
-//					case 4:
-//						String thid;
-//						System.out.println(getVisitedTHS(con.stmt));
-//						System.out.println("Please enter the TH id you would like to favorite (hid)");
-//						while ((thid = in.readLine()) == null && thid.length() == 0) ;
-//						if(declareTHAsFavorite(thid, in, con))
-//						{
-//							System.out.println("Th: " + thid + " has successfully been favorited");
-//						}
-//						break;
-//					case 5:
-//						leaveFeedback(in, con);
-//						break;
-//					case 6:
-//						usefulnessRatingsMenu(con);
-//						break;
-//					case 7:
-//						trustRecordingsMenu(con);
-//						break;
-//					case 8:
-//						usefulFeedbacksMenu(con);
-//						break;
-//					case 9:
-//						twoDegreesOfSeparationMenu(con);
-//						break;
-//					case 10:
-//						statisticsMenu(con);
-//						break;
-//					case 11:
-//						if(isAdmin(_currentUser, con.stmt))
-//						{
-//							System.out.println("Access Granted.");
-//							userAwardsMenu(con);
-//						}
-//						else
-//						{
-//							System.out.println("Access Denied! You must be an administrator to access this menu.");
-//						}
-//						break;
-//					case 12:
-//						exit = true;
-//						break;
-//					default:
-//						continue;
-//				}
-//			}
-//		}
-//		catch (Exception e)
-//		{
-//			System.err.println ("Query Error");
-//		}
-//	}
-//
-//    public static void tHMenu(Connector con)
-//    {
-//        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//        String choice;
-//        String hname;
-//        String category;
-//        String url;
-//        String phone_number;
-//        String year;
-//        String picture;
-//		String hid;
-//		String address;
-//        TH th;
-//        int c=0;
-//        try
-//        {
-//			boolean exit = false;
-//            while(!exit)
-//            {
-//                displayTHMenu();
-//                while ((choice = in.readLine()) == null && choice.length() == 0);
-//                try
-//                {
-//                    c = Integer.parseInt(choice);
-//                }
-//                catch (Exception e)
-//                {
-//                    continue;
-//                }
-//                switch (c)
-//                {
-//                    case 1: // Add TH
-//                        th = new TH();
-//						System.out.println("       Add TH     ");
-//
-//						System.out.println("please enter TH name:");
-//                        while ((hname = in.readLine()) == null && hname.length() == 0);
-//
-//                        System.out.println("please enter category name:");
-//                        while ((category = in.readLine()) == null && category.length() == 0);
-//
-//						System.out.println("please enter address:");
-//						while ((address = in.readLine()) == null && address.length() == 0) ;
-//
-//						System.out.println("please enter phone number:");
-//                        while ((phone_number =  in.readLine()) == null && phone_number.length() == 0);
-//
-//                        System.out.println("please enter year built:");
-//                        while ((year =  in.readLine()) == null && year.length() == 0);
-//
-//                        System.out.println("please add picture:");
-//                        while ((picture =  in.readLine()) == null && picture.length() == 0);
-//
-//                        System.out.println("please enter url:");
-//                        while ((url =  in.readLine()) == null && url.length() == 0);
-//                        th.addTH(category,_currentUser,hname,address,url,phone_number,year,picture,con.stmt);
-//                        break;
-//                    case 2:
-//						th = new TH();
-//						System.out.println("       Update TH     ");
-//						System.out.println(th.getTHForLogin(_currentUser, con.stmt));
-//						System.out.println("please enter TH id (hid):");
-//						while ((hid = in.readLine()) == null && hid.length() == 0);
-//						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
-//							System.out.println("You do not own the TH with id:"+hid);
-//							break;
-//						}
-//						System.out.println("please enter TH name:");
-//						while ((hname = in.readLine()) == null && hname.length() == 0);
-//
-//						System.out.println("please enter category name:");
-//						while ((category = in.readLine()) == null && category.length() == 0);
-//
-//						System.out.println("please enter address:");
-//						while ((address = in.readLine()) == null && address.length() == 0) ;
-//
-//						System.out.println("please enter phone number:");
-//						while ((phone_number =  in.readLine()) == null && phone_number.length() == 0);
-//
-//						System.out.println("please enter year built:");
-//						while ((year =  in.readLine()) == null && year.length() == 0);
-//
-//						System.out.println("please add picture:");
-//						while ((picture =  in.readLine()) == null && picture.length() == 0);
-//
-//						System.out.println("please enter url:");
-//						while ((url =  in.readLine()) == null && url.length() == 0);
-//
-//						th.updateTH(hid, category, _currentUser, hname, address, url, phone_number, year, picture, con.stmt);
-//                        break;
-//					case 3: //browse TH
-//						tHBrowsingMenu(con);
-//						break;
-//					case 4: //keywords TH
-//						keywordsTHMenu(con);
-//						break;
-//					case 5: //availability TH
-//						availabilityTHMenu(con);
-//						break;
-//					case 6:
-//						exit = true;
-//						break;
-//                    default:
-//                    	continue;
-//                }
-//            }
-//        }
-//        catch (Exception e)
-//        {
-//            System.err.println ("Query Error");
-//        }
-//    }
-
-//	public static void staysMenu(Connector con)
-//	{
-//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//		String choice;
-//		String hid;
-//		String pid;
-//		String cost;
-//		ArrayList<String> pids = new ArrayList<String>();
-//		ArrayList<String> hids = new ArrayList<String>();
-//		ArrayList<String> costs = new ArrayList<String>();
-//		Visit visit;
-//		int c=0;
-//		try
-//		{
-//			boolean exit = false;
-//			while(!exit)
-//			{
-//				displayStaysMenu(con.stmt);
-//				while ((hid = in.readLine()) == null && hid.length() == 0);
-//				System.out.println("please enter the period id (pid)");
-//				while ((pid = in.readLine()) == null && pid.length() == 0);
-//				System.out.println("please enter the cost of the stay");
-//				while ((cost = in.readLine()) == null && cost.length() == 0);
-//				hids.add(hid);
-//				pids.add(pid);
-//				costs.add(cost);
-//				System.out.println("1. record another stay");
-//				System.out.println("2. exit:");
-//				while ((choice = in.readLine()) == null && choice.length() == 0);
-//				try
-//				{
-//					c = Integer.parseInt(choice);
-//				}
-//				catch (Exception e)
-//				{
-//					continue;
-//				}
-//				switch (c)
-//				{
-//					case 1:
-//						break;
-//					case 2:
-//						exit = false;
-//						while(!exit) {
-//							System.out.println("You have recorded stays for the following:");
-//							System.out.println("hid\t\tpid\t\tcost");
-//							for (int i = 0; i < hids.size(); i++)
-//							{ //print out all the stays recorded
-//								System.out.print(hids.get(i)+"\t\t");
-//								System.out.print(pids.get(i)+"\t\t");
-//								System.out.println("$"+costs.get(i));
-//							}
-//							System.out.println("1. confirm and exit:");
-//							System.out.println("2. cancel and exit:");
-//							System.out.println("please enter your choice:");
-//							String subChoice;
-//							while ((subChoice = in.readLine()) == null && subChoice.length() == 0);
-//							try
-//							{
-//								c = Integer.parseInt(subChoice);
-//							}
-//							catch (Exception e)
-//							{
-//								continue;
-//							}
-//							switch (c) {
-//								case 1: //save and exit
-//									for (int i = 0; i < hids.size(); i++)
-//									{ //all the stays recorded
-//										visit = new Visit();
-//										hid = hids.get(i);
-//										pid = pids.get(i);
-//										cost = costs.get(i);
-//										visit.addVisit(_currentUser, hid, pid, cost, con.stmt);
-//									}
-//									exit = true;
-//									break;
-//								case 2: //cancel and exit
-//									exit = true;
-//									break;
-//								default:
-//									continue;
-//							}
-//						}
-//						break;
-//					default:
-//						continue;
-//				}
-//			}
-//		}
-//		catch (Exception e)
-//		{
-//			System.err.println ("Query Error");
-//		}
-//	}
-
-	public String mostUsefulUsers(String m, Statement stmt)
-	{
-		String sql="SELECT  f.login, avg(r.rating) as usefulness_score\n" +
-				"FROM Feedback f, Rates r\n" +
-				"WHERE f.fid = r.fid\n" +
-				"GROUP BY f.login\n" +
-				"ORDER BY usefulness_score DESC LIMIT "+m;
-		String output="";
-		ResultSet rs=null;
-		//System.out.println("executing "+sql);
-		try{
-			rs=stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				output+="login: "+rs.getString("login")+"   "
-						+ "usefulness: "+rs.getString("usefulness_score")+"\n";
-			}
-
-			rs.close();
-		}
-		catch(Exception e)
-		{
-			System.out.println("cannot execute the query");
-		}
-		finally
-		{
-			try{
-				if (rs!=null && !rs.isClosed())
-					rs.close();
-			}
-			catch(Exception e)
-			{
-				System.out.println("cannot close resultset");
-			}
-		}
-		return output;
-	}
-
-	public void usefulFeedbacksMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String n; // amount displayed
-		String hid;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayusefulFeedbacksMenu(con.stmt);
-				while ((hid = in.readLine()) == null && hid.length() == 0);
-				System.out.println("please choose a number of top useful feedbacks to display for this TH:");
-				while ((n = in.readLine()) == null && n.length() == 0);
-				System.out.println(mostUsefulFeedbacksForTh(n,hid,con.stmt));
-				System.out.println("press enter to when continue");
-				in.readLine();
-				exit = true;
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
 	}
 
 	public String mostUsefulFeedbacksForTh(String n, String hid, Statement stmt)
@@ -649,58 +76,6 @@ public class Application {
 			}
 		}
 		return output;
-	}
-
-	public void statisticsMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String m; // amount displayed
-		String choice;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayStatisticsMenu();
-				while ((choice = in.readLine()) == null && choice.length() == 0);
-				try
-				{
-					c = Integer.parseInt(choice);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				switch (c)
-				{
-					case 1:
-						System.out.println("please enter the amount of TH’s you’d like to display for each category:");
-						while ((m = in.readLine()) == null && m.length() == 0);
-//						System.out.println(mostPopularThsPerCategory(m, con.stmt));
-						break;
-					case 2:
-						System.out.println("please enter the amount of TH’s you’d like to display for each category:");
-						while ((m = in.readLine()) == null && m.length() == 0);
-//						System.out.println(mostExpensiveThsPerCategory(m, con.stmt));
-						break;
-					case 3:
-						System.out.println("please enter the amount of TH’s you’d like to display for each category:");
-						while ((m = in.readLine()) == null && m.length() == 0);
-//						System.out.println(mostHighlyRatedThsPerCategory(m, con.stmt));
-						break;
-					case 4:
-						exit = true;
-						break;
-					default:
-						break;
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
 	}
 
 	public String mostPopularThsPerCategory(String m, Statement stmt)
@@ -943,108 +318,6 @@ public class Application {
 		return output;
 	}
 
-	public void keywordsTHMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String choice = "";
-		String word = "";
-		String hid = "";
-		String language = "";
-		String wid = "";
-		TH th;
-		Keywords keywords;
-		HasKeywords hasKeywords;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayKeywordsTHMenu();
-				while ((choice = in.readLine()) == null && choice.length() == 0);
-				try
-				{
-					c = Integer.parseInt(choice);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				switch (c)
-				{
-					case 1: //add keyword
-						System.out.println("       Adding keyword     ");
-						keywords = new Keywords();
-						System.out.println("please enter a language:");
-						while ((language = in.readLine()) == null && language.length() == 0);
-						System.out.println("please enter a keyword:");
-						while ((word = in.readLine()) == null && word.length() == 0);
-						keywords.addKeyword(word, language, con.stmt);
-						break;
-					case 2: //update keyword
-						System.out.println("       Update keyword     ");
-						keywords = new Keywords();
-						System.out.println(keywords.getAllKeyWords(con.stmt));
-						System.out.println("please enter a Keyword id (wid):");
-						while ((wid = in.readLine()) == null && wid.length() == 0);
-						System.out.println("please enter a language:");
-						while ((language = in.readLine()) == null && language.length() == 0);
-						System.out.println("please enter a word:");
-						while ((word = in.readLine()) == null && word.length() == 0);
-						keywords.updateKeyword(wid, word, language, con.stmt);
-						break;
-					case 3:
-						System.out.println("       All TH keywords     ");
-						System.out.println(getAllHasKeyWordDescription(con.stmt));
-						System.out.println("press enter to continue:");
-						in.readLine();
-						break;
-					case 4: //assign TH keyword
-						System.out.println("       Assign TH keyword     ");
-						th = new TH();
-						System.out.println(th.getTHForLogin(_currentUser, con.stmt));
-						System.out.println("please enter a TH id (hid):");
-						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
-							System.out.println("You don't own this TH or it doesn't exist");
-							break;
-						}
-						keywords = new Keywords();
-						System.out.println(keywords.getAllKeyWords(con.stmt));
-						System.out.println("please enter a Keyword id (wid):");
-						while ((wid = in.readLine()) == null && wid.length() == 0);
-						hasKeywords = new HasKeywords();
-						hasKeywords.addHasKeyword(hid,wid,con.stmt);
-						break;
-					case 5: //unassign TH keyword
-						System.out.println("       Unassign TH keyword     ");
-						hasKeywords = new HasKeywords();
-						System.out.println(getHasKeyWordDescription(_currentUser, con.stmt));
-						System.out.println("please enter a TH id (hid):");
-						th = new TH();
-						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
-							System.out.println("You don't own this TH or it doesn't exist");
-							break;
-						}
-						System.out.println("please enter a Keyword id (wid):");
-						while ((wid = in.readLine()) == null && wid.length() == 0);
-						hasKeywords.removeHasKeyword(hid, wid, con.stmt);
-						break;
-					case 6:
-						exit = true;
-						break;
-					default:
-						continue;
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-
 	public String getAllHasKeyWordDescription(Statement stmt)
 	{
 		String sql="SELECT hk.hid, th.hname, hk.wid, k.word FROM Keywords k NATURAL JOIN HasKeywords hk NATURAL JOIN TH th ORDER BY hk.hid;";
@@ -1117,152 +390,6 @@ public class Application {
 		return output;
 	}
 
-	public void availabilityTHMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String choice = "";
-		String hid = "";
-		String startDate = "";
-		String endDate = "";
-		String pid = "";
-		String ppn = "";
-		List<List<String>> pids = new ArrayList<List<String>>();
-		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-		SimpleDateFormat sqlDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-		TH th;
-		Period period;
-		Available available;
-		int c=0;
-		try
-		{
-			boolean exit = false;
-			while(!exit)
-			{
-				displayAvailabilityTHMenu();
-				while ((choice = in.readLine()) == null && choice.length() == 0);
-				try
-				{
-					c = Integer.parseInt(choice);
-				}
-				catch (Exception e)
-				{
-					continue;
-				}
-				switch (c)
-				{
-					case 1: //add TH period of availability
-						System.out.println("       Add TH Period of Availability     ");
-						period = new Period();
-						th = new TH();
-						available = new Available();
-						System.out.println(th.getTHForLogin(_currentUser, con.stmt));
-						System.out.println("please enter a TH id (hid):");
-						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
-							System.out.println("You don't own this TH or it doesn't exist");
-							break;
-						}
-						System.out.println("please enter a start date (format: mm/dd/yyyy ex: 01/23/1994):");
-						while ((startDate = in.readLine()) == null && startDate.length() == 0);
-						Date sDate = convertToDate(startDate, formatter);
-
-						System.out.println("please enter a end date (format: mm/dd/yyyy ex: 01/23/1994)::");
-						while ((endDate = in.readLine()) == null && endDate.length() == 0);
-						Date eDate = convertToDate(endDate, formatter);
-
-						if(sDate.after(eDate))
-						{
-							System.out.println("start date must be before end date.");
-							break;
-						}
-
-						pids = period.getPeriod(sDate.toString(), eDate.toString(), con.stmt);
-						if(pids.isEmpty())
-						{
-							period.addPeriod(sDate.toString(), eDate.toString(), con.stmt);
-							pid = period.getLastPeriod(con.stmt);
-						}
-						else
-						{
-							pid = pids.get(0).get(0);
-						}
-						System.out.println("please enter a to price per night:");
-						while ((ppn = in.readLine()) == null && ppn.length() == 0);
-						available.addAvailable(hid, pid, ppn, con.stmt);
-						pids.clear();
-						break;
-					case 2: //update TH period of availability
-						System.out.println("       Update TH Period of Availability     ");
-						available = new Available();
-						th = new TH();
-						period = new Period();
-						System.out.println(getAllAvailableForLoginTH(_currentUser, con.stmt));
-						System.out.println("please enter a TH id (hid):");
-						while ((hid = in.readLine()) == null && hid.length() == 0);
-						if (!th.isOwnerOfTH(_currentUser, hid, con.stmt)) {
-							System.out.println("You don't own this TH or it doesn't exist");
-							break;
-						}
-
-						System.out.println("please enter a Period id (pid):");
-						while ((pid = in.readLine()) == null && pid.length() == 0);
-						if(period.getPeriod(pid, con.stmt).isEmpty())
-						{
-							System.out.println("invalid pid");
-							break;
-						}
-						pids.clear();
-
-						System.out.println("please enter a start date (format: mm/dd/yyyy ex: 01/23/1994):");
-						while ((startDate = in.readLine()) == null && startDate.length() == 0);
-						Date sDate2 = convertToDate(startDate, formatter);
-
-						System.out.println("please enter a end date (format: mm/dd/yyyy ex: 01/23/1994)::");
-						while ((endDate = in.readLine()) == null && endDate.length() == 0);
-						Date eDate2 = convertToDate(endDate, formatter);
-
-						if(sDate2.after(eDate2))
-						{
-							System.out.println("start date must be before end date.");
-							break;
-						}
-						String newPid = "";
-						pids = period.getPeriod(sDate2.toString(), eDate2.toString(), con.stmt);
-						if(pids.isEmpty())
-						{
-							period.addPeriod(sDate2.toString(), eDate2.toString(), con.stmt);
-							newPid = period.getLastPeriod(con.stmt);
-						}
-						else
-						{
-							newPid = pids.get(0).get(0);
-						}
-
-						System.out.println("please enter a to price per night:");
-						while ((ppn = in.readLine()) == null && ppn.length() == 0);
-						available.deleteAvailable(hid, pid, con.stmt);
-						available.addAvailable(hid, newPid, ppn, con.stmt);
-						pids.clear();
-						break;
-					case 3:
-						//System.out.println(getTHAvailableTimes(in, con));
-						System.out.println("please press enter to continue:");
-						in.readLine();
-						break;
-					case 4:
-						exit = true;
-						break;
-					default:
-						continue;
-				}
-			}
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error");
-		}
-	}
-
 	public String getAllAvailableForLoginTH(String login, Statement stmt)
 	{
 		String sql="SELECT hid, hname, pid, from_date, to_date, price_per_night FROM Available NATURAL JOIN TH NATURAL JOIN Period\n" +
@@ -1302,194 +429,20 @@ public class Application {
 		return output;
 	}
 
-	public void twoDegreesOfSeparationMenu(Connector con)
-	{
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String login1;
-		String login2;
-		Favorites favorites;
-		Users users;
-		try
-		{
-			displayTwoDegreesOfSeparationMenu(con.stmt);
-			System.out.println("please enter the first login");
-			while ((login1 = in.readLine()) == null && login1.length() == 0);
-			users = new Users();
-			if(users.userExists(login1,con.stmt))
-			{
-				throw new Exception("Invalid Login");
-			}
-			System.out.println("please enter the second login");
-			while ((login2 = in.readLine()) == null && login2.length() == 0);
-			if(users.userExists(login2,con.stmt))
-			{
-				throw new Exception("Invalid Login");
-			}
-			favorites = new Favorites();
-			if(!favorites.oneDegreeOfSeparation(login1,login2,con.stmt) && favorites.oneOrTwoDegreeOfSeparation(login1,login2,con.stmt))
-			{
-				System.out.println("login: " + login1 + " IS two degrees of separation from login: " + login2);
-			}
-			else
-			{
-				System.out.println("login: " + login1 + " IS NOT two degrees of separation from login: " + login2);
-			}
-			System.out.println("press enter to exit:");
-			in.readLine();
-		}
-		catch (Exception e)
-		{
-			System.err.println ("Query Error possibly invalid login");
-		}
-	}
-
-	public Boolean isAdmin(String login, Statement stmt)
-	{
-		String sql="SELECT user_type\n" +
-				"FROM Users\n" +
-				"WHERE login = '"+login+"'";
-		String output="";
-		Boolean isAdmin = false;
-		ResultSet rs=null;
-//		System.out.println("executing "+sql);
-		try{
-			rs=stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				output+= rs.getString("user_type");
-			}
-			rs.close();
-		}
-		catch(Exception e)
-		{
-			System.out.println("cannot execute the query");
-		}
-		finally
-		{
-			try{
-				if (rs!=null && !rs.isClosed())
-					rs.close();
-			}
-			catch(Exception e)
-			{
-				System.out.println("cannot close resultset");
-			}
-		}
-		try
-		{
-			 isAdmin = (1 == Integer.parseInt(output));
-		}
-		catch (Exception e)
-		{
-			return false;
-		}
-		return isAdmin;
-	}
-
 	/*****This is where Ben's code starts*****/
-	public void recordVisit(List<List<String>> chosenPeriods, Connector con) {
+	public void recordVisit(List<List<String>> chosenPeriods, Connector con)
+	{
 		String thid = "";
-		String pid = "";
 		String fromDate = "";
 		String toDate = "";
 		List<String> chosenPeriod = new ArrayList<>();
-//		boolean readyForCheckout = false;
 		try {
-//			while(!(readyForCheckout)) {
-//				List<String> visit = new ArrayList<String>();
-//				System.out.println(getUsersReservations(in, con));
-//				System.out.println("please choose the TH you want to record as a stay (hid):");
-//				while ((thid = in.readLine()) == null && thid.length() == 0) ;
-//				visit.add(thid);
-//
-//				System.out.println("please choose the time period of your stay (pid):");
-//				while ((pid = in.readLine()) == null && pid.length() == 0) ;
-//				//visit.add(pid);
-//				Period period = new Period();
-//				chosenPeriod = period.getPeriod(pid, con.stmt).get(0);
-//				System.out.println("Your Chosen Period for TH: " + thid);
-//				System.out.println("\t\t" + chosenPeriod.get(0) + "\t\t" + chosenPeriod.get(1) + "\t\t" + chosenPeriod.get(2));
-//				//getTHAndPeriod(thid, pid, in, con);
-//
-//				System.out.println("please choose a start date for your stay (date format: mm/dd/yyyy ex: 01/23/1994):");
-//				while ((fromDate = in.readLine()) == null && fromDate.length() == 0) ;
-//				visit.add(fromDate);
-//
-//				System.out.println("please choose an end date for your stay (date format: mm/dd/yyyy ex: 01/23/1994):");
-//				while ((toDate = in.readLine()) == null && toDate.length() == 0) ;
-//				visit.add(toDate);
-//
-//				visits.add(visit);
-//				visits.add(chosenPeriod);
-//
-//				String makeAnother;
-//				System.out.println("Would you like to make another visit? (Please answer yes or no)");
-//				while(true) {
-//					String choice;
-//					int c;
-//					System.out.println("\nWould you like record another visit? \n 1: Yes \n 2: No");
-//					while ((choice = in.readLine()) == null && choice.length() == 0) ;
-//					try {
-//						c = Integer.parseInt(choice);
-//					} catch (Exception e) {
-//						continue;
-//					}
-//					if (c < 1 | c > 5) {
-//						continue;
-//					}
-//					// user chooses to make another visit
-//					if (c == 1) {
-//						break;
-//					}
-//					// user does not want to make another visit
-//					else if (c == 2) {
-//						readyForCheckout = true;
-//						break;
-//					}
-//				}
-//			}
-//
-//			// Display all visits and ask if they are done recording visits
-//			System.out.println("\nList of made visits:\nthid\t\tpid\t\tfrom_date\t\tto_date");
-//			for(int i = 0; i < visits.size(); i+=2){
-//				String reservation = "";
-//				reservation += visits.get(i).get(0) + "\t\t";
-//				reservation += visits.get(i).get(1) + "\t\t";
-//				reservation += visits.get(i).get(2);
-//				System.out.println(reservation);
-//			}
-//			while(true) {
-//				String choice;
-//				int c;
-//				System.out.println("\nPlease double check your recorded stays \n 1: Finish \n 2: Quit");
-//				while ((choice = in.readLine()) == null && choice.length() == 0);
-//				try {
-//					c = Integer.parseInt(choice);
-//				} catch (Exception e) {
-//					continue;
-//				}
-//				if (c < 1 | c > 5) {
-//					continue;
-//				}
-//				// User makes a reservation
-//				if (c == 1) {
-//					break;
-//				}
-//				// Leave feedback on stay
-//				else if (c == 2) {
-//					return;
-//				}
-//			}
-//
-//
 			for(int i = 0; i < visits.size(); i+=1){
-//				for(int j = 0; j < visits.get(i).size(); j++){
 				thid = visits.get(i).get(0);
 				chosenPeriod = chosenPeriods.get(i);
 				fromDate = visits.get(i).get(2);
 				toDate = visits.get(i).get(3);
 				addStay(thid, chosenPeriod, fromDate, toDate, con.stmt);
-				//}
 			}
 
 		}
@@ -1504,7 +457,8 @@ public class Application {
 	 * @param in
 	 * @param con
 	 */
-	public String suggestTH(List<List<String>> reservations, Connector con) {
+	public String suggestTH(List<List<String>> reservations, Connector con)
+	{
 		Visit visit = new Visit();
 		Set<String> ths = new HashSet<String>();
 		for(int j = 0; j < reservations.size(); j+=1) {
@@ -1514,7 +468,6 @@ public class Application {
 		for(String th: ths){
 			output += "<caption> Based on your reservation for " + th + ", here are some other THs we would suggest</caption>";
 			output += "<table>";
-			//System.out.println("\nBased on your reservation for "+ th + ",here are some other THs we would suggest");
 			output += "<tr> <th> Hid </th> <th> Hname </th> <th> Category </th> <th> Address </th> <th> Year Built </th> <th> Phone Number </th> <th> Url </th> <th> Number of Visits </th>";
 			List<List<String>> suggestedTHs = visit.getSuggestedTHs(th, con.stmt);
 			for(List<String> suggestedTH : suggestedTHs) {
@@ -1535,7 +488,8 @@ public class Application {
 		return output;
 	}
 
-	private void addStay(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
+	private void addStay(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt)
+	{
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sqlDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 		Available available = new Available();
@@ -1587,7 +541,8 @@ public class Application {
 		}
 	}
 
-	public void addVisit(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt){
+	public void addVisit(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt)
+	{
 		Period period = new Period();
 		Visit visit = new Visit();
 		Available available = new Available();
@@ -1607,7 +562,8 @@ public class Application {
 		}
 	}
 
-	public void addLeftoverPeriodBeforeStay(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt){
+	public void addLeftoverPeriodBeforeStay(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt)
+	{
 		Period period = new Period();
 		Available available = new Available();
 		String newPid;
@@ -1628,7 +584,8 @@ public class Application {
 		}
 	}
 
-	public void addLeftoverPeriodAfterStay(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt) {
+	public void addLeftoverPeriodAfterStay(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt)
+	{
 		Period period = new Period();
 		Available available = new Available();
 		String newPid;
@@ -1650,7 +607,8 @@ public class Application {
 		}
 	}
 
-	public String getVisitedTHS(Statement stmt) {
+	public String getVisitedTHS(Statement stmt)
+	{
 		String sql="select DISTINCT(th.hid), category, hname\n" +
 				"from Visit v, TH th\n" +
 				"where v.hid = th.hid\n" +
@@ -1684,60 +642,8 @@ public class Application {
 		return output;
 	}
 
-	public boolean loginUser(BufferedReader in, Connector con){
-		String username;
-		String password;
-		try {
-			System.out.println("please enter login name");
-			while ((username = in.readLine()) == null && username.length() == 0) ;
-			System.out.println("please enter a password:");
-			while ((password = in.readLine()) == null && password.length() == 0) ;
-			Users user = new Users();
-			if (user.getUser(username, password, con.stmt) != "") {
-				_currentUser = username;
-				System.out.println("Current user: " + username);
-				return true;
-			} else {
-				System.out.println("Username or password does not exist");
-				return false;
-			}
-		}
-		catch (Exception e){
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	public void registerUser(BufferedReader in, Connector con){
-		String username;
-		String password;
-		String fullname;
-		String address;
-		String phone_number;
-		try {
-			System.out.println("please choose login name");
-			while ((username = in.readLine()) == null && username.length() == 0) ;
-			System.out.println("please choose a password:");
-			while ((password = in.readLine()) == null && password.length() == 0) ;
-			System.out.println("please enter your full name:");
-			while ((fullname = in.readLine()) == null && fullname.length() == 0) ;
-			System.out.println("please enter your address:");
-			while ((address = in.readLine()) == null && address.length() == 0) ;
-			System.out.println("please enter your phone number:");
-			while ((phone_number = in.readLine()) == null && phone_number.length() == 0) ;
-			Users user = new Users();
-			if (user.getUser(username, con.stmt) != "") {
-				System.out.println("That username has already been used");
-			} else {
-				user.addUser(username, fullname, password, address, phone_number, con.stmt);
-			}
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}
-	}
-
-	public void leaveFeedback(String th, String score, String shortText, Connector con) {
+	public void leaveFeedback(String th, String score, String shortText, Connector con)
+	{
 
 		try {
 
@@ -1764,13 +670,15 @@ public class Application {
 		}
 	}
 
-	public boolean declareTHAsFavorite(String thid, Connector con){
+	public boolean declareTHAsFavorite(String thid, Connector con)
+	{
 		Favorites favorite = new Favorites();
 		favorite.addFavorite(Integer.parseInt(thid), _currentUser, con.stmt);
 		return true;
 	}
 
-	public List<List<String>> makeReservation(List<List<String>> chosenPeriods,Connector con){
+	public List<List<String>> makeReservation(List<List<String>> chosenPeriods,Connector con)
+	{
 		String thid = "";
 		String pid = "";
 		String fromDate = "";
@@ -1891,7 +799,8 @@ public class Application {
 		}
 	}
 
-	private void addReservation(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt) {
+	private void addReservation(String thid, List<String> chosenPeriod, String fromDate, String toDate, Statement stmt)
+	{
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sqlDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 		Available available = new Available();
@@ -1952,7 +861,8 @@ public class Application {
 	 * @param chosenPeriod
 	 * @param stmt
 	 */
-	public void addReservationAndRemoveAvailable(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt){
+	public void addReservationAndRemoveAvailable(String thid, Date givenFromDate, Date givenToDate, List<String> chosenPeriod, Statement stmt)
+	{
 		Period period = new Period();
 		Reserve reservation = new Reserve();
 		Available available = new Available();
@@ -1975,7 +885,8 @@ public class Application {
 		available.deleteAvailable(thid, chosenPeriod.get(0), stmt);
 	}
 
-	public void addLeftoverPeriodBeforeReservation(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt){
+	public void addLeftoverPeriodBeforeReservation(Date givenFromDate, Date periodFromDate, String thid, List<String> chosenPeriod, Statement stmt)
+	{
 		Period period = new Period();
 		Available available = new Available();
 		String newPid;
@@ -1997,7 +908,8 @@ public class Application {
 		}
 	}
 
-	public void addLeftoverPeriodAfterReservation(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt) {
+	public void addLeftoverPeriodAfterReservation(Date givenToDate, Date periodToDate, String thid, List<String> chosenPeriod, Statement stmt)
+	{
 		Period period = new Period();
 		Available available = new Available();
 		String newPid;
@@ -2019,7 +931,8 @@ public class Application {
 		}
 	}
 
-	public Date convertToDate(String date, SimpleDateFormat formatter){
+	public Date convertToDate(String date, SimpleDateFormat formatter)
+	{
 		Date givenDate = null;
 		try
 		{
@@ -2031,7 +944,8 @@ public class Application {
 		return givenDate;
 	}
 
-	public String getTHAvailableTimes(Connector con){
+	public String getTHAvailableTimes(Connector con)
+	{
 		String sql="select a.hid, p.pid, p.from_date, p.to_date\n" +
 				"from Available a, Period p\n" +
 				"where a.pid = p.pid\n" +
@@ -2067,7 +981,8 @@ public class Application {
 		return output;
 	}
 
-	public String getUsersReservations(Connector con){
+	public String getUsersReservations(Connector con)
+	{
 		String sql="select r.login, r.hid, p.pid, p.from_date, p.to_date\n" +
 				"from Reserve r, Period p\n" +
 				"where r.pid = p.pid\n" +

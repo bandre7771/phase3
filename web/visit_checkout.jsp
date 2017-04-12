@@ -85,8 +85,6 @@ Would you like to Checkout?
 <jsp:forward page = "userDashboard.jsp" />
 <%
         }
-
-
 %>
 </body>
 </html>
