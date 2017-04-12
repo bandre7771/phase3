@@ -83,7 +83,7 @@ else {
     passwordAttribute = request.getParameter("passwordValue");
     Application app = new Application();
     Users user = new Users();
-    if (user.getUser(usernameAttribute, passwordAttribute, connector.stmt) != "") {
+    if (user.userExists(usernameAttribute, passwordAttribute, connector.stmt)) {
         currentUser = usernameAttribute;
         session.setAttribute("currentUser", currentUser);
        %>
@@ -96,8 +96,22 @@ else {
     } else {
         currentUser = "";
         %>
-<jsp:forward page = "login.jsp" />
-<%
+            Login
+            <form name="user_search" method=get onsubmit="return check_all_fields(this)" action="login.jsp">
+                <%--<input type=hidden name="searchAttribute" value="login">--%>
+                <input type=text name="usernameValue" length=10> <BR><BR>
+                Password <BR>
+                <input type="text" name="passwordValue" length=10>
+                <input type=submit>
+            </form>
+            <BR><BR>
+            SignUp for UOtel
+            <form name="register_user" method=get action="register_user.jsp">
+                <%--<input type=hidden name="searchAttribute" value="login">--%>
+                <input type=submit>
+            </form>
+            <BR><BR>
+        <%
     }
 }
 %>
