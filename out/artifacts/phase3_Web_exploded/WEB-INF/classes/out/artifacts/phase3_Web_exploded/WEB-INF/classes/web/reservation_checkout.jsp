@@ -50,6 +50,11 @@ Would you like to Checkout?
     <input type=submit>
 </form>
 <%
+    Connector connector = (Connector)session.getAttribute("connector");
+    if(connector == null) {
+        connector = new Connector();
+        session.setAttribute("connector", connector);
+    }
         if (!reservations.isEmpty()) {
             String output = "<table>";
             output += "<tr> <th> hid </th> <th> pid </th> <th> from date </th> <th> to date </th> </tr>";
@@ -63,15 +68,12 @@ Would you like to Checkout?
             output += "</table>";
             out.println("All the reservations made so far: <br>" + output + "<BR><BR>");
 
-            Connector con = new Connector();
-            String suggestedTHs = app.suggestTH(reservations, con);
-            out.println("Suggested THs based on your reservation(s): <br>" + suggestedTHs + "<BR><BR>");
+            String suggestedTHs = app.suggestTH(reservations, connector);
+            out.println("Suggested THs based on your reservation(s): <br><br>" + suggestedTHs + "<BR><BR>");
         }
     }
     else {
             if (!reservations.isEmpty()){
-
-                Connector connector = new Connector();
                 Period period = new Period();
                 List<List<String>> chosenPeriods = new ArrayList<>();
                 List<String> chosenPeriod = new ArrayList<>();

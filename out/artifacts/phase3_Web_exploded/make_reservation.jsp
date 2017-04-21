@@ -13,7 +13,8 @@
 <html>
 <head>
     <title>Make Reservation</title>
-    <h1>Enter Information for a Reservation</h1>
+    <h1 align="center">Make Reservation</h1>
+    <h3>Enter Information for a Reservation</h3>
 </head>
 <body>
 
@@ -31,9 +32,9 @@
 Make a Reservation
 <form name="make_reservation" method=get onsubmit="return check_all_fields(this)" action="make_reservation.jsp">
     <%--<input type=hidden name="searchAttribute" value="login">--%>
-    <input type=text name="thInput" length=10 placeholder="THID"> <BR><BR>
-    <input type="text" name="pidInput" length=10 placeholder="PID"> <BR><BR>
-    <input type=text name="fromdateInput" length=10 placeholder="mm/dd/yyyy"> <BR><BR>
+    <input type=text name="thInput" length=10 placeholder="hid">
+    <input type="text" name="pidInput" length=10 placeholder="pid"> <BR>Start Date:<BR>
+    <input type=text name="fromdateInput" length=10 placeholder="mm/dd/yyyy"> <BR>End Date:<BR>
     <input type="text" name="todateInput" length=10 placeholder="mm/dd/yyyy"> <BR><BR>
         Add Reservation
         <input type=submit>
@@ -45,8 +46,6 @@ Make a Reservation
         reservation.add(request.getParameter("pidInput"));
         reservation.add(request.getParameter("fromdateInput"));
         reservation.add(request.getParameter("todateInput"));
-
-        Connector connector = new Connector();
 
         reservations.add(reservation);
         session.setAttribute("reservations", reservations);
@@ -66,9 +65,13 @@ Would you like to make another reservation?
     <input type=submit>
 </form>
 <%
-    Connector con = new Connector();
+    Connector connector = (Connector)session.getAttribute("connector");
+    if(connector == null) {
+        connector = new Connector();
+        session.setAttribute("connector", connector);
+    }
     Available availPeriod = new Available();
-    String availTimes = app.getTHAvailableTimes(con);
+    String availTimes = app.getTHAvailableTimes(connector);
     String availTimesReservations = "<b> All Available TH's and there times <b> <table> <td>" + availTimes + "</td>";
 //    out.println("All Available TH's and there available times: <br>" + availTimes + "<BR><BR>");
 %>
@@ -89,7 +92,8 @@ Would you like to make another reservation?
     }
     availTimesReservations += "<td valign=\"top\">" + output + "</td> </table>";
     out.println(availTimesReservations + "<BR><BR>");
-
+    %><BR><a href="userDashboard.jsp">User Dashboard</a><%
 %>
+
 </body>
 </html>

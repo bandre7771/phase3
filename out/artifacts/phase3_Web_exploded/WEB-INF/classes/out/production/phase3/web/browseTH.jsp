@@ -5,143 +5,130 @@
 <head>
     <title>Browse TH</title>
     <h1 align="center">Browse TH</h1>
-    <script>
-//        function myFunction() {
-////            var x = document.getElementById("myCheck").checked;
-//            function check_all_fields(form_obj){
-//                form_obj. = form_obj.getElementById("t_id").checked;
-//                            var x = document.getElementById("myCheck").checked;
-//
-//                return true;
-//            }
-////            document.getElementById("demo").innerHTML = x;
-//        }
-    </script>
 </head>
 <body>
 <a href="browseTH.jsp"> New Search </a><BR>
-    <%
-        String minPriceAttributeValue = request.getParameter("minPriceAttributeValue");
-        String maxPriceAttributeValue = request.getParameter("maxPriceAttributeValue");
-        String addressAttributeValue = request.getParameter("addressAttributeValue");
-        String nameAttributeValue = request.getParameter("nameAttributeValue");
-        String categoryAttributeValue = request.getParameter("categoryAttributeValue");
+<%
+String minPriceAttributeValue = request.getParameter("minPriceAttributeValue");
+String maxPriceAttributeValue = request.getParameter("maxPriceAttributeValue");
+String addressAttributeValue = request.getParameter("addressAttributeValue");
+String nameAttributeValue = request.getParameter("nameAttributeValue");
+String categoryAttributeValue = request.getParameter("categoryAttributeValue");
 
-        String submitButtonLabelText = "Complete Search / Sort By";
+String submitButtonLabelText = "Complete Search / Sort By";
 
-        String orderBy = request.getParameter("orderBy");
+String orderBy = request.getParameter("orderBy");
 
-        String trustedOnlyAttribute = request.getParameter("trustedOnly");
-
-        String whereQueryAttributeValue = request.getParameter("whereQueryAttributeValue");
-        if(whereQueryAttributeValue == null)
+String whereQueryAttributeValue = request.getParameter("whereQueryAttributeValue");
+if(whereQueryAttributeValue == null)
+{
+    whereQueryAttributeValue = "";
+}
+else
+{
+    if(!whereQueryAttributeValue.isEmpty())
+    {
+        if((!minPriceAttributeValue.isEmpty() && !maxPriceAttributeValue.isEmpty()) || !addressAttributeValue.isEmpty() || !nameAttributeValue.isEmpty() || !categoryAttributeValue.isEmpty())
         {
-            whereQueryAttributeValue = "";
+            whereQueryAttributeValue += "OR ";
         }
-        else
+    }
+    boolean andRequired = false;
+    if(!minPriceAttributeValue.isEmpty() && !maxPriceAttributeValue.isEmpty()) {
+        if(andRequired)
         {
-            if(!whereQueryAttributeValue.isEmpty())
-            {
-                if((!minPriceAttributeValue.isEmpty() && !maxPriceAttributeValue.isEmpty()) || !addressAttributeValue.isEmpty() || !nameAttributeValue.isEmpty() || !categoryAttributeValue.isEmpty())
-                {
-                    whereQueryAttributeValue += "OR ";
-                }
-            }
-            boolean andRequired = false;
-            if(!minPriceAttributeValue.isEmpty() && !maxPriceAttributeValue.isEmpty()) {
-                if(andRequired)
-                {
-                    whereQueryAttributeValue += "AND ";
-                }
-                whereQueryAttributeValue += "(price >= "+minPriceAttributeValue+" AND price <= "+maxPriceAttributeValue+") ";
-                andRequired = true;
-            }
-            if(!addressAttributeValue.isEmpty()) {
-                if(andRequired)
-                {
-                    whereQueryAttributeValue += "AND ";
-                }
-                whereQueryAttributeValue += "address LIKE '%"+addressAttributeValue+"%' ";
-                andRequired = true;
-            }
-            if(!nameAttributeValue.isEmpty()) {
-                if(andRequired)
-                {
-                    whereQueryAttributeValue += "AND ";
-                }
-                whereQueryAttributeValue += "hname LIKE '%"+nameAttributeValue+"%' ";
-                andRequired = true;
-            }
-            if(!categoryAttributeValue.isEmpty()) {
-                if(andRequired)
-                {
-                    whereQueryAttributeValue += "AND ";
-                }
-                whereQueryAttributeValue += "category LIKE '%"+categoryAttributeValue+"%' ";
-                andRequired = true;
-            }
-            if(!whereQueryAttributeValue.isEmpty())
-            {
-                submitButtonLabelText = "Sort / Add To Search (Using OR)";
-            }
+            whereQueryAttributeValue += "AND ";
         }
-        Connector connector = new Connector();
-        Application app = new Application();
+        whereQueryAttributeValue += "(price >= "+minPriceAttributeValue+" AND price <= "+maxPriceAttributeValue+") ";
+        andRequired = true;
+    }
+    if(!addressAttributeValue.isEmpty()) {
+        if(andRequired)
+        {
+            whereQueryAttributeValue += "AND ";
+        }
+        whereQueryAttributeValue += "address LIKE '%"+addressAttributeValue+"%' ";
+        andRequired = true;
+    }
+    if(!nameAttributeValue.isEmpty()) {
+        if(andRequired)
+        {
+            whereQueryAttributeValue += "AND ";
+        }
+        whereQueryAttributeValue += "hname LIKE '%"+nameAttributeValue+"%' ";
+        andRequired = true;
+    }
+    if(!categoryAttributeValue.isEmpty()) {
+        if(andRequired)
+        {
+            whereQueryAttributeValue += "AND ";
+        }
+        whereQueryAttributeValue += "category LIKE '%"+categoryAttributeValue+"%' ";
+    }
+    if(!whereQueryAttributeValue.isEmpty())
+    {
+        submitButtonLabelText = "Sort / Add To Search (Using OR)";
+    }
+}
+Connector connector = (Connector)session.getAttribute("connector");
+if(connector == null) {
+    connector = new Connector();
+    session.setAttribute("connector", connector);
+}
+Application app = new Application();
 %>
-<p>(Note: Fields act as ANDs to use OR functionality complete the search)</p>
+<p>(Note: Search fields act as ANDs to use OR functionality complete the search)</p>
 <form id="searchBy"  method=get action="browseTH.jsp">
     <h4>Search:</h4>
     <input type="hidden" name="whereQueryAttributeValue" value="<%=whereQueryAttributeValue%>">
     <input type="hidden" name="orActiveAttributeValue" value="orActive">
-    Price:<BR>
-    <input type="text" name="minPriceAttributeValue" length=10 placeholder="Min">
-    <input type="text" name="maxPriceAttributeValue" length=10 placeholder="And Max"><BR>
-    Address:<BR>
-    <input type="text" name="addressAttributeValue" length=10 placeholder="And Address"><BR>
-    Name:<BR>
-    <input type="text" name="nameAttributeValue" length=10 placeholder="And Name"><BR>
-    Category:<BR>
-    <input type="text" name="categoryAttributeValue" length=10 placeholder="And Category"><BR>
+    Price Range (optional):<BR>
+    <input type="text" name="minPriceAttributeValue" length=10 placeholder="min">
+    <input type="text" name="maxPriceAttributeValue" length=10 placeholder="max"><BR>
+    Address (optional):<BR>
+    <input type="text" name="addressAttributeValue" length=10 placeholder="address"><BR>
+    Name (optional):<BR>
+    <input type="text" name="nameAttributeValue" length=10 placeholder="hname"><BR>
+    Category (optional):<BR>
+    <input type="text" name="categoryAttributeValue" length=10 placeholder="category"><BR>
     <h4>Sort by:</h4>
     <input type="radio" name="orderBy" value="hid" checked> hid <BR>
-    <input type="radio" name="orderBy" value="average price"> average price <BR>
+    <input type="radio" name="orderBy" value="average price"> price <BR>
     <input type="radio" name="orderBy" value="average fbscore"> average fbscore <BR>
-    <BR>
-    <input id="t_id" type="checkbox" name="trustedOnly"> Show Trusted Only <BR>
+    <input type="radio" name="orderBy" value="average fbscore of the trusted user feedbacks"> average fbscore of trusted user feedbacks <BR>
     <BR>
     <input type="submit" value="<%=submitButtonLabelText%>">
 </form>
     <%
 
-        boolean trustedOnly = false;
-        if (trustedOnlyAttribute != null) {
-            trustedOnly = trustedOnlyAttribute.equals("on");
-        }
-        %>
-        Current Search: <%= whereQueryAttributeValue.isEmpty() ? "All" : whereQueryAttributeValue%> <BR>
-        Sorted By: <%=orderBy == null ? "hid" : orderBy %>
-        <%=trustedOnly ? "<BR>(Showing only TH listed by trusted users)<BR>" : "" %>
-        <%
-        if(orderBy != null)
-        {
-            if(orderBy.equals("average price"))
-            {
-                out.println(app.browsingTH(whereQueryAttributeValue, true, false, trustedOnly, connector.stmt));
-            }
-            else if (orderBy.equals("average fbscore"))
-            {
-                out.println(app.browsingTH(whereQueryAttributeValue, false, true, trustedOnly, connector.stmt));
-            }
-            else // orderBy.equals("hid")
-            {
-                out.println(app.browsingTH(whereQueryAttributeValue, false, false, trustedOnly, connector.stmt));
-            }
-        }
-        else
-        {
-            out.println(app.browsingTH(whereQueryAttributeValue, false, false, trustedOnly, connector.stmt));
-        }
-    %>
+%>
+Current Search: <%= whereQueryAttributeValue.isEmpty() ? "All" : whereQueryAttributeValue%> <BR>
+Sorted By: <%=orderBy == null ? "hid" : orderBy %>
+<%
+if(orderBy != null)
+{
+    if(orderBy.equals("average price"))
+    {
+        out.println(app.browsingTH(whereQueryAttributeValue, true, false, false, connector.stmt));
+    }
+    else if (orderBy.equals("average fbscore"))
+    {
+        out.println(app.browsingTH(whereQueryAttributeValue, false, true, false, connector.stmt));
+    }
+    else if (orderBy.equals("average fbscore of the trusted user feedbacks"))
+    {
+        out.println(app.browsingTH(whereQueryAttributeValue, false, true, true, connector.stmt));
+    }
+    else // orderBy.equals("hid")
+    {
+        out.println(app.browsingTH(whereQueryAttributeValue, false, false, false, connector.stmt));
+    }
+}
+else
+{
+    out.println(app.browsingTH(whereQueryAttributeValue, false, false, false, connector.stmt));
+}
+%>
 <BR><a href="th.jsp"> TH Menu </a>
 
 </body>

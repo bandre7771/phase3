@@ -13,7 +13,8 @@
 <html>
 <head>
     <title>Record Visit(s)</title>
-    <h1>Enter Information for a Visit</h1>
+    <h1 align="center">Record Visit(s)</h1>
+    <h3>Enter Information for a Visit</h3>
 </head>
 <body>
 
@@ -48,8 +49,6 @@ Record a Visit
         visit.add(request.getParameter("fromdateInput"));
         visit.add(request.getParameter("todateInput"));
 
-        Connector connector = new Connector();
-
         visits.add(visit);
         session.setAttribute("visits", visits);
 
@@ -68,9 +67,13 @@ Would you like to record another visit?
     <input type=submit>
 </form>
 <%
-    Connector con = new Connector();
+    Connector connector = (Connector)session.getAttribute("connector");
+    if(connector == null) {
+        connector = new Connector();
+        session.setAttribute("connector", connector);
+    }
     Available availPeriod = new Available();
-    String usersReservations = app.getUsersReservations(con);
+    String usersReservations = app.getUsersReservations(connector);
     String tableReservationsVisits = "<b> All your reservations <b> <table> <td>" + usersReservations + "</td>";
    // out.println("All reservations made: <br>" + usersReservations + "<BR><BR>");
 %>
@@ -88,8 +91,9 @@ Would you like to record another visit?
         }
         output += "</table>";
     }
-    tableReservationsVisits += "<td>" + output + "</td> </table>";
+    tableReservationsVisits += "<td valign=\"top\">" + output + "</td> </table>";
     out.println(tableReservationsVisits + "<BR><BR>");
+    %><BR><a href="userDashboard.jsp">User Dashboard</a><%
 %>
 </body>
 </html>

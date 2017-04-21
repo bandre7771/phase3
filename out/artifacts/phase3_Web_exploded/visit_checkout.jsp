@@ -35,7 +35,11 @@
     String currentUser = (String)session.getAttribute("currentUser");
 
     List<List<String>> visits = (List<List<String>>)session.getAttribute("visits");
-
+    Connector connector = (Connector)session.getAttribute("connector");
+    if(connector == null) {
+        connector = new Connector();
+        session.setAttribute("connector", connector);
+    }
     if (checkoutAttribute == null) {
 %>
 
@@ -66,7 +70,6 @@ Would you like to Checkout?
 
                 app.visits = visits;
                 app._currentUser = currentUser;
-                Connector connector = new Connector();
                 Period period = new Period();
                 List<List<String>> chosenPeriods = new ArrayList<>();
                 List<String> chosenPeriod = new ArrayList<>();
@@ -81,8 +84,6 @@ Would you like to Checkout?
 <jsp:forward page = "userDashboard.jsp" />
 <%
         }
-
-
 %>
 </body>
 </html>

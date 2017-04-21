@@ -1,9 +1,6 @@
-<%@ page import="cs5530.Application" %>
-<%@ page import="cs5530.Available" %>
-<%@ page import="cs5530.Connector" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%@ page import="cs5530.Period" %><%--
+<%@ page import="cs5530.*" %><%--
   Created by IntelliJ IDEA.
   User: bandre7771
   Date: 4/3/17
@@ -13,8 +10,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Checkout</title>
-    <h1>Checkout Reservations</h1>
+    <title>Favorite</title>
+    <h1 align="center">Favorite</h1>
     <script LANGUAGE="javascript">
 
         function check_all_fields(form_obj){
@@ -40,23 +37,31 @@
 
     app.reservations = reservations;
     app._currentUser = currentUser;
-
+    Connector connector = (Connector)session.getAttribute("connector");
+    if(connector == null) {
+        connector = new Connector();
+        session.setAttribute("connector", connector);
+    }
     if (thID == null) {
 %>
 
 </form>
 Enter the TH you would like to favorite
 <form name="checkout" method=get onsubmit="return check_all_fields(this)" action="favorite_th.jsp">
-    <input type=text name="thInput" length=10 placeholder="THID">
+    <input type=text name="thInput" length=10 placeholder="hid">
     <input type=submit>
 </form>
 <%
-    Connector con = new Connector();
-    String visitedTHs = app.getVisitedTHS(con.stmt);
+    String visitedTHs = app.getVisitedTHS(connector.stmt);
     out.println("All the THs you have visited: <br><br>" + visitedTHs + "<BR><BR>");
+    %><BR><%
+    out.println("Your favorite TH's");
+    Favorites favorites = new Favorites();
+    out.println(favorites.getUserFavoriteTHs(currentUser, connector.stmt));
+%><BR><a href="userDashboard.jsp">User Dashboard</a><%
+
 } else {
-    Connector con = new Connector();
-    app.declareTHAsFavorite(thID, con);
+    app.declareTHAsFavorite(thID, connector);
     out.println("TH " + thID + " has been favorited");
 
 %>

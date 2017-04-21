@@ -13,7 +13,8 @@
 <html>
 <head>
     <title>Record Visit(s)</title>
-    <h1>Enter Information for a Visit</h1>
+    <h1 align="center">Record Visit(s)</h1>
+    <h3>Enter Information for a Visit</h3>
 </head>
 <body>
 
@@ -33,9 +34,9 @@
 Record a Visit
 <form name="record_visit" method=get onsubmit="return check_all_fields(this)" action="record_visit.jsp">
     <%--<input type=hidden name="searchAttribute" value="login">--%>
-    <input type=text name="thInput" length=10 placeholder="THID"> <BR><BR>
-    <input type="text" name="pidInput" length=10 placeholder="PID"> <BR><BR>
-    <input type=text name="fromdateInput" length=10 placeholder="mm/dd/yyyy"> <BR><BR>
+    <input type=text name="thInput" length=10 placeholder="hid">
+    <input type="text" name="pidInput" length=10 placeholder="pid"> <BR>Start Date:<BR>
+    <input type=text name="fromdateInput" length=10 placeholder="mm/dd/yyyy"> <BR>End Date:<BR>
     <input type="text" name="todateInput" length=10 placeholder="mm/dd/yyyy"> <BR><BR>
         Add Visit
         <input type=submit>
@@ -47,8 +48,6 @@ Record a Visit
         visit.add(request.getParameter("pidInput"));
         visit.add(request.getParameter("fromdateInput"));
         visit.add(request.getParameter("todateInput"));
-
-        Connector connector = new Connector();
 
         visits.add(visit);
         session.setAttribute("visits", visits);
@@ -68,9 +67,13 @@ Would you like to record another visit?
     <input type=submit>
 </form>
 <%
-    Connector con = new Connector();
+    Connector connector = (Connector)session.getAttribute("connector");
+    if(connector == null) {
+        connector = new Connector();
+        session.setAttribute("connector", connector);
+    }
     Available availPeriod = new Available();
-    String usersReservations = app.getUsersReservations(con);
+    String usersReservations = app.getUsersReservations(connector);
     String tableReservationsVisits = "<b> All your reservations <b> <table> <td>" + usersReservations + "</td>";
    // out.println("All reservations made: <br>" + usersReservations + "<BR><BR>");
 %>
@@ -90,6 +93,7 @@ Would you like to record another visit?
     }
     tableReservationsVisits += "<td valign=\"top\">" + output + "</td> </table>";
     out.println(tableReservationsVisits + "<BR><BR>");
+    %><BR><a href="userDashboard.jsp">User Dashboard</a><%
 %>
 </body>
 </html>

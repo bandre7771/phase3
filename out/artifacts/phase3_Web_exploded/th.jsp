@@ -10,9 +10,9 @@
     <li><a href="updateTH.jsp">Update TH</a></li>
     <li><a href="browseTH.jsp">Browse TH</a></li>
     <li><a href="keywordsTH.jsp">Keywords TH</a></li>
-    <li><a href="availabityTH.jsp">Availability TH</a></li>
+    <li><a href="availabilityTH.jsp">Availability TH</a></li>
     <BR><BR>
-    <li><a href="index.jsp">Index</a></li>
+    <li><a href="userDashboard.jsp">User Dashboard</a></li>
 </ul>
 </body>
 </html>

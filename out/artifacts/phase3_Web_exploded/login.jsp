@@ -13,6 +13,12 @@
             session.setAttribute("currentUser", "".toString());
         }
 
+        Connector connector = (Connector)session.getAttribute("connector");
+        if(connector == null) {
+            connector = new Connector();
+            session.setAttribute("connector", connector);
+        }
+
         List<List<String>> reservations = (List<List<String>>)session.getAttribute("reservations");
         if(reservations == null) {
             session.setAttribute("reservations", new ArrayList<List<String>>());
@@ -70,36 +76,39 @@ SignUp for UOtel
 <%
 
 }
-//else if(currentUser != ""){
-//
-//}
 else {
-
-
     usernameAttribute = request.getParameter("usernameValue");
     passwordAttribute = request.getParameter("passwordValue");
-    Connector connector = new Connector();
     Application app = new Application();
     Users user = new Users();
-    if (user.getUser(usernameAttribute, passwordAttribute, connector.stmt) != "") {
+    if (user.userExists(usernameAttribute, passwordAttribute, connector.stmt)) {
         currentUser = usernameAttribute;
         session.setAttribute("currentUser", currentUser);
        %>
         Finally
         <jsp:forward page = "userDashboard.jsp" />
-        <%--<form id="main" method="post" name="main" action="" onsubmit="redirect(this);">--%>
-        <%--<input type="submit" name="submit"/>--%>
-        <%--</form>--%>
        <%
     } else {
         currentUser = "";
         %>
-<jsp:forward page = "login.jsp" />
-<%
+            Login
+            <form name="user_search" method=get onsubmit="return check_all_fields(this)" action="login.jsp">
+                <%--<input type=hidden name="searchAttribute" value="login">--%>
+                <input type=text name="usernameValue" length=10> <BR><BR>
+                Password <BR>
+                <input type="text" name="passwordValue" length=10>
+                <input type=submit>
+            </form>
+            <BR><BR>
+            SignUp for UOtel
+            <form name="register_user" method=get action="register_user.jsp">
+                <%--<input type=hidden name="searchAttribute" value="login">--%>
+                <input type=submit>
+            </form>
+            <BR><BR>
+        <%
     }
 }
-
-
 %>
 
 <%--<p><b>Listing orders in JSP: </b><BR><BR>--%>

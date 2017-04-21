@@ -45,8 +45,7 @@ public class Rates {
 	public boolean addRating(String fid, String login, String rating, Statement stmt)
 	{
 		Feedback feedback = new Feedback();
-		String fblogin = feedback.getLoginFeedback(fid,stmt);
-		if(!fblogin.equals(login))
+		if(!feedback.isThereOwnFeedback(login, fid, stmt))
 		{
 			String sql="INSERT INTO Rates (fid, login, rating) VALUES ("+fid+", '"+ login +"', " + rating + ")";
 //			System.out.println("executing "+sql);

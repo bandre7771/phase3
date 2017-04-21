@@ -49,44 +49,50 @@ public class Available {
 		    return output;
 		}
 
-	public void addAvailable(String hid, String pid, String cost_per_night, Statement stmt)
+	public boolean addAvailable(String hid, String pid, String cost_per_night, Statement stmt)
 	{
 		String sql="INSERT INTO Available (hid, pid, price_per_night) VALUES ("+hid+", "+pid+", "+cost_per_night+")";
 //		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("Available period successfully added!");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot insert");
+			return false;
 		}
 	}
 
-	public void updateAvailable(String hid, String pid, String cost_per_night, Statement stmt)
+	public boolean updateAvailable(String hid, String pid, String cost_per_night, Statement stmt)
 	{
 		String sql="UPDATE Available SET cost_per_night = '"+cost_per_night+"' WHERE hid = "+hid+" AND pid = " + pid;
 //		System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("success!");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot update");
+			return false;
 		}
 	}
 
-	public void deleteAvailable(String thid, String pid, Statement stmt) {
+	public boolean deleteAvailable(String thid, String pid, Statement stmt) {
 		String sql="delete from Available where pid = '" +pid + "' and hid = '" + thid +"'";
 		//System.out.println("executing "+sql);
 		try{
 			stmt.executeUpdate(sql);
 			System.out.println("success!");
+			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("cannot remove available period");
+			return false;
 		}
 	}
 }

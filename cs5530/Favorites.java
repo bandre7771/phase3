@@ -40,6 +40,38 @@ public class Favorites {
    		 	}
 		    return output;
 	}
+	public String getUserFavoriteTHs(String login, Statement stmt)
+	{
+		String sql="select * from Favorites where login = '"+login+"'";
+		String output="<table>";
+		output += "<tr> <th> hid </th> </tr>";
+		ResultSet rs=null;
+		try{
+			rs=stmt.executeQuery(sql);
+			while (rs.next())
+			{
+				output+="<tr><td>"+rs.getString("hid")+"</td></tr>";
+			}
+			output += "</table>";
+			rs.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cannot execute the query");
+		}
+		finally
+		{
+			try{
+				if (rs!=null && !rs.isClosed())
+					rs.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("cannot close resultset");
+			}
+		}
+		return output;
+	}
 
 	public boolean addFavorite(int hid, String login, Statement stmt)
 	{
