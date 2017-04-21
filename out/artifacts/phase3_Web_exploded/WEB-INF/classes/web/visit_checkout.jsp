@@ -14,7 +14,7 @@
 <html>
 <head>
     <title>Checkout</title>
-    <h1>Checkout Reservations</h1>
+    <h1>Checkout Visits</h1>
     <script LANGUAGE="javascript">
 
         function check_all_fields(form_obj){
@@ -57,7 +57,7 @@ Would you like to Checkout?
                         + "<td>" + visit.get(3) + "</td></tr>";
             }
             output += "</table>";
-            out.println("All the reservations made so far: <br>" + output + "<BR><BR>");
+            out.println("All the current visits recorded so far: <br>" + output + "<BR><BR>");
         }
     }
     else {

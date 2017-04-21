@@ -19,8 +19,6 @@
 
         String orderBy = request.getParameter("orderBy");
 
-        String trustedOnlyAttribute = request.getParameter("trustedOnly");
-
         String whereQueryAttributeValue = request.getParameter("whereQueryAttributeValue");
         if(whereQueryAttributeValue == null)
         {

@@ -1737,7 +1737,7 @@ public class Application {
 		}
 	}
 
-	public void leaveFeedback(String th, String score, String shortText, Connector con) {
+	public boolean leaveFeedback(String th, String score, String shortText, Connector con) {
 
 		try {
 
@@ -1752,20 +1752,24 @@ public class Application {
 				//System.out.println("That username has already been used");
 				feedback.addFeedback(th,_currentUser, shortText,  Integer.parseInt(score), con.stmt);
 				if(alreadyHaveFeedback.size() > 0){
-					feedback.deleteFeedback(alreadyHaveFeedback.get(0).get(0), con.stmt);
+					//feedback.deleteFeedback(alreadyHaveFeedback.get(0).get(0), con.stmt);
+					return false;
 				}
+				return true;
 			} else {
 				System.out.println("We have no record of that visit");
-
+				return false;
 			}
 		}
 		catch (Exception e){
 			e.printStackTrace();
+			return false;
 		}
 	}
 
 	public boolean declareTHAsFavorite(String thid, Connector con){
 		Favorites favorite = new Favorites();
+		//if(favorite.getFavorites())
 		favorite.addFavorite(Integer.parseInt(thid), _currentUser, con.stmt);
 		return true;
 	}
